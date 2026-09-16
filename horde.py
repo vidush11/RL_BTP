@@ -2,37 +2,80 @@
 
 theta, w and e are (n_demons x n_features) matrices, so one call to update()
 advances the entire bank. Per-demon quantities (gamma, lambda, rho, r, z) are
-length-D vectors. This is the only structural decision that is painful to
-retrofit, which is why it is here from the start.
+length-D vectors. Works fast because we have D~8 a realtively small number of demons
+
+Author: Vidush Jindal(jindalv)
 """
+
 import numpy as np
-from env import N_ACTIONS
-from features import phi, N_FEATURES, N_ACTIVE
+
+from env import N_ACTIONS, Action
+from features import N_ACTIVE, N_FEATURES, phi
 
 
 class Horde:
+    """
+    A general class to perform updates on demons according to horde architecture.
+    It contains the parameter theta which can be used to compute state action values
+    """
+
     def __init__(self, demons):
         self.demons = demons
-        D = len(demons)
-        self.theta = np.zeros((D, N_FEATURES))
-        self.w = np.zeros((D, N_FEATURES))
-        self.e = np.zeros((D, N_FEATURES))
-        self.lam = np.array([d["lam"] for d in demons])
-        # scale step sizes by the number of active features, so alpha is comparable
-        self.a_th = np.array([d["alpha"] for d in demons]) / N_ACTIVE
-        self.a_w = np.array([d["beta"] for d in demons]) / N_ACTIVE
+        no_D = len(demons)
+        self.theta = np.zeros((no_D, N_FEATURES))
+        self.w = np.zeros((no_D, N_FEATURES))
+        self.e = np.zeros((no_D, N_FEATURES))
+        self.lam = np.array([demon["lam"] for demon in demons])
+        # scale step sizes by the number of active features, as we would take sum
+        # in computing q(s,a)= theta * phi(s,a) and theta computation uses a_th, a_w
+        self.a_th = np.array([demon["alpha"] for demon in demons]) / N_ACTIVE
+        self.a_w = np.array([demon["beta"] for demon in demons]) / N_ACTIVE
 
-    def q(self, obs):
-        """(D, A) matrix: every demon's action-values at obs."""
-        return np.stack([self.theta[:, phi(obs, a)].sum(1) for a in range(N_ACTIONS)], 1)
+    def q(self, obs: np.ndarray) -> np.ndarray:
+        """Returns the state action value i.e q^(s,a,theta)
 
-    def pi(self, obs, Q):
-        """(D, A) target policy probabilities. Control demons read their own Q."""
-        return np.stack([d["pi"](obs, Q[i]) for i, d in enumerate(self.demons)])
+        :param obs: observation from sensors that is s
+        :type obs: np.ndarray
+        :return: State action values per demon, the shape is (D X actions)
+        :rtype: np.ndarray
+        """
 
-    def update(self, obs, a, obs2, mu):
+        # demons share phi(obs,a)
+        return np.array([self.theta[:, phi(obs, a)].sum(1) for a in Action]).T
+
+    def pi(self, obs: np.ndarray, q_sa: np.ndarray) -> np.ndarray:
+        """Returns the stochastic distribution of target policy actions for each demon
+
+        :param obs: current observation from the sensors
+        :type obs: np.ndarray
+        :param Q_sa: the state actions values for all demons as a matrix (Demons X Actions)
+        :type Q_sa: np.ndarray
+        :return: Target policy probabilities. Control demons derive it from Q[demon]
+        :rtype: np.ndarray
+        """
+
+        return np.stack(
+            [demon["pi"](obs, q_sa[ind]) for ind, demon in enumerate(self.demons)]
+        )
+
+    def update(self, obs: np.ndarray, a: Action, obs2: np.ndarray, mu: float):
+        """
+        We take an action a in obs and get obs2, rewards.
+        This updates the state varaibles of horde architecture w, theta, e.
+
+        :param obs: The current sensor readings
+        :type obs: np.ndarray
+        :param a: Target policy action
+        :type a: Action
+        :param obs2: Next state sensor readings
+        :type obs2: np.ndarray
+        :param mu: the probability of take action a in behavious policy
+        :type mu: float
+        :return: del_t a temporary quantity that can be used to detect divergence
+        :rtype: _type_
+        """
         idx = phi(obs, a)
-        idx2 = [phi(obs2, b) for b in range(N_ACTIONS)]
+        idx2 = [phi(obs2, action) for action in Action]
         Q2 = np.stack([self.theta[:, j].sum(1) for j in idx2], 1)
         pi_t = self.pi(obs, self.q(obs))
         pi_2 = self.pi(obs2, Q2)
@@ -55,7 +98,7 @@ class Horde:
         wphi = self.w[:, idx].sum(1)
 
         self.theta += (self.a_th * delta)[:, None] * self.e
-        c = self.a_th * g2 * (1 - self.lam) * wte           # the gradient correction
+        c = self.a_th * g2 * (1 - self.lam) * wte  # the gradient correction
         for b in range(N_ACTIONS):
             self.theta[:, idx2[b]] -= (c * pi_2[:, b])[:, None]
 

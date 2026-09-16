@@ -1,25 +1,36 @@
-"""Drive the robot with one behaviour policy; every demon learns off-policy.
+"""
+Drive the robot with one behaviour policy; every demon learns off-policy.
 
-Evaluation compares each demon's prediction q-hat against the ACTUAL return
+Evaluation compares each demon's prediction q-hat against the actual return
 obtained by following that demon's target policy from the same state. That
-comparison is the bold-vs-thin line in Figures 2 and 3, and it is the only
-thing that will catch off-policy divergence.
+comparison is the bold-vs-thin line in Figures 2 and 3. This captures difference
+between off policy and on policy
+
+Author: Vidush Jindal(jindalv)
 """
 
 import numpy as np
-from env import Robot, N_ACTIONS, STOP, ARENA
-from horde import Horde
+
 from demons import DEMONS
+from env import N_ACTIONS, Action, Robot
+from horde import Horde
 
 STEPS, STICK, SEED = 150_000, 0.8, 0
 
 
-def evaluate(horde, visited, seed, n=25, horizon=400):
-    """For each demon: mean prediction vs mean Monte-Carlo return.
+def evaluate(
+    horde: Horde,
+    visit: list[tuple[float, float, float, float, float, float]],
+    seed: int,
+    n: int = 25,
+    horizon: int = 400,
+):
+    """
+    For each demon: mean prediction vs mean Monte-Carlo return.
 
     States are sampled from what the BEHAVIOUR policy actually visited. A value
     function is only meaningful where the behaviour gave coverage, so testing on
-    uniformly random states measures extrapolation, not learning.
+    uniformly random states measures randomness.
     """
     rng = np.random.default_rng(seed)
     sim = Robot(seed=seed + 1)
@@ -27,16 +38,24 @@ def evaluate(horde, visited, seed, n=25, horizon=400):
     for i, d in enumerate(DEMONS):
         pred, actual = [], []
         for _ in range(n):
-            st = visited[rng.integers(len(visited))]
+            # visited state sampled randomly from all of them
+            st = visit[rng.integers(len(visit))]
             sim.set_state(st)
             o = sim.obs()
             if d["gamma"](o) == 0.0:
-                continue  # already terminated
+                continue  # the last state before episode terminated
+
+            # which action had max probability according to stochastic target policy
             a = int(np.argmax(d["pi"](o, horde.q(o)[i])))
+            # append the state action value integer as prediction
             pred.append(horde.q(o)[i][a])
 
             sim.set_state(st)  # roll out target policy
-            o, G, disc = sim.obs(), 0.0, 1.0
+            o, G, disc = (
+                sim.obs(),
+                0.0,
+                1.0,
+            )  # G is return, we will use it for monte carlo return
             for _ in range(horizon):
                 b = int(np.argmax(d["pi"](o, horde.q(o)[i])))
                 o = sim.step(b)
@@ -59,26 +78,26 @@ def evaluate(horde, visited, seed, n=25, horizon=400):
 rng = np.random.default_rng(SEED)
 env = Robot(seed=SEED)
 horde = Horde(DEMONS)
-obs, prev = env.obs(), STOP
+obs, prev = env.obs(), Action.STOP
 visited = []  # states the behaviour actually reached
 
 for t in range(1, STEPS + 1):
     if t == 100_000:  # change the "floor surface" mid-run
         env.friction = 0.04
-        print("\n--- floor changed: friction 0.10 -> 0.04 (slippery) ---")
+        print("\nThe floor was changed: friction 0.10 -> 0.04 (slippery)")
 
-    # sticky-random behaviour policy: uniform, biased toward repeating
+    # out behaviour policy is biased towards repeating the current taken action
     p = np.full(N_ACTIONS, (1 - STICK) / N_ACTIONS)
     p[prev] += STICK
     p /= p.sum()
-    a = int(rng.choice(N_ACTIONS, p=p))
+    a = Action(rng.choice(N_ACTIONS, p=p))
     mu = float(p[a])
     prev = a
 
-    obs2 = env.step(a)
-    horde.update(obs, a, obs2, mu)  # ALL demons learn from this one step
+    obs2 = env.step(a)  # the next sensor readings
+    horde.update(obs, a, obs2, mu)  # All demons learn from this one step
     obs = obs2
-    if t % 37 == 0:
+    if t % 30 == 0:
         visited.append(env.get_state())
 
     if t % 50_000 == 0:

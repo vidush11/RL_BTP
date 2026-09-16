@@ -4,7 +4,9 @@ Author: Vidush Jindal (jindalv)
 """
 
 from __future__ import annotations
+
 from enum import IntEnum
+
 import numpy as np
 
 
@@ -18,7 +20,7 @@ class Action(IntEnum):
     STOP = 4
 
 
-N_ACTIONS = 4
+N_ACTIONS = 5
 ARENA = 3.0  # metres, square
 LIGHT = np.array([0.4, 2.6])  # fixed light source in one corner
 
@@ -98,7 +100,7 @@ class Robot:
         o[BUMP] = self.bump  # except the bump switch
         return o
 
-    def step(self, a: Action) -> tuple[float, float, float, float, float, float]:
+    def step(self, a: Action) -> np.ndarray:
         """Steps the robot according to mentioned action
 
         :param a: one of the action from valid actions

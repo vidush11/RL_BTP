@@ -1,13 +1,14 @@
 """
 One tile-coded binary feature vector phi(s,a), SHARED by every demon.
 
-Sharing Phi is what makes the whole Horde vectorise: every demon reads the same
-active indices each step, so the bank is a matrix op instead of a Python loop.
-
 Rather than one huge joint tiling over all 8 sensors (which would explode), we
-tile small overlapping GROUPS of sensors and concatenate. This is exactly what
-the paper did: "four overlapping joint tilings across three sensors".
+tile small overlapping GROUPS of sensors and concatenate. This is inspired from what
+the Horde paper did: "four overlapping joint tilings across three sensors".
+
+Author: Vidush Jindal(jindalv)
 """
+
+from __future__ import annotations
 
 import numpy as np
 
@@ -47,7 +48,7 @@ _rng = np.random
 for sensors, _bins, _tilings in GROUPS:
     _idx = np.array(sensors)
     # width of each of the sensors divided into bins
-    _w = (HIGH[sensors] - LOW[sensors]) / _bins
+    _w = (HIGH[_idx] - LOW[_idx]) / _bins
     # random tiling offsets for each of the sensors
     _offsets = _rng.uniform(0, 1, (_tilings, len(_idx))) * _w
     _BLOCKS.append((_idx, _bins, _tilings, _w, _offsets, _base))
