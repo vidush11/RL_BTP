@@ -110,7 +110,7 @@ DEMONS = [
         alpha=0.1,
         beta=0.01,
     ),
-    # Control demon: maximise |angular velocity|, i.e. learn to spin (Section 5.2).
+    # Control demon: maximise angular velocity, i.e. learn to spin (Section 5.2).
     dict(
         name="spin [ctrl]",
         pi=greedy,
@@ -121,9 +121,9 @@ DEMONS = [
         alpha=0.1,
         beta=0.01,
     ),
-    # Control demon: back away from walls, maximise open space in front.
+    # Control demon: back away from front obstacles, maximise open space in front.
     dict(
-        name="avoid-wall [ctrl]",
+        name="avoid-front-obstacles [ctrl]",
         pi=greedy,
         r=lambda o: 1.0 - o[IR_F],
         z=ZERO,
