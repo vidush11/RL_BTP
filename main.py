@@ -12,6 +12,8 @@ learned policy, against a random-policy baseline (Figure 5).
 Author: Vidush Jindal(jindalv)
 """
 
+import os
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -22,6 +24,45 @@ from viz import Live
 
 STEPS, STICK, SEED, EVAL_EVERY = 150_0000, 0.8, 0, 25_000
 VIZ = True
+CHK = "checkpoint.npz"  # where training is saved; delete this file to start fresh
+RESUME = True  # False = ignore any existing checkpoint and train from scratch
+
+
+def save_checkpoint(
+    horde: Horde,
+    env: Robot,
+    t: int,
+    prev: int,
+    obs: np.ndarray,
+    visited: list[tuple[float, ...]],
+):
+    """
+    Save everything needed to continue training later, as plain numpy arrays.
+
+    np.savez writes several named arrays into ONE .npz file (a zip of .npy files).
+    for eg np.load(name)["parameter"] gives back exactly the array saved under that parameter.
+
+    - theta, w, e: the learned weights of every demon (+ eligibility traces).
+    - robot, friction: the Robot's physical state (x, y, th, v, w, bump) and floor.
+    - t, prev, obs, visited: the training loop's own variables.
+
+    We write to a temporary file first and then rename it. Atomicity of updates. So
+    if the program is killed mid-save the previous checkpoint survives instead of
+    being left half-written and unreadable.
+    """
+    np.savez(
+        "checkpoint.tmp.npz",
+        theta=horde.theta,
+        w=horde.w,
+        e=horde.e,
+        robot=np.array(env.get_state()),
+        friction=env.friction,
+        t=t,
+        prev=int(prev),
+        obs=obs,
+        visited=np.array(visited),  # list of 6-tuples -> (N x 6) array
+    )
+    os.replace("checkpoint.tmp.npz", CHK)
 
 
 def evaluate(
@@ -130,9 +171,27 @@ if __name__ == "__main__":
     horde = Horde(DEMONS)
     obs, prev = env.obs(), Action.STOP
     visited = []  # states the behaviour actually reached
+    start = 0  # steps already done; 0 for a fresh run, changed below when resuming
+
+    if RESUME and os.path.exists(CHK):
+        ck = np.load(CHK)
+        assert (
+            ck["theta"].shape == horde.theta.shape
+        ), f"{CHK} was made with different demons/features; delete it to start fresh"
+        horde.theta, horde.w, horde.e = ck["theta"], ck["w"], ck["e"]
+        start = int(ck["t"])  # 0-d arrays -> plain python numbers
+        prev, obs = Action(int(ck["prev"])), ck["obs"]
+        visited = list(ck["visited"])  # back to a list so .append() works
+
+        rng = np.random.default_rng(SEED + start)
+        env = Robot(seed=SEED + start, friction=float(ck["friction"]))
+        env.set_state(tuple(float(v) for v in ck["robot"]))
+        print(f"Resumed from {CHK} at step {start:,}")
+
     live = Live() if VIZ else None
 
-    for t in range(1, STEPS + 1):
+    # continue right after the last saved step (step 1 for a fresh run)
+    for t in range(start + 1, STEPS + 1):
         # if t == 100_000:  # change the "floor surface" mid-run
         #     env.friction = 0.04
         #     print("\nThe floor was changed: friction 0.10 -> 0.04 (slippery)")
@@ -166,6 +225,11 @@ if __name__ == "__main__":
             for name, kind, x, y, z in rows:
                 if kind == "ctrl":
                     print(f"{name:<24}{x:>11.3f}{y:>10.3f}{z:>8.1f}x")
+            # save at every evaluation: if you press Ctrl+C or the laptop dies, at
+            # most EVAL_EVERY steps of training are lost. Saving here (not on Ctrl+C)
+            # also guarantees we never save a half-finished horde.update().
+            save_checkpoint(horde, env, t, prev, obs, visited)
+            print(f"saved checkpoint -> {CHK}")
 
     if live:
         plt.ioff()
