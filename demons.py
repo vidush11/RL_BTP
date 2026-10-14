@@ -14,7 +14,7 @@ from typing import Callable
 
 import numpy as np
 
-from env import ANG_VEL, BUMP, IR_F, LIGHT_S, N_ACTIONS, VEL, Action
+from env import ANG_VEL, BUMP, IR_F, LIGHT_L, LIGHT_R, N_ACTIONS, VEL, Action
 
 
 def fixed(a: Action) -> Callable[[np.ndarray, np.ndarray], np.ndarray]:
@@ -57,8 +57,11 @@ DEMONS = [
         pi=fixed(Action.FORWARD),
         r=lambda obs: 1.0,
         z=ZERO,
-        # if the robot has collided then gamma should be zero that is no further rewards
-        gamma=lambda obs: 0.0 if obs[IR_F] > 0.6 else 1.0,
+        # episode ends (gamma=0) when the wall is close ahead OR we bumped into it.
+        # Checking IR_F alone is not enough: hitting a wall at a shallow angle makes
+        # the robot slide along it while the forward ray never gets close, so the
+        # "episode" dragged on for hundreds of steps and made the targets very noisy.
+        gamma=lambda obs: 0.0 if obs[IR_F] > 0.6 or obs[BUMP] else 1.0,
         lam=0.4,
         alpha=0.3,
         beta=0.001,
@@ -72,7 +75,7 @@ DEMONS = [
         z=ZERO,
         gamma=lambda obs: 0.0 if abs(obs[VEL]) < 0.03 else 1.0,
         lam=0.4,
-        alpha=0.3,
+        alpha=0.3,  # tried 0.1: learned slower and ended up worse (error 5.7 vs 4.6)
         beta=0.001,
     ),
     # Prediction Demon: How much light will I accumulate if I drive forward?  A discounted
@@ -80,7 +83,8 @@ DEMONS = [
     dict(
         name="light-if-forward",
         pi=fixed(Action.FORWARD),
-        r=lambda obs: obs[LIGHT_S],
+        # total light seen by both sensors; largest when facing the light up close
+        r=lambda obs: obs[LIGHT_L] + obs[LIGHT_R],
         z=ZERO,
         gamma=lambda o: 0.9,
         lam=0.4,
@@ -103,11 +107,11 @@ DEMONS = [
     dict(
         name="seek-light [ctrl]",
         pi=greedy,
-        r=lambda obs: obs[LIGHT_S],
+        r=lambda obs: obs[LIGHT_L] + obs[LIGHT_R],
         z=ZERO,
         gamma=lambda o: 0.95,
         lam=0.3,
-        alpha=0.1,
+        alpha=0.03,
         beta=0.01,
     ),
     # Control demon: maximise angular velocity, i.e. learn to spin (Section 5.2).
@@ -129,7 +133,7 @@ DEMONS = [
         z=ZERO,
         gamma=lambda o: 0.95,
         lam=0.3,
-        alpha=0.1,
+        alpha=0.03,
         beta=0.01,
     ),
 ]

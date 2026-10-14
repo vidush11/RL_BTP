@@ -12,6 +12,7 @@ learned policy, against a random-policy baseline (Figure 5).
 Author: Vidush Jindal(jindalv)
 """
 
+import logging
 import os
 
 import matplotlib.pyplot as plt
@@ -22,10 +23,11 @@ from env import N_ACTIONS, Action, Robot
 from horde import Horde
 from viz import Live
 
-STEPS, STICK, SEED, EVAL_EVERY = 150_0000, 0.8, 0, 25_000
-VIZ = True
+STEPS, STICK, SEED, EVAL_EVERY = 450_0000, 0.8, 0, 25_000
+VIZ = False
 CHK = "checkpoint.npz"  # where training is saved; delete this file to start fresh
 RESUME = True  # False = ignore any existing checkpoint and train from scratch
+LOG = "train_log.txt"
 
 
 def save_checkpoint(
@@ -46,9 +48,6 @@ def save_checkpoint(
     - robot, friction: the Robot's physical state (x, y, th, v, w, bump) and floor.
     - t, prev, obs, visited: the training loop's own variables.
 
-    We write to a temporary file first and then rename it. Atomicity of updates. So
-    if the program is killed mid-save the previous checkpoint survives instead of
-    being left half-written and unreadable.
     """
     np.savez(
         "checkpoint.tmp.npz",
@@ -172,8 +171,20 @@ if __name__ == "__main__":
     obs, prev = env.obs(), Action.STOP
     visited = []  # states the behaviour actually reached
     start = 0  # steps already done; 0 for a fresh run, changed below when resuming
+    resuming = RESUME and os.path.exists(CHK)
 
-    if RESUME and os.path.exists(CHK):
+    # log to terminal and LOG; fresh run overwrites the file, resumed run appends
+    logging.basicConfig(
+        level=logging.INFO,
+        format="%(message)s",
+        handlers=[
+            logging.FileHandler(LOG, mode="a" if resuming else "w"),
+            logging.StreamHandler(),
+        ],
+    )
+    log = logging.info
+
+    if resuming:
         ck = np.load(CHK)
         assert (
             ck["theta"].shape == horde.theta.shape
@@ -186,17 +197,13 @@ if __name__ == "__main__":
         rng = np.random.default_rng(SEED + start)
         env = Robot(seed=SEED + start, friction=float(ck["friction"]))
         env.set_state(tuple(float(v) for v in ck["robot"]))
-        print(f"Resumed from {CHK} at step {start:,}")
+        log(f"Resumed from {CHK} at step {start:,}")
 
     live = Live() if VIZ else None
 
-    # continue right after the last saved step (step 1 for a fresh run)
     for t in range(start + 1, STEPS + 1):
-        # if t == 100_000:  # change the "floor surface" mid-run
-        #     env.friction = 0.04
-        #     print("\nThe floor was changed: friction 0.10 -> 0.04 (slippery)")
-
         # out behaviour policy is biased towards repeating the current taken action
+
         p = np.full(N_ACTIONS, (1 - STICK) / N_ACTIONS)
         p[prev] += STICK
         p /= p.sum()
@@ -216,20 +223,24 @@ if __name__ == "__main__":
             rows = evaluate(horde, visited, SEED + t)
             if live:
                 live.record(t, rows)
-            print(f"\nstep {t:,}   (friction={env.friction})")
-            print(f"{'prediction demon':<24}{'predicted':>11}{'actual':>10}{'MAE':>9}")
+            log(f"\nsteps {t:,} | friction {env.friction}")
+            log(
+                "PREDICTION demons: the demon's prediction vs. the return actually observed"
+            )
+            log(f"  {'demon':<30}{'predicted':>10}{'actual':>11}{'avg error':>11}")
             for name, kind, x, y, z in rows:
                 if kind == "pred":
-                    print(f"{name:<24}{x:>11.2f}{y:>10.2f}{z:>9.2f}")
-            print(f"{'control demon':<24}{'learned':>11}{'random':>10}{'ratio':>9}")
+                    log(f"  {name:<30}{x:>10.2f}{y:>11.2f}{z:>11.2f}")
+            log(
+                "CONTROL demons: reward per step, learned greedy policy vs. random policy"
+            )
+            log(f"  {'demon':<30}{'learned':>10}{'random':>11}{'learned/random':>18}")
             for name, kind, x, y, z in rows:
                 if kind == "ctrl":
-                    print(f"{name:<24}{x:>11.3f}{y:>10.3f}{z:>8.1f}x")
-            # save at every evaluation: if you press Ctrl+C or the laptop dies, at
-            # most EVAL_EVERY steps of training are lost. Saving here (not on Ctrl+C)
-            # also guarantees we never save a half-finished horde.update().
+                    log(f"  {name:<30}{x:>10.2f}{y:>11.2f}{z:>17.2f}x")
+
             save_checkpoint(horde, env, t, prev, obs, visited)
-            print(f"saved checkpoint -> {CHK}")
+            log(f"saved checkpoint -> {CHK}")
 
     if live:
         plt.ioff()

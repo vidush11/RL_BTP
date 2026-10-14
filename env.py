@@ -25,8 +25,8 @@ ARENA = 3.0  # metres, square
 LIGHT = np.array([0.4, 2.6])  # fixed light source in one corner
 
 # observation layout -- index these constants, never raw numbers
-IR_F, IR_L, IR_R, LIGHT_S, VEL, ANG_VEL, BUMP, COMPASS = range(8)
-N_SENSORS = 8
+IR_F, IR_L, IR_R, LIGHT_L, LIGHT_R, VEL, ANG_VEL, BUMP, COMPASS = range(9)
+N_SENSORS = 9
 
 
 class Robot:
@@ -79,17 +79,25 @@ class Robot:
 
         d = LIGHT - np.array([self.x, self.y])
         dist = float(np.linalg.norm(d))
-        # normalized dot product between robot's direction and light source
+        # normalized dot product between robot's direction +/-1 rad and light source
         # if the robot turns away then 0 irrespective of distance
         facing = max(
-            0.0, float(np.cos(self.th) * d[0] + np.sin(self.th) * d[1]) / (dist + 1e-9)
+            0.0,
+            float(np.cos(self.th + 1) * d[0] + np.sin(self.th + 1) * d[1])
+            / (dist + 1e-9),
+        )
+        facing2 = max(
+            0.0,
+            float(np.cos(self.th - 1) * d[0] + np.sin(self.th - 1) * d[1])
+            / (dist + 1e-9),
         )
         o = np.array(
             [
                 prox(0.0),  # sensor in robot's direction
                 prox(1.0),  # sensor in robot's direction+ 1 rad
                 prox(-1.0),  # sensor in robot's direction -1 rad
-                facing / (1.0 + 0.5 * dist**2),  # light sensor
+                facing / (1.0 + 0.5 * dist**2),  # light sensor left
+                facing2 / (1.0 + 0.5 * dist**2),  # light sensor right
                 self.v,
                 self.w,
                 self.bump,  # has the robot dumped into a wall
