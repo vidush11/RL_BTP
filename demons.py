@@ -33,18 +33,19 @@ def fixed(a: Action) -> Callable[[np.ndarray, np.ndarray], np.ndarray]:
 
 
 def greedy(obs: np.ndarray, q: np.ndarray) -> np.ndarray:
-    """Returns a greedy policy pi wrt state action values
+    """Returns a stochastic policy pi wrt state action values.
+    Every action keeps some probability, so rho is never 0 and traces fade instead
+    of being cut.
 
     :param obs: observation of robot
     :type obs: np.ndarray
     :param q: the state action values
     :type q: np.ndarray
-    :return: one hot vector with one at action with max state action value
+    :return: probability of each action, proportional to exp(q / 0.1)
     :rtype: np.ndarray
     """
-    p = np.zeros(N_ACTIONS)
-    p[int(np.argmax(q))] = 1.0
-    return p
+    p = np.exp((q - q.max()))  # minus max avoids overflow
+    return p / p.sum()
 
 
 ZERO = lambda obs: 0.0

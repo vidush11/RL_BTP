@@ -23,7 +23,7 @@ from env import N_ACTIONS, Action, Robot
 from horde import Horde
 from viz import Live
 
-STEPS, STICK, SEED, EVAL_EVERY = 450_0000, 0.8, 0, 25_000
+STEPS, STICK, SEED, EVAL_EVERY = 600_0000, 0.8, 0, 25_000
 VIZ = False
 CHK = "checkpoint.npz"  # where training is saved; delete this file to start fresh
 RESUME = True  # False = ignore any existing checkpoint and train from scratch
@@ -59,7 +59,7 @@ def save_checkpoint(
         t=t,
         prev=int(prev),
         obs=obs,
-        visited=np.array(visited),  # list of 6-tuples -> (N x 6) array
+        visited=np.array(visited[-20000:]),  # only recent states; enough for evaluation
     )
     os.replace("checkpoint.tmp.npz", CHK)
 
