@@ -1,0 +1,12 @@
+# Core simulator + the existing Horde scripts (no ROS, no Gazebo, no GPU needed)
+numpy>=1.24
+gymnasium>=1.0
+PyYAML>=6.0
+matplotlib>=3.7      # only used by your Horde scripts (Agg backend, headless)
+
+# Tests
+pytest>=7.0
+
+# Verified with: Python 3.13, numpy 2.5.3, gymnasium 1.4.0, PyYAML 6.0.3, matplotlib 3.11.2, pytest 9.1.1
+# Your DQN agent additionally needs its own deep-learning stack (it was not supplied, so
+# it is not pinned here); the simulator itself never imports it.

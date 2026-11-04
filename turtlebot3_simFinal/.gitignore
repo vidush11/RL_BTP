@@ -1,0 +1,8 @@
+__pycache__/
+.pytest_cache/
+*.pyc
+results/
+runs/
+runs_*/
+experiments_out/
+*.tmp

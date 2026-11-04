@@ -1,0 +1,21 @@
+# Same as default.yaml but with the action mapping your Gazebo environment
+# (dqn_environment.py) actually uses:
+#   linear.x = 0.2
+#   angular_vel = [1.5, 0.75, 0.0, -0.75, -1.5]     (positive = counter-clockwise = LEFT)
+# so action 1 = left and action 3 = right, matching LEFT_ACTION / RIGHT_ACTION in
+# gvf_horde_agent.py.  Use this when evaluating Gazebo-trained Horde checkpoints.
+#
+# Not reproduced (see README "Differences from Gazebo"): Gazebo's asynchronous
+# timing -- there one agent step lasts as long as the service round trip, and the
+# robot is stopped by a 0.8 s timer -- whereas here one agent step is exactly
+# motion.dt * motion.action_repeat of simulated time.
+
+motion:
+  dt: 0.1
+  action_repeat: 1
+  actions:
+    - [0.20,  1.50]
+    - [0.20,  0.75]
+    - [0.20,  0.00]
+    - [0.20, -0.75]
+    - [0.20, -1.50]

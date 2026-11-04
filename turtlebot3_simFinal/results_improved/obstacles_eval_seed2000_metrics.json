@@ -1,0 +1,59 @@
+{
+  "checkpoint_dir": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_obstacles_s0/gvf_checkpoints_horde",
+  "checkpoints": [
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_obstacles_s0/gvf_checkpoints_horde/gvf_weights_ep_001500.npz",
+      "episode": 1500,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.208134187717319,
+        "mae": 0.06584037806766703,
+        "n": 1830,
+        "rmse": 0.21156197424574724
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 0.0,
+        "mae": 0.019206427547165027,
+        "n": 1830,
+        "rmse": 0.02231661379327879
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 41.70727044280818,
+        "baseline_zero_mae": 63.9790273556231,
+        "censored_episodes": 0,
+        "collided_episodes": 40,
+        "mae": 43.90521576835162,
+        "n_pairs": 3290
+      },
+      "ttc_left": {
+        "baseline_mean_mae": 13.681703105539466,
+        "baseline_zero_mae": 23.243045387994144,
+        "censored_episodes": 21,
+        "collided_episodes": 19,
+        "mae": 13.74079611017243,
+        "n_pairs": 683
+      },
+      "ttc_right": {
+        "baseline_mean_mae": 14.227434420517746,
+        "baseline_zero_mae": 23.41518578352181,
+        "censored_episodes": 22,
+        "collided_episodes": 18,
+        "mae": 13.005265203406525,
+        "n_pairs": 619
+      }
+    }
+  ],
+  "config": "obstacles_train.yaml",
+  "elapsed_s": 1.6,
+  "horizon": 20,
+  "num_eval_episodes": 40,
+  "rho_product_diagnostic": {
+    "clip": 50.0,
+    "frac_eq_0_to_1e-6": 0.998565,
+    "frac_gt_1e-3": 0.00035,
+    "horizon": 20,
+    "max": 11.219050732356571,
+    "mean": 0.0002305796144803025,
+    "median": 1.6199999999999975e-17
+  },
+  "seed": 2000
+}

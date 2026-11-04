@@ -1,0 +1,5 @@
+# Experiment D on the fixed, LiDAR-identifiable scenario (see configs/fixed_goal_nav.yaml).
+# Everything else matches configs/dqn/experiment_d.yaml.
+experiment_id: D_fixed_lidar_only_gvf_reward
+sim_config: configs/fixed_goal_nav.yaml
+task: goal_navigation

@@ -1,0 +1,11 @@
+# Extreme clutter: many small random boxes (28 x 0.1-0.3 m).
+world:
+  randomize_obstacles: true
+  random_obstacle_count: 28
+  random_obstacle_size_range: [0.1, 0.3]
+spawn:
+  mode: random
+  clearance: 0.2
+termination:
+  collision_lidar_threshold: 0.15
+  max_episode_steps: 800

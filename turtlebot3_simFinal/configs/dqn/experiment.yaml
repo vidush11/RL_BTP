@@ -1,0 +1,44 @@
+# Shared configuration for the A/B/C DQN comparison (rl/ package).
+# All three agents use these identical settings; only the input dimension (and
+# B/C's GVF features) differ. Override any key; nested dicts merge.
+
+# Task: goal-directed navigation in a randomized obstacle field. The goal is
+# hidden from the raw LiDAR observation, so goal-relative features (distance,
+# sin/cos angle) are added to the base observation of ALL THREE agents equally
+# (rl/encoder.py) -- the baseline is never handicapped.
+sim_config: configs/obstacles_train.yaml
+task: goal_navigation
+
+# DQN interaction budget (identical for A, B, C). GVF pretraining interactions
+# are counted and reported separately (scripts/pretrain_gvf.py).
+total_env_steps: 60000
+learning_starts: 1000
+train_freq: 1
+eval_interval: 10000
+eval_episodes: 50
+eval_seed: 10000           # eval scenarios are disjoint from training seeds
+
+# Exploration (epsilon-greedy, linear decay)
+epsilon_start: 1.0
+epsilon_end: 0.05
+epsilon_decay_steps: 30000
+
+dqn:
+  hidden: [64, 64]
+  gamma: 0.99
+  lr: 0.001
+  batch_size: 64
+  target_update: 500        # gradient steps between target-network syncs
+  huber_delta: 1.0
+  grad_clip: 10.0
+
+replay_capacity: 100000
+
+# GVF predictor (Agents B/C). Matches the fixed hyperparameters from
+# RESULTS_GVF_IMPROVED.md (alpha_theta 0.1). Features: forward/left/right TTC.
+gvf:
+  obstacle_threshold: 0.25
+  alpha_theta: 0.1
+  alpha_w: 0.0001
+  trace_lambda: 0.4
+  clip_z: 5.0

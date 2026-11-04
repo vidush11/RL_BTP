@@ -1,0 +1,3 @@
+# GVF pretraining on the fixed scenario (for the Dfrozen diagnostic ablation only).
+sim_config: configs/fixed_goal_nav.yaml
+task: goal_navigation

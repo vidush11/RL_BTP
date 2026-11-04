@@ -1,0 +1,70 @@
+# Default configuration: LiDAR-only obstacle avoidance in an empty 4 m x 4 m arena.
+# Every key shown here is optional (these are also the built-in defaults).
+#
+# ACTION TABLE NOTE
+# -----------------
+# The table below is the one given in the project brief (v = 0.15, omega from
+# -1.5 to +1.5 for actions 0..4).  Your existing Gazebo environment uses
+# v = 0.2 and the OPPOSITE order (omega = +1.5 ... -1.5).  Positive omega is a
+# left (counter-clockwise) turn, and the Horde scripts call action 1 "left" and
+# action 3 "right".  With THIS table action 1 turns RIGHT.  Use
+# configs/gazebo_compat.yaml to reproduce the Gazebo mapping.
+
+seed: null                      # null = unseeded until reset(seed=...) is called
+
+world:
+  width: 4.0
+  height: 4.0
+  center: [0.0, 0.0]
+  obstacles: []                 # [[xmin, ymin, xmax, ymax], ...]
+  randomize_obstacles: false    # random layouts only when explicitly enabled
+  random_obstacle_count: 3
+  random_obstacle_size_range: [0.2, 0.5]
+
+robot:
+  collision_radius: 0.033       # metres (value from the brief = wheel radius)
+  wheel_radius: 0.033
+  wheel_separation: 0.160
+
+motion:
+  dt: 0.1                       # seconds per simulation sub-step
+  action_repeat: 1              # sub-steps per agent step
+  actions:                      # [v (m/s), omega (rad/s)] per action id
+    - [0.15, -1.50]
+    - [0.15, -0.75]
+    - [0.15,  0.00]
+    - [0.15,  0.75]
+    - [0.15,  1.50]
+
+spawn:
+  mode: fixed                   # fixed = Gazebo behaviour (respawn at x,y,theta) | random
+  x: 0.0
+  y: 0.0
+  theta: 0.0
+  clearance: 0.35
+
+lidar:
+  num_beams: 24
+  fov_deg: 360.0
+  angle_min_deg: 0.0            # beam 0 straight ahead, counter-clockwise
+  max_range: 3.5
+  noise_std: 0.0
+
+task:
+  mode: obstacle_avoidance      # obstacle_avoidance | goal_navigation
+
+termination:
+  collision_lidar_threshold: 0.15   # existing rule: min(range) < 0.15 m ends the episode
+  terminate_on_collision: true
+  max_episode_steps: 800            # existing max_step; null = unlimited (episode ends -> truncated)
+  goal_tolerance: 0.20
+  terminate_on_goal: true
+
+reward:                         # defaults == your live Gazebo code: +1 every step
+  per_step: 1.0
+  collision_penalty: 0.0
+  goal_reward: 0.0
+  terminal_mode: add
+  yaw_coef: 0.0
+  obstacle_coef: 0.0
+  progress_coef: 0.0

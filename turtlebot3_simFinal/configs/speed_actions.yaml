@@ -1,0 +1,20 @@
+# Part 2 action space: 3 speeds x 5 turn rates = 15 actions,
+# index = speed_idx * 5 + turn_idx  (v in {0.05, 0.12, 0.22} m/s, omega ascending).
+# Merge on top of any layout config (gvfctl/envs.py does this); no simulator edits.
+motion:
+  actions:
+    - [0.05, -1.50]
+    - [0.05, -0.75]
+    - [0.05,  0.00]
+    - [0.05,  0.75]
+    - [0.05,  1.50]
+    - [0.12, -1.50]
+    - [0.12, -0.75]
+    - [0.12,  0.00]
+    - [0.12,  0.75]
+    - [0.12,  1.50]
+    - [0.22, -1.50]
+    - [0.22, -0.75]
+    - [0.22,  0.00]
+    - [0.22,  0.75]
+    - [0.22,  1.50]

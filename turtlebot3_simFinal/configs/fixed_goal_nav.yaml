@@ -1,0 +1,23 @@
+# Fixed, LiDAR-identifiable navigation scenario (secondary experiment for D).
+# Same obstacles every episode, same spawn, same goal -> the LiDAR scan encodes
+# the robot's pose, so goal-directed behaviour is learnable from LiDAR alone.
+# In the main (randomised) scenario the goal moves every episode and is NOT
+# observable from LiDAR, so goal success there is near chance by construction.
+# Straight-ahead driving passes the goal 0.25 m away (> 0.20 m tolerance), so a
+# slight turn is required.
+task:
+  mode: goal_navigation
+world:
+  obstacles:
+    - [0.6, 0.6, 1.0, 1.0]
+    - [-1.2, -1.0, -0.8, -0.6]
+    - [0.5, -1.4, 0.7, -0.4]
+    - [-1.0, 0.8, -0.2, 1.0]
+spawn:
+  mode: fixed
+  x: 0.0
+  y: 0.0
+  theta: 0.0
+goal:
+  mode: fixed
+  position: [1.3, -0.25]

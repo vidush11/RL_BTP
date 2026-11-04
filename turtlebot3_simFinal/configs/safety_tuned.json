@@ -1,0 +1,3468 @@
+{
+  "predictor": {
+    "lr": 0.001
+  },
+  "policy": {
+    "eps_pi": 0.1
+  },
+  "controller": {
+    "gamma": 0.95,
+    "beta1": 0.3,
+    "beta2": 0.5,
+    "use_speed_gvf": true
+  },
+  "horde_controller": {
+    "beta1": 3,
+    "beta2": 8,
+    "bump_max": 0.3
+  },
+  "dqn": {
+    "lr": 0.001,
+    "gamma": 0.99,
+    "target_update": 1000,
+    "eps_decay_frac": 0.2
+  },
+  "selection": {
+    "metric": "mean task return on validation seeds",
+    "gvf_run": "runs_safety/tuning/gvf_4",
+    "dqn_run": "runs_safety/tuning/dqn_1"
+  },
+  "table": {
+    "gvf": [
+      {
+        "run": "runs_safety/tuning/gvf_0",
+        "config": {
+          "predictor": {
+            "lr": 0.0003
+          },
+          "policy": {
+            "eps_pi": 0.05
+          }
+        },
+        "best_paper": {
+          "gamma": 0.95,
+          "beta1": 0.3,
+          "beta2": 0.5,
+          "use_speed_gvf": true,
+          "mean_task_return": 763.4713022801816,
+          "collision_free_rate": 0.92,
+          "speed_ratio": 1.086250459809652
+        },
+        "best_horde": {
+          "beta1": 3,
+          "beta2": 8,
+          "bump_max": 0.3,
+          "mean_task_return": 734.7880284464658,
+          "collision_free_rate": 0.9,
+          "speed_ratio": 1.0385883705842565
+        },
+        "paper_grid": [
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 763.4713022801816,
+            "collision_free_rate": 0.92,
+            "speed_ratio": 1.086250459809652
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 758.6407079304375,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.989677054335528
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 730.7148312842862,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 1.0320430384652282
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 735.4450832872212,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9605464052502376
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 702.2135238463588,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.959481285319045
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 704.2129647781571,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9215730877983833
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 661.4623515359183,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9038053070042709
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 618.8335790077113,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8179649391611656
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 691.2193235709915,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9440896664547318
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 629.3474200771384,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8261388248138912
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 487.3913145979718,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6636433375998161
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 431.2996731103238,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5717433165156917
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 742.4762123655352,
+            "collision_free_rate": 0.86,
+            "speed_ratio": 1.0885539243431304
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 703.2358403770212,
+            "collision_free_rate": 0.84,
+            "speed_ratio": 0.9954430506424066
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 725.8207335701971,
+            "collision_free_rate": 0.94,
+            "speed_ratio": 1.0245222359555184
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 708.783312859287,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.9386580785895989
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 678.8281139835798,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9266632268194843
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 677.3077965779426,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.8990666509815035
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 460.8415951696302,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6289073989827075
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 454.22380263775347,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6033779140873152
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 507.6155169693813,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6924565949776784
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 522.1008605443463,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6904004258089178
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 133.48697872647318,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.18005849265610213
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 149.37763697243233,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.19804201013493036
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 595.9172346244919,
+            "collision_free_rate": 0.5,
+            "speed_ratio": 1.0801148584801092
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 672.799649812984,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 1.0007923299065882
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 615.5415911569704,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 0.9693372712773173
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 704.0606743614921,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.9439156860035085
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 583.635984645059,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7964871430967887
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 535.1568943074813,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7101675427230701
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 311.750688926828,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.43271639096925973
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 246.149487499164,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.32922367670662245
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 401.705504773336,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5479723087460622
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 369.07365211554696,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4925091683676335
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 230.3082947861332,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.31406016923194374
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 75.63959587282866,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.10102896010172285
+          }
+        ],
+        "horde_grid": [
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 692.488480225225,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.030094672296975
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 680.2791907220786,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.0169887703369804
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 680.2706746609006,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.017794403218818
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 467.17211649726255,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7630530470527471
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 467.1302610913106,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7657657666990224
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 466.91386634127235,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 0.7666165448106896
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 251.08542345041562,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3511222575753182
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          }
+        ]
+      },
+      {
+        "run": "runs_safety/tuning/gvf_1",
+        "config": {
+          "predictor": {
+            "lr": 0.0003
+          },
+          "policy": {
+            "eps_pi": 0.1
+          }
+        },
+        "best_paper": {
+          "gamma": 0.95,
+          "beta1": 0.4,
+          "beta2": 0.6,
+          "use_speed_gvf": true,
+          "mean_task_return": 702.7219043862034,
+          "collision_free_rate": 1.0,
+          "speed_ratio": 0.9605951803482782
+        },
+        "best_horde": {
+          "beta1": 3,
+          "beta2": 8,
+          "bump_max": 0.3,
+          "mean_task_return": 734.7880284464658,
+          "collision_free_rate": 0.9,
+          "speed_ratio": 1.0385883705842565
+        },
+        "paper_grid": [
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 690.0804471650233,
+            "collision_free_rate": 0.86,
+            "speed_ratio": 1.0357193573030075
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 697.5646695506607,
+            "collision_free_rate": 0.94,
+            "speed_ratio": 0.9385242190317484
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 702.7219043862034,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9605951803482782
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 654.6095350157054,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8538082695452199
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 648.2191707970239,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8861165659878927
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 603.411422948933,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.788136620327616
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 481.0346585229224,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6567429380320949
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 506.42924663407706,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6677331249481047
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 561.8745862285477,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7674649831144883
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 519.7818928899401,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6817201290880682
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 386.2312201355486,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5258880693792874
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 346.58208043900544,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4584916329253444
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 455.15093415013047,
+            "collision_free_rate": 0.34,
+            "speed_ratio": 1.0560814222433128
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 539.8632485139531,
+            "collision_free_rate": 0.64,
+            "speed_ratio": 0.9545162949881717
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 702.0071233239854,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.9678710010475687
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 678.3340592813772,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8888182066195894
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 653.983352344182,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8941052263078008
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 617.6014580803206,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8092787229053916
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 493.019875111609,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6728231417084927
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 429.0942893713985,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5666476711525729
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 530.3076063610293,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7243263872029548
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 485.54228877907707,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6398130707014504
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 327.2326725696267,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.44446222430778914
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 302.27605650911073,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.40106386272004985
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 326.8453692601612,
+            "collision_free_rate": 0.18,
+            "speed_ratio": 1.033020847998363
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 454.3961173250879,
+            "collision_free_rate": 0.5,
+            "speed_ratio": 0.9451673743087479
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 654.9570355975873,
+            "collision_free_rate": 0.88,
+            "speed_ratio": 0.9548257680148738
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 634.1965965626222,
+            "collision_free_rate": 0.92,
+            "speed_ratio": 0.8725920756687958
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 586.495031806292,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.8158869481551839
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 625.1752795836212,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8260436094235817
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 350.78667613627226,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4787164877919715
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 306.0247641395828,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4069299077628611
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 400.9325763451938,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5476073395129962
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 377.10575824735685,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5026203134496314
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 135.67309215560397,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.1844278528366698
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 146.02348393766087,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.19580126322512342
+          }
+        ],
+        "horde_grid": [
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 692.488480225225,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.030094672296975
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 680.2791907220786,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.0169887703369804
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 680.2706746609006,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.017794403218818
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 467.17211649726255,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7630530470527471
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 467.1302610913106,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7657657666990224
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 466.91386634127235,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 0.7666165448106896
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 251.08542345041562,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3511222575753182
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          }
+        ]
+      },
+      {
+        "run": "runs_safety/tuning/gvf_2",
+        "config": {
+          "predictor": {
+            "lr": 0.0003
+          },
+          "policy": {
+            "eps_pi": 0.2
+          }
+        },
+        "best_paper": {
+          "gamma": 0.975,
+          "beta1": 0.4,
+          "beta2": 0.6,
+          "use_speed_gvf": true,
+          "mean_task_return": 689.6481774679668,
+          "collision_free_rate": 0.94,
+          "speed_ratio": 0.9968826928710981
+        },
+        "best_horde": {
+          "beta1": 3,
+          "beta2": 8,
+          "bump_max": 0.3,
+          "mean_task_return": 734.7880284464658,
+          "collision_free_rate": 0.9,
+          "speed_ratio": 1.0385883705842565
+        },
+        "paper_grid": [
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 610.7859331465211,
+            "collision_free_rate": 0.72,
+            "speed_ratio": 0.990670198337165
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 606.1040740000375,
+            "collision_free_rate": 0.82,
+            "speed_ratio": 0.8869966548387955
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 633.5557521834484,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.9136419153003692
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 587.183358091398,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.7900817975337509
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 526.2239028451662,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7193878026289364
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 467.67033709177736,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6116709543541753
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 462.5248090538524,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6323527758160173
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 401.3039357093517,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.529823135041732
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 401.545807598701,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5487539721824275
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 418.5130452451472,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5499066850452318
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 380.7223964364472,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5194101677086195
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 357.7235022295054,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4765624059762661
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 646.5178598652061,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 1.0314600861669312
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 604.569649013906,
+            "collision_free_rate": 0.84,
+            "speed_ratio": 0.8915359190585274
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 689.6481774679668,
+            "collision_free_rate": 0.94,
+            "speed_ratio": 0.9968826928710981
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 657.4288339655467,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8704335597768672
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 609.4216856059472,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8331370554731589
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 523.5139870876045,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6904628133873149
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 450.93945644295565,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6161830143732359
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 398.1101951565509,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5282751994733488
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 457.87150340417463,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.625311088172953
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 381.42085880309537,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5063494373869498
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 274.3669562697264,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.37377753029497995
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 265.5004632440694,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.3507535186949788
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 621.3311860781514,
+            "collision_free_rate": 0.86,
+            "speed_ratio": 0.9380258743437152
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 540.3588993179416,
+            "collision_free_rate": 0.92,
+            "speed_ratio": 0.777475905186808
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 631.9743768195036,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8639104110117412
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 535.1778157940676,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7053748235512083
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 553.9763390837996,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7567092833632824
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 469.20007489082434,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6209465990002557
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 308.8295176762795,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.42120225164830066
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 280.03244612358344,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.3704579779252276
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 440.12834295654,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6004494736937517
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 335.5745645221872,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.44424054904417287
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 81.88566232332127,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.1114305124670371
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 87.85551255879804,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.1175572796572615
+          }
+        ],
+        "horde_grid": [
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 692.488480225225,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.030094672296975
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 680.2791907220786,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.0169887703369804
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 680.2706746609006,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.017794403218818
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 467.17211649726255,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7630530470527471
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 467.1302610913106,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7657657666990224
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 466.91386634127235,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 0.7666165448106896
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 251.08542345041562,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3511222575753182
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          }
+        ]
+      },
+      {
+        "run": "runs_safety/tuning/gvf_3",
+        "config": {
+          "predictor": {
+            "lr": 0.001
+          },
+          "policy": {
+            "eps_pi": 0.05
+          }
+        },
+        "best_paper": {
+          "gamma": 0.95,
+          "beta1": 0.3,
+          "beta2": 0.5,
+          "use_speed_gvf": false,
+          "mean_task_return": 728.2986885068656,
+          "collision_free_rate": 0.88,
+          "speed_ratio": 1.0067696353266569
+        },
+        "best_horde": {
+          "beta1": 3,
+          "beta2": 8,
+          "bump_max": 0.3,
+          "mean_task_return": 734.7880284464658,
+          "collision_free_rate": 0.9,
+          "speed_ratio": 1.0385883705842565
+        },
+        "paper_grid": [
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 457.32497974674203,
+            "collision_free_rate": 0.3,
+            "speed_ratio": 1.0438612225526365
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 728.2986885068656,
+            "collision_free_rate": 0.88,
+            "speed_ratio": 1.0067696353266569
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 705.6188147901951,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0112376330778396
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 703.4012048576526,
+            "collision_free_rate": 0.92,
+            "speed_ratio": 0.9599912667503306
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 639.314793440538,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.8840627908669612
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 649.26026373863,
+            "collision_free_rate": 0.92,
+            "speed_ratio": 0.8942049747367075
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 580.4343822123326,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7924228537007879
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 587.5514868838982,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7729907022942019
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 578.7167037537239,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7898460546655138
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 557.864971473341,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.7416985695191971
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 399.6959871866623,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5448565547194959
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 414.8863999309972,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5477133262609686
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 667.8626044237502,
+            "collision_free_rate": 0.82,
+            "speed_ratio": 1.0216677700537682
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 695.8076468536582,
+            "collision_free_rate": 0.92,
+            "speed_ratio": 0.9719417279628065
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 669.9434695077456,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.9737813351314162
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 700.6546271345314,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.9357773268234675
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 609.3091948026308,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8323128427326535
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 600.4670358158469,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7976657116629426
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 302.6784180856424,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4121157639952567
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 360.6951314379987,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.48447115273679875
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 383.9958451870679,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5229681600914635
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 373.6167996471767,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5014792111617227
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 8.620991869475178,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.011543506325994211
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 8.679524068115178,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.01155667157429421
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 288.70901736273504,
+            "collision_free_rate": 0.14,
+            "speed_ratio": 1.0196194558772056
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 454.108305897261,
+            "collision_free_rate": 0.4,
+            "speed_ratio": 0.9300127159310666
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 584.7557985881181,
+            "collision_free_rate": 0.82,
+            "speed_ratio": 0.9116297940500191
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 613.0868450795841,
+            "collision_free_rate": 0.82,
+            "speed_ratio": 0.8967613989670847
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 576.3119889388204,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.7923059355392924
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 624.402352540899,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.8319213353808536
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 397.84355227838864,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5425905529891719
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 352.13629602212166,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.47086650040348943
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 444.5226165320083,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6063178943483285
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 346.0978123832618,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.459232386352461
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 173.82653377078415,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.23658885641812455
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 184.62832582583786,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.24805663690067234
+          }
+        ],
+        "horde_grid": [
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 692.488480225225,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.030094672296975
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 680.2791907220786,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.0169887703369804
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 680.2706746609006,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.017794403218818
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 467.17211649726255,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7630530470527471
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 467.1302610913106,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7657657666990224
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 466.91386634127235,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 0.7666165448106896
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 251.08542345041562,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3511222575753182
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          }
+        ]
+      },
+      {
+        "run": "runs_safety/tuning/gvf_4",
+        "config": {
+          "predictor": {
+            "lr": 0.001
+          },
+          "policy": {
+            "eps_pi": 0.1
+          }
+        },
+        "best_paper": {
+          "gamma": 0.95,
+          "beta1": 0.3,
+          "beta2": 0.5,
+          "use_speed_gvf": true,
+          "mean_task_return": 778.5927064925954,
+          "collision_free_rate": 0.94,
+          "speed_ratio": 1.0766996611854076
+        },
+        "best_horde": {
+          "beta1": 3,
+          "beta2": 8,
+          "bump_max": 0.3,
+          "mean_task_return": 734.7880284464658,
+          "collision_free_rate": 0.9,
+          "speed_ratio": 1.0385883705842565
+        },
+        "paper_grid": [
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 778.5927064925954,
+            "collision_free_rate": 0.94,
+            "speed_ratio": 1.0766996611854076
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 701.8991893062902,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.9220258887098437
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 726.3613097428315,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9931675372985919
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 621.1771052892858,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.8177755195248728
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 678.0081577249624,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.9270162527274833
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 626.9861659168172,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8190226622730473
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 627.5359558703815,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8574903787968783
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 553.9953624388872,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.728341018828682
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 638.2511657443179,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8718905364639571
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 621.9896258110884,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8142772197011364
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 354.68253993065554,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.48343228840594643
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 336.8648950122157,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.44426954767093074
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 353.93163732652334,
+            "collision_free_rate": 0.24,
+            "speed_ratio": 1.049513477869372
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 662.591028118757,
+            "collision_free_rate": 0.68,
+            "speed_ratio": 1.011881098504217
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 650.6675811062314,
+            "collision_free_rate": 0.68,
+            "speed_ratio": 1.0210172430797135
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 707.2635758658939,
+            "collision_free_rate": 0.92,
+            "speed_ratio": 0.9761594684223133
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 647.0810386188828,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.9042783186609153
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 658.790196357863,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8663345845721047
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 621.6044911262599,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.8620826458596603
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 485.6531149064525,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6447568533004693
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 654.6361681291359,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8947527119810488
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 481.424312883354,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6341540116819554
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 487.0612955480863,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6647893118025178
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 288.81764737851637,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.38246802290487636
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 465.658076262059,
+            "collision_free_rate": 0.5,
+            "speed_ratio": 1.0087829208058232
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 587.7915468905725,
+            "collision_free_rate": 0.62,
+            "speed_ratio": 0.9730481936599914
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 648.2723096009074,
+            "collision_free_rate": 0.84,
+            "speed_ratio": 0.9495674953539631
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 653.0522362870829,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.9090588038312255
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 580.5796874766008,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8142421708210673
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 585.9447115222144,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.7909695825768271
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 322.31167526934723,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.43968533473166443
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 328.25220994477445,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4389016394314965
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 409.54299812114505,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5586859088152569
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 398.42068163409203,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5293203290724426
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 147.86551266485927,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.19869723174563647
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 140.34690114637414,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.18828341115155986
+          }
+        ],
+        "horde_grid": [
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 692.488480225225,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.030094672296975
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 680.2791907220786,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.0169887703369804
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 680.2706746609006,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.017794403218818
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 467.17211649726255,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7630530470527471
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 467.1302610913106,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7657657666990224
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 466.91386634127235,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 0.7666165448106896
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 251.08542345041562,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3511222575753182
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          }
+        ]
+      },
+      {
+        "run": "runs_safety/tuning/gvf_5",
+        "config": {
+          "predictor": {
+            "lr": 0.001
+          },
+          "policy": {
+            "eps_pi": 0.2
+          }
+        },
+        "best_paper": {
+          "gamma": 0.95,
+          "beta1": 0.4,
+          "beta2": 0.6,
+          "use_speed_gvf": true,
+          "mean_task_return": 717.258377154402,
+          "collision_free_rate": 0.96,
+          "speed_ratio": 0.9985553244373244
+        },
+        "best_horde": {
+          "beta1": 3,
+          "beta2": 8,
+          "bump_max": 0.3,
+          "mean_task_return": 734.7880284464658,
+          "collision_free_rate": 0.9,
+          "speed_ratio": 1.0385883705842565
+        },
+        "paper_grid": [
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 670.5491120053281,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 1.0834138268825284
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 684.7224297398402,
+            "collision_free_rate": 0.86,
+            "speed_ratio": 0.9788663240251094
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 717.258377154402,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.9985553244373244
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 665.8421087807733,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.8759726465837465
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 653.4496388882884,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.89323469022922
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 633.9246355443585,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8278301776581194
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 613.2635776965537,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8380038593857628
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 434.3239833964501,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.5699355367211215
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 631.1954321234306,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.8626740925649681
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 497.3215308332345,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6500907063296749
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 518.8026934204745,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7083075049726588
+          },
+          {
+            "gamma": 0.95,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 357.5780796905437,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4710471312700851
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 557.5942480920344,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 0.9184527210713935
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 631.8702860746783,
+            "collision_free_rate": 0.86,
+            "speed_ratio": 0.8946830104262931
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 544.7057494273433,
+            "collision_free_rate": 0.84,
+            "speed_ratio": 0.8561501454272624
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 563.3674157272893,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.805586470693468
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 549.2224416600261,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.7559274552020497
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 577.5013727418868,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7657080015531441
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 534.0286407980723,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7294325100846869
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 499.26543581980076,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6649387160809664
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 567.2882726107516,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.7747687695828038
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 499.17628313936433,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.662854079040641
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 321.76818333903407,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.43889578185886324
+          },
+          {
+            "gamma": 0.975,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 273.6157368191161,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.36432832101881885
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": true,
+            "mean_task_return": 586.0981437308618,
+            "collision_free_rate": 0.64,
+            "speed_ratio": 1.0304942636613312
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.3,
+            "beta2": 0.5,
+            "use_speed_gvf": false,
+            "mean_task_return": 660.8863758650406,
+            "collision_free_rate": 0.78,
+            "speed_ratio": 0.9739916692339079
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": true,
+            "mean_task_return": 567.4265414543293,
+            "collision_free_rate": 0.86,
+            "speed_ratio": 0.8730553315930857
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.4,
+            "beta2": 0.6,
+            "use_speed_gvf": false,
+            "mean_task_return": 561.951423672402,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7865386736779305
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": true,
+            "mean_task_return": 551.9756367053855,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.7591043450971111
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.7,
+            "use_speed_gvf": false,
+            "mean_task_return": 518.6744050487865,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.6900677789689057
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 287.1224457537309,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.39174641258374265
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.5,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 255.85843619882334,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.33948094406373647
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": true,
+            "mean_task_return": 349.75853863198654,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.47701619022788044
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.6,
+            "beta2": 0.8,
+            "use_speed_gvf": false,
+            "mean_task_return": 336.7310842060493,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.4462101013846373
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": true,
+            "mean_task_return": 39.68519059249015,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.05380157784914877
+          },
+          {
+            "gamma": 0.983,
+            "beta1": 0.7,
+            "beta2": 0.9,
+            "use_speed_gvf": false,
+            "mean_task_return": 48.48036167218499,
+            "collision_free_rate": 1.0,
+            "speed_ratio": 0.06542211240115157
+          }
+        ],
+        "horde_grid": [
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 692.488480225225,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.030094672296975
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 680.2791907220786,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.0169887703369804
+          },
+          {
+            "beta1": 0,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 680.2706746609006,
+            "collision_free_rate": 0.8,
+            "speed_ratio": 1.017794403218818
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 467.17211649726255,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7630530470527471
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 467.1302610913106,
+            "collision_free_rate": 0.76,
+            "speed_ratio": 0.7657657666990224
+          },
+          {
+            "beta1": 0,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 466.91386634127235,
+            "collision_free_rate": 0.74,
+            "speed_ratio": 0.7666165448106896
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 0,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 321.42512696141756,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.4589188419916559
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.3,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 0.6,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 8,
+            "bump_max": 1.0,
+            "mean_task_return": 734.7880284464658,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 1.0385883705842565
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 519.321569035511,
+            "collision_free_rate": 0.9,
+            "speed_ratio": 0.7761599747794747
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 242.11564165010677,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3389097918499322
+          },
+          {
+            "beta1": 3,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 251.08542345041562,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.3511222575753182
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.3,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 0.6,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 15,
+            "bump_max": 1.0,
+            "mean_task_return": 579.4649598525499,
+            "collision_free_rate": 0.96,
+            "speed_ratio": 0.8025371403987691
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.3,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 0.6,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          },
+          {
+            "beta1": 8,
+            "beta2": 30,
+            "bump_max": 1.0,
+            "mean_task_return": 203.0295099811758,
+            "collision_free_rate": 0.98,
+            "speed_ratio": 0.28346700941075736
+          }
+        ]
+      }
+    ],
+    "dqn": [
+      {
+        "run": "runs_safety/tuning/dqn_0",
+        "config": {
+          "dqn": {
+            "lr": 0.0003,
+            "gamma": 0.99,
+            "target_update": 1000,
+            "eps_decay_frac": 0.2
+          }
+        },
+        "val": {
+          "n": 100,
+          "collision_free_rate": 0.49,
+          "collision_rate": 0.51,
+          "mean_steps": 591.63,
+          "mean_task_return": 567.7816991573983,
+          "speed_ratio": 1.0020916662321262,
+          "distance": 11.956609244702456,
+          "near_miss_frac": 0.2208157142039548,
+          "min_range_p05": 0.033778323715813005,
+          "min_range_p50": 0.04287809297834276,
+          "mean_abs_w": 0.32885682853269116
+        }
+      },
+      {
+        "run": "runs_safety/tuning/dqn_1",
+        "config": {
+          "dqn": {
+            "lr": 0.001,
+            "gamma": 0.99,
+            "target_update": 1000,
+            "eps_decay_frac": 0.2
+          }
+        },
+        "val": {
+          "n": 100,
+          "collision_free_rate": 0.83,
+          "collision_rate": 0.17,
+          "mean_steps": 694.48,
+          "mean_task_return": 671.3323064299198,
+          "speed_ratio": 1.014327184920535,
+          "distance": 14.056984979264541,
+          "near_miss_frac": 0.0930382911771208,
+          "min_range_p05": 0.03579200486663648,
+          "min_range_p50": 0.4022005451289128,
+          "mean_abs_w": 1.329996520993716
+        }
+      },
+      {
+        "run": "runs_safety/tuning/dqn_2",
+        "config": {
+          "dqn": {
+            "lr": 0.0003,
+            "gamma": 0.95,
+            "target_update": 1000,
+            "eps_decay_frac": 0.2
+          }
+        },
+        "val": {
+          "n": 100,
+          "collision_free_rate": 0.23,
+          "collision_rate": 0.77,
+          "mean_steps": 442.92,
+          "mean_task_return": 432.6543560042704,
+          "speed_ratio": 1.0784396825846463,
+          "distance": 9.616500642484802,
+          "near_miss_frac": 0.38661382752469253,
+          "min_range_p05": 0.033347125563806417,
+          "min_range_p50": 0.03752167213716683,
+          "mean_abs_w": 0.19009828194280465
+        }
+      },
+      {
+        "run": "runs_safety/tuning/dqn_3",
+        "config": {
+          "dqn": {
+            "lr": 0.001,
+            "gamma": 0.95,
+            "target_update": 1000,
+            "eps_decay_frac": 0.2
+          }
+        },
+        "val": {
+          "n": 100,
+          "collision_free_rate": 0.06,
+          "collision_rate": 0.94,
+          "mean_steps": 257.59,
+          "mean_task_return": 242.56505011137438,
+          "speed_ratio": 1.0439343815109485,
+          "distance": 5.499372859551293,
+          "near_miss_frac": 0.37754148821774264,
+          "min_range_p05": 0.03321777901700758,
+          "min_range_p50": 0.03515174967872274,
+          "mean_abs_w": 0.14496857188441986
+        }
+      },
+      {
+        "run": "runs_safety/tuning/dqn_4",
+        "config": {
+          "dqn": {
+            "lr": 0.0005,
+            "gamma": 0.99,
+            "target_update": 250,
+            "eps_decay_frac": 0.1
+          }
+        },
+        "val": {
+          "n": 100,
+          "collision_free_rate": 0.0,
+          "collision_rate": 1.0,
+          "mean_steps": 50.12,
+          "mean_task_return": 34.44326349063051,
+          "speed_ratio": 0.9495534762622982,
+          "distance": 0.9603207814442094,
+          "near_miss_frac": 0.2892835810534478,
+          "min_range_p05": 0.034557861370987514,
+          "min_range_p50": 0.04215009228333858,
+          "mean_abs_w": 0.31841720956610037
+        }
+      },
+      {
+        "run": "runs_safety/tuning/dqn_5",
+        "config": {
+          "dqn": {
+            "lr": 0.0005,
+            "gamma": 0.99,
+            "target_update": 4000,
+            "eps_decay_frac": 0.3
+          }
+        },
+        "val": {
+          "n": 100,
+          "collision_free_rate": 0.07,
+          "collision_rate": 0.93,
+          "mean_steps": 284.78,
+          "mean_task_return": 265.49271212387663,
+          "speed_ratio": 1.056091543608918,
+          "distance": 5.996133370449945,
+          "near_miss_frac": 0.3613743198762922,
+          "min_range_p05": 0.03337700271513885,
+          "min_range_p50": 0.03613516715343419,
+          "mean_abs_w": 0.20545324808278584
+        }
+      }
+    ]
+  }
+}

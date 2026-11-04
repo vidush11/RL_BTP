@@ -1,0 +1,819 @@
+{
+  "checkpoint_dir": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde",
+  "checkpoints": [
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000050.npz",
+      "episode": 50,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.10446614305571854,
+        "n": 2113,
+        "rmse": 0.25650978661892915
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.007343856948427056,
+        "n": 2113,
+        "rmse": 0.007719341160584922
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 8.397007095132707,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000100.npz",
+      "episode": 100,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.10406206095226475,
+        "n": 2113,
+        "rmse": 0.2557171926267454
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.0052369663253687805,
+        "n": 2113,
+        "rmse": 0.005634266863369359
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 15.450440864275516,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000150.npz",
+      "episode": 150,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.08061324884497034,
+        "n": 2113,
+        "rmse": 0.2506803925673574
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.006072514147022379,
+        "n": 2113,
+        "rmse": 0.006486941346365917
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 24.444900937854893,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000200.npz",
+      "episode": 200,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.08189756730838377,
+        "n": 2113,
+        "rmse": 0.25037915101917185
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.010832257994857198,
+        "n": 2113,
+        "rmse": 0.011123411676594966
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 11.481232985714401,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000250.npz",
+      "episode": 250,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.09412558429323559,
+        "n": 2113,
+        "rmse": 0.25088352690720006
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.005649279104819006,
+        "n": 2113,
+        "rmse": 0.006027647803848051
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 12.6284196869669,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000300.npz",
+      "episode": 300,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.10260547973941608,
+        "n": 2113,
+        "rmse": 0.2525225201049665
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.005299889427116476,
+        "n": 2113,
+        "rmse": 0.005658261041476156
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 16.64142136011478,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000350.npz",
+      "episode": 350,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.08303767040485223,
+        "n": 2113,
+        "rmse": 0.2515322794399755
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.005591139661988349,
+        "n": 2113,
+        "rmse": 0.005973634370059043
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 18.12816147010218,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000400.npz",
+      "episode": 400,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.06984913242560005,
+        "n": 2113,
+        "rmse": 0.24812030909222463
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.004847803702379159,
+        "n": 2113,
+        "rmse": 0.005274612667853914
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 10.856928115576597,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000450.npz",
+      "episode": 450,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.06863154544530582,
+        "n": 2113,
+        "rmse": 0.24778624377470754
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.00507874668470089,
+        "n": 2113,
+        "rmse": 0.005539125425952595
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 17.338997835956196,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000500.npz",
+      "episode": 500,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.1324998951975863,
+        "n": 2113,
+        "rmse": 0.2656206033455584
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.00427938108945256,
+        "n": 2113,
+        "rmse": 0.004738697115606351
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 11.50038021265404,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000550.npz",
+      "episode": 550,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.13592645410471094,
+        "n": 2113,
+        "rmse": 0.2663942226311967
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.003839232566182845,
+        "n": 2113,
+        "rmse": 0.004348794307495071
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 16.17588637027281,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000600.npz",
+      "episode": 600,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.06969168248595368,
+        "n": 2113,
+        "rmse": 0.24861739660788046
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.0030229073449211667,
+        "n": 2113,
+        "rmse": 0.003503421628497562
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 14.627122765918683,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000650.npz",
+      "episode": 650,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.05591336175081943,
+        "n": 2113,
+        "rmse": 0.2471418952617671
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.003320769039200249,
+        "n": 2113,
+        "rmse": 0.0038374527301464636
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 21.29650425371123,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000700.npz",
+      "episode": 700,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.25099298977213197,
+        "n": 2113,
+        "rmse": 0.3325863856218136
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.005039169057347218,
+        "n": 2113,
+        "rmse": 0.005590790529160206
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 17.821998476586643,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000750.npz",
+      "episode": 750,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.057657622046107644,
+        "n": 2113,
+        "rmse": 0.24738528410395563
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.0046393518941501765,
+        "n": 2113,
+        "rmse": 0.005219153254473913
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 10.87283455110338,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000800.npz",
+      "episode": 800,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.07384633640515825,
+        "n": 2113,
+        "rmse": 0.2492402857868935
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.003809119461687273,
+        "n": 2113,
+        "rmse": 0.004399966130075166
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 11.429067478860697,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000850.npz",
+      "episode": 850,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.14102333901499187,
+        "n": 2113,
+        "rmse": 0.263425436974359
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.0067725447417220285,
+        "n": 2113,
+        "rmse": 0.007234777716410219
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 8.298746460846381,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000900.npz",
+      "episode": 900,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.08646010975121907,
+        "n": 2113,
+        "rmse": 0.250213982877906
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.00478433690958461,
+        "n": 2113,
+        "rmse": 0.005398399207698695
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 23.971313461020923,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_000950.npz",
+      "episode": 950,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.05814147766253443,
+        "n": 2113,
+        "rmse": 0.2472071684312827
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.00392703820156192,
+        "n": 2113,
+        "rmse": 0.004490704051607033
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 18.99171622816771,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    },
+    {
+      "checkpoint": "/Users/apple/Library/Application Support/Claude/scratch-workspaces/af10d647-a558-4032-98ff-99568855a928/51776880-d7d2-4f10-8f74-da5f5e067832/scratch-2026-10-17-1f0f01/runs_improved/horde_empty_fixed_s0/gvf_checkpoints_horde/gvf_weights_ep_001000.npz",
+      "episode": 1000,
+      "future_angular_velocity": {
+        "baseline_mean_rmse": 0.24683089849103038,
+        "mae": 0.10253697911199043,
+        "n": 2113,
+        "rmse": 0.2556637046973807
+      },
+      "future_linear_velocity": {
+        "baseline_mean_rmse": 2.7755575615628914e-17,
+        "mae": 0.003630858410880405,
+        "n": 2113,
+        "rmse": 0.004102704094330526
+      },
+      "ttc_forward": {
+        "baseline_mean_mae": 31.0,
+        "baseline_zero_mae": 62.5,
+        "censored_episodes": 0,
+        "collided_episodes": 20,
+        "mae": 16.406805080990065,
+        "n_pairs": 2480
+      },
+      "ttc_left": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      },
+      "ttc_right": {
+        "baseline_mean_mae": NaN,
+        "baseline_zero_mae": NaN,
+        "censored_episodes": 20,
+        "collided_episodes": 0,
+        "mae": NaN,
+        "n_pairs": 0
+      }
+    }
+  ],
+  "config": "default.yaml",
+  "elapsed_s": 17.9,
+  "horizon": 20,
+  "num_eval_episodes": 20,
+  "rho_product_diagnostic": {
+    "clip": 50.0,
+    "frac_eq_0_to_1e-6": 0.998565,
+    "frac_gt_1e-3": 0.00035,
+    "horizon": 20,
+    "max": 11.219050732356571,
+    "mean": 0.0002305796144803025,
+    "median": 1.6199999999999975e-17
+  },
+  "seed": 1000
+}

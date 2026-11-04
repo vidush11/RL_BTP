@@ -1,0 +1,11 @@
+# Out-of-distribution: denser random layout than obstacles_train.yaml (10 -> 18 boxes).
+world:
+  randomize_obstacles: true
+  random_obstacle_count: 18
+  random_obstacle_size_range: [0.2, 0.5]
+spawn:
+  mode: random
+  clearance: 0.2
+termination:
+  collision_lidar_threshold: 0.15
+  max_episode_steps: 800

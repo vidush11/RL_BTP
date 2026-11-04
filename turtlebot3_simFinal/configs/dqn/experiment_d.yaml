@@ -1,0 +1,55 @@
+# Experiment D: LiDAR-only DQN, GVF predictions shape the REWARD (never the state).
+# Env, task, DQN budget/hyperparameters and eval protocol are identical to
+# configs/dqn/experiment.yaml (A/B/C) so TASK OUTCOMES are comparable. Rewards
+# are NOT comparable across A/B/C vs D (different definitions).
+#
+# Variants (same file, CLI overrides; see DESIGN_EXPERIMENT_D.md):
+#   main               reward.lam=1.0                     (this file)
+#   D0 control         --set reward.lam=0 --set experiment_id=D0_lidar_only_terminal_reward
+#   prediction-only    --set reward.prediction_only=true  --set experiment_id=Dpred_...
+#   absolute ablation  --set reward.shaping=absolute      --set experiment_id=Dabs_...
+experiment_id: D_lidar_only_gvf_reward
+sim_config: configs/obstacles_train.yaml
+task: goal_navigation          # goal exists and ends the episode; it is NOT in the DQN state
+
+total_env_steps: 60000
+learning_starts: 1000
+train_freq: 1
+eval_interval: 10000
+eval_episodes: 50
+eval_seed: 10000
+epsilon_start: 1.0
+epsilon_end: 0.05
+epsilon_decay_steps: 30000
+
+dqn:
+  hidden: [64, 64]
+  gamma: 0.99
+  lr: 0.001
+  batch_size: 64
+  target_update: 500
+  huber_delta: 1.0
+  grad_clip: 10.0
+replay_capacity: 100000
+
+gvf:                            # learns concurrently, from zero unless init_checkpoint is set
+  obstacle_threshold: 0.25
+  alpha_theta: 0.1
+  alpha_w: 0.0001
+  trace_lambda: 0.4
+  init_checkpoint: null
+
+reward:                         # r = r_task + lam * r_GVF   (rl/prediction_reward.py)
+  goal_reward: 100.0
+  collision_penalty: -50.0
+  step_reward: 0.0
+  timeout_penalty: 0.0
+  lam: 1.0
+  gamma: null                   # null -> DQN gamma (required for potential-based shaping)
+  shaping: potential
+  aggregate: mean
+  ttc_scale: 50.0
+  ttc_cap: 400.0
+  prediction_only: false
+
+gvf_eval_episodes: 10           # forward-TTC error vs independent ground truth at each eval

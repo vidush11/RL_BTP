@@ -1,0 +1,29 @@
+{
+  "env_steps": 60000,
+  "episodes": 823,
+  "experiment_id": "Dfwd_fixed_forward_only_phi",
+  "final": {
+    "collision_rate": 1.0,
+    "env_step": 60000,
+    "episode": 823,
+    "epsilon": 0.050000000000000044,
+    "final_goal_distance_mean": 1.792047492036293,
+    "gvf_fwd_censored": 0,
+    "gvf_fwd_collided": 10,
+    "gvf_fwd_mae": 1004.2120228826672,
+    "gvf_fwd_mean_baseline_mae": 31.0,
+    "gvf_nonfinite": 0,
+    "gvf_theta_max": 2822.902501586388,
+    "length_mean": 120.0,
+    "n_episodes": 50,
+    "reward_nonfinite": 0,
+    "shaped_return_mean": -52.13794485315196,
+    "success_rate": 0.0,
+    "task_return_mean": -50.0,
+    "timeout_rate": 0.0,
+    "wall_time_s": 34.5
+  },
+  "in_dim": 24,
+  "seed": 3,
+  "wall_time_s": 34.5
+}

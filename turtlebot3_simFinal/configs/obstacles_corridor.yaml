@@ -1,0 +1,14 @@
+# Zig-zag corridors (~0.9 m wide): three thin walls with gaps at alternating ends.
+# Requires following walls and making U-turns at corridor ends.
+world:
+  obstacles:
+    - [-2.0, -1.03, 1.15, -0.97]
+    - [-1.15, -0.03, 2.0, 0.03]
+    - [-2.0, 0.97, 1.15, 1.03]
+  randomize_obstacles: false
+spawn:
+  mode: random
+  clearance: 0.2
+termination:
+  collision_lidar_threshold: 0.15
+  max_episode_steps: 800

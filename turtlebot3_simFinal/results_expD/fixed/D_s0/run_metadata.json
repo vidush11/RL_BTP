@@ -1,0 +1,80 @@
+{
+  "agent": "D_fixed_lidar_only_gvf_reward",
+  "argv": [
+    "scripts/train_expD.py",
+    "--config",
+    "configs/dqn/experiment_d_fixed.yaml",
+    "--seed",
+    "0",
+    "--out",
+    "../../runs_expD_fixed/D_s0"
+  ],
+  "config": {
+    "dqn": {
+      "batch_size": 64,
+      "gamma": 0.99,
+      "grad_clip": 10.0,
+      "hidden": [
+        64,
+        64
+      ],
+      "huber_delta": 1.0,
+      "lr": 0.001,
+      "target_update": 500
+    },
+    "epsilon_decay_steps": 30000,
+    "epsilon_end": 0.05,
+    "epsilon_start": 1.0,
+    "eval_episodes": 50,
+    "eval_interval": 10000,
+    "eval_seed": 10000,
+    "experiment_id": "D_fixed_lidar_only_gvf_reward",
+    "gvf": {
+      "alpha_theta": 0.1,
+      "alpha_w": 0.0001,
+      "init_checkpoint": null,
+      "obstacle_threshold": 0.25,
+      "trace_lambda": 0.4
+    },
+    "gvf_eval_episodes": 10,
+    "learning_starts": 1000,
+    "replay_capacity": 100000,
+    "reward": {
+      "aggregate": "mean",
+      "collision_penalty": -50.0,
+      "gamma": null,
+      "goal_reward": 100.0,
+      "lam": 1.0,
+      "prediction_only": false,
+      "shaping": "potential",
+      "step_reward": 0.0,
+      "timeout_penalty": 0.0,
+      "ttc_cap": 400.0,
+      "ttc_scale": 50.0
+    },
+    "sim_config": "configs/fixed_goal_nav.yaml",
+    "task": "goal_navigation",
+    "total_env_steps": 60000,
+    "train_freq": 1
+  },
+  "created_utc": "2026-10-24T15:57:10Z",
+  "resources": {
+    "array_task_id": null,
+    "cpus": 10,
+    "job_id": null,
+    "mem_mb": null,
+    "scheduler": "none",
+    "scratch": "/var/folders/4j/_pc5fncx5_v834mm4ds4wsf40000gn/T/",
+    "source": {},
+    "time_limit_s": null
+  },
+  "seed": 0,
+  "versions": {
+    "gymnasium": "1.4.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "platform": "macOS-26.5.1-arm64-arm-64bit-Mach-O",
+    "python": "3.13.13",
+    "yaml": "6.0.3"
+  }
+}

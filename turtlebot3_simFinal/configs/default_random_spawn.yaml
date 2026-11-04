@@ -1,0 +1,10 @@
+# Empty 4 x 4 arena, random spawn pose (walls are the only obstacles).
+world:
+  obstacles: []
+  randomize_obstacles: false
+spawn:
+  mode: random
+  clearance: 0.2
+termination:
+  collision_lidar_threshold: 0.15
+  max_episode_steps: 800

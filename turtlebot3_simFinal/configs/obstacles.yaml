@@ -1,0 +1,11 @@
+# Illustrative layout with static rectangular obstacles.
+# These coordinates are EXAMPLES, not a copy of the Gazebo turtlebot3_dqn_world
+# stages (that geometry was not part of the supplied files).  Edit freely.
+# The robot spawns at (0, 0): keep that area clear (needs >= 0.35 m clearance).
+
+world:
+  obstacles:
+    - [0.6, 0.6, 1.0, 1.0]
+    - [-1.2, -1.0, -0.8, -0.6]
+    - [0.5, -1.4, 0.7, -0.4]       # thin wall segment
+    - [-1.0, 0.8, -0.2, 1.0]

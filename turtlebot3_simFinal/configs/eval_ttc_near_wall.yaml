@@ -1,0 +1,21 @@
+# Evaluation config that makes the LEFT / RIGHT TTC demons produce valid
+# (non-censored) collision samples.
+#
+# Why this exists: the deterministic hard-turn target policies (actions 1 and 3)
+# drive the robot in a ~0.2 m-radius circle. In the open 4x4 arena that circle
+# never reaches a wall, so gamma (= 0 only when the full scan sees <=0.25 m)
+# never terminates -> the forward-left / forward-right TTC return is unbounded
+# and every evaluation episode is CENSORED (0 collisions). See DIAGNOSIS_GVF.md.
+#
+# Spawning next to the +x wall lets the turning circle clip the wall, so the
+# demons collide and TTC becomes measurable. Note the resulting TTC is SHORT
+# (~3-5 steps): this is a demonstration that the metric is identifiable here,
+# not a claim that hard-turn TTC is a rich task in this kinematic sim. The
+# principled alternative (a finite max-horizon gamma) is discussed in the
+# diagnosis.
+spawn:
+  mode: fixed
+  x: 1.80
+  y: 0.0
+  theta: 0.0
+  clearance: 0.15

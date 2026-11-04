@@ -1,0 +1,50 @@
+# Safety task (paper-implementation experiment): "drive at v_target without colliding".
+# Used identically by the paper GVF controller, the RL_BTP-Horde controller and DQN (H4).
+# Every value is fixed before any experiment and documented in DECISIONS.md.
+world:
+  width: 4.0
+  height: 4.0
+  randomize_obstacles: true          # new layout every episode
+  random_obstacle_count: 3
+  random_obstacle_size_range: [0.2, 0.5]
+spawn:
+  mode: random
+  clearance: 0.35
+motion:
+  dt: 0.1
+  dynamics: inertial                 # RL_BTP model: accelerate, then friction, then clip
+  action_mode: accel
+  enabled_actions: [FORWARD, LEFT, RIGHT, STOP]   # BACKWARD disabled -> v in [0, v_max]
+  lin_accel: 0.8
+  ang_accel: 3.0
+  friction: 0.10
+  v_min: 0.0
+  v_max: 0.22                        # TurtleBot3 Burger limits
+  w_max: 2.84
+lidar:
+  num_beams: 72                      # 24 kept as an ablation
+  noise_std: 0.0                     # 0.01 available as a robustness option
+observation:
+  channels: [lidar, velocity, ang_velocity]
+  frame_stack: 3                     # last 3 frames of [LiDAR, v, omega] (Jackal-style input)
+termination:
+  collision_lidar_threshold: null    # collision = physical contact (swept disc), H1/A1
+  terminate_on_collision: true
+  max_episode_steps: 800             # truncation -> bootstrapped
+safety:                              # paper Sec. III-A front-safety cumulant (fine internal scan)
+  enabled: true
+  num_beams: 360
+  margin_w: 0.10
+  tau: 1.5
+  d_min: 0.4
+  beta_f: 0
+reward:                              # A8 shared task reward
+  per_step: 0.0
+  speed_coef: 1.0
+  v_target: 0.2
+  collision_penalty: -10.0
+  terminal_mode: add
+light:                                # sensor only (RL_BTP light demons); not in the policy observation
+  enabled: true
+  positions: [[1.6, 1.6]]
+  occlusion: true

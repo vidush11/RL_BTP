@@ -1,0 +1,29 @@
+{
+  "env_steps": 60000,
+  "episodes": 1170,
+  "experiment_id": "D0_lidar_only_terminal_reward",
+  "final": {
+    "collision_rate": 0.98,
+    "env_step": 60000,
+    "episode": 1170,
+    "epsilon": 0.050000000000000044,
+    "final_goal_distance_mean": 2.1733058059393477,
+    "gvf_fwd_censored": 1,
+    "gvf_fwd_collided": 9,
+    "gvf_fwd_mae": 22.51547413520465,
+    "gvf_fwd_mean_baseline_mae": 18.796860579893906,
+    "gvf_nonfinite": 0,
+    "gvf_theta_max": 22.284218242607732,
+    "length_mean": 49.62,
+    "n_episodes": 50,
+    "reward_nonfinite": 0,
+    "shaped_return_mean": -47.0,
+    "success_rate": 0.02,
+    "task_return_mean": -47.0,
+    "timeout_rate": 0.0,
+    "wall_time_s": 35.5
+  },
+  "in_dim": 24,
+  "seed": 1,
+  "wall_time_s": 35.6
+}
