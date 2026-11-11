@@ -1,0 +1,27 @@
+On-policy Sarsa(lambda) light seeker in the pillar world (4 IR + 4 light sensors, 2-axis compass).
+All evaluated from 80 uniform random start positions/headings, 300 steps each.
+
+variant                                   reached<0.5m  end dist  ends: light/pillar1/wall  notes
+random                                    8%            1.89 m    6 / 4 / 23
+sum reward, one continuous life           19%           1.69 m    15 / 8 / 36               spent 97% of training next to the light (coverage problem)
+A front reward, one life                  -             -         -                         30% of training stuck on pillar 1
+C max-of-4 reward, one life               -             -         -                         99.9% of training pressed on a wall
+D sum reward + random restart / 500 steps 15%           1.25 m    12 / 24 / 6               almost never turns (2%)
+E front reward + restarts                 6%            1.27 m    5 / 19 / 8                sits still 68%
+F sum reward + restarts + 0.5 s decisions 57%           0.82 m    46 / 18 / 9               BEST: action held 5 steps (paper's 500 ms)
+G front reward + restarts + 0.5 s         18%           0.98 m    14 / 21 / 17
+
+Conclusions:
+1. One continuous life -> robot settles in one spot and never learns the rest of the arena; restarts fix coverage.
+2. 0.1 s decisions -> action effects too similar and 2 s look-ahead too short; 0.5 s decisions fix it.
+3. Sum-of-4-lights reward beats front-only and max-of-4.
+4. Remaining failures mostly at pillar 1: seek-light alone ignores obstacles (motivates seek + avoid combination).
+Correction: the earlier open-arena on-policy result (0.29 m) was evaluated from states next to the light, so it was inflated.
+
+Follow-ups (same 80 uniform starts, 0.5 s decisions):
+H sum reward, 0.5 s, NO restarts          51%           0.86 m    41 / 10 / 20              decision interval alone fixes most trapping
+H + avoid-demon escape reflex (test only) 22%           1.14 m    18 / 13 / 17              worse
+I trained with avoid-demon escape reflex  12%           1.36 m    10 / 5 / 33               worse
+Escape reflex = when bumped, act with the avoid-obstacles demon from the main Horde run (step 2.675M, ~1.4x random).
+Why it failed: (1) it fires at the goal - the light is 0.28 m from two walls, so pushing at the light bumps the corner and the
+reflex drags the robot away; (2) the avoid skill was still weak and mostly reversed into walls behind.

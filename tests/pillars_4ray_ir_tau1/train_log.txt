@@ -1,0 +1,1862 @@
+
+steps 25,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  22.67      24.53       7.95
+  steps-to-stop                      13.04      13.45       5.35
+  light-if-forward                    3.42       5.13       1.81
+  bump-soon                           0.49       0.63       0.50
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.46       0.49             0.94x
+  spin [ctrl]                         0.88       0.11             7.90x
+  avoid-obstacles [ctrl]              0.40       0.41             1.00x
+saved checkpoint -> checkpoint.npz
+
+steps 50,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.22      19.76       8.96
+  steps-to-stop                      12.77      15.69       5.33
+  light-if-forward                    3.26       4.21       1.15
+  bump-soon                           0.83       0.77       0.60
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.53       0.53             1.00x
+  spin [ctrl]                         0.88       0.11             8.22x
+  avoid-obstacles [ctrl]              0.37       0.44             0.84x
+saved checkpoint -> checkpoint.npz
+
+steps 75,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  17.06      18.78       5.88
+  steps-to-stop                      14.87      15.17       4.24
+  light-if-forward                    4.48       5.29       1.54
+  bump-soon                           1.05       1.03       0.70
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.47       0.50             0.94x
+  spin [ctrl]                         0.88       0.11             8.21x
+  avoid-obstacles [ctrl]              0.42       0.50             0.86x
+saved checkpoint -> checkpoint.npz
+
+steps 100,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  17.69      20.79      10.98
+  steps-to-stop                      12.22      13.27       4.85
+  light-if-forward                    5.79       6.23       2.30
+  bump-soon                           0.85       1.01       0.52
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.41       0.44             0.93x
+  spin [ctrl]                         0.88       0.11             7.68x
+  avoid-obstacles [ctrl]              0.32       0.38             0.83x
+saved checkpoint -> checkpoint.npz
+
+steps 125,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.10      21.21      11.55
+  steps-to-stop                       8.15      10.20       2.36
+  light-if-forward                    3.84       5.30       1.56
+  bump-soon                           1.05       0.86       0.52
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.40       0.42             0.93x
+  spin [ctrl]                         0.88       0.11             8.11x
+  avoid-obstacles [ctrl]              0.36       0.51             0.70x
+saved checkpoint -> checkpoint.npz
+
+steps 150,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.86      14.79       5.61
+  steps-to-stop                      12.64      14.36       5.25
+  light-if-forward                    4.74       5.59       1.55
+  bump-soon                           0.91       0.91       0.64
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.42       0.40             1.07x
+  spin [ctrl]                         0.88       0.11             7.99x
+  avoid-obstacles [ctrl]              0.30       0.55             0.54x
+saved checkpoint -> checkpoint.npz
+
+steps 175,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.48      15.92       6.19
+  steps-to-stop                      12.04      12.60       4.09
+  light-if-forward                    3.75       4.82       1.26
+  bump-soon                           1.29       0.85       0.69
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.46       0.43             1.06x
+  spin [ctrl]                         0.88       0.11             8.21x
+  avoid-obstacles [ctrl]              0.42       0.46             0.90x
+saved checkpoint -> checkpoint.npz
+
+steps 200,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.07      25.74      13.76
+  steps-to-stop                      11.89      15.93       4.04
+  light-if-forward                    5.03       5.19       1.41
+  bump-soon                           1.12       0.93       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.49       0.49             1.00x
+  spin [ctrl]                         0.88       0.10             8.51x
+  avoid-obstacles [ctrl]              0.37       0.40             0.92x
+saved checkpoint -> checkpoint.npz
+
+steps 225,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.08      24.07      11.97
+  steps-to-stop                      10.44      13.08       3.41
+  light-if-forward                    4.30       5.64       1.48
+  bump-soon                           0.42       0.74       0.65
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.57       0.57             1.01x
+  spin [ctrl]                         0.88       0.11             7.77x
+  avoid-obstacles [ctrl]              0.34       0.47             0.72x
+saved checkpoint -> checkpoint.npz
+
+steps 250,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.71      20.78       8.71
+  steps-to-stop                      13.91      16.07       3.99
+  light-if-forward                    4.65       5.25       1.18
+  bump-soon                           1.42       1.78       0.75
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.41       0.35             1.17x
+  spin [ctrl]                         0.87       0.11             7.90x
+  avoid-obstacles [ctrl]              0.42       0.47             0.90x
+saved checkpoint -> checkpoint.npz
+
+steps 275,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  18.25      28.20      10.90
+  steps-to-stop                      12.23      15.65       3.91
+  light-if-forward                    6.59       5.55       1.70
+  bump-soon                           1.45       1.74       0.46
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.48       0.55             0.87x
+  spin [ctrl]                         0.87       0.11             8.06x
+  avoid-obstacles [ctrl]              0.36       0.38             0.94x
+saved checkpoint -> checkpoint.npz
+
+steps 300,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.85      18.60       9.35
+  steps-to-stop                      12.79      14.91       3.71
+  light-if-forward                    4.70       4.64       0.93
+  bump-soon                           0.91       0.65       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.53       0.47             1.13x
+  spin [ctrl]                         0.88       0.12             7.54x
+  avoid-obstacles [ctrl]              0.35       0.40             0.88x
+saved checkpoint -> checkpoint.npz
+
+steps 325,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.66      20.05       8.60
+  steps-to-stop                      14.40      16.40       2.93
+  light-if-forward                    4.04       4.75       1.02
+  bump-soon                           0.66       0.66       0.38
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.57       0.52             1.10x
+  spin [ctrl]                         0.88       0.11             7.97x
+  avoid-obstacles [ctrl]              0.41       0.44             0.94x
+saved checkpoint -> checkpoint.npz
+
+steps 350,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  18.14      23.37      11.25
+  steps-to-stop                      13.56      15.79       3.03
+  light-if-forward                    4.12       4.25       0.47
+  bump-soon                           1.14       0.83       0.59
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.40       0.42             0.96x
+  spin [ctrl]                         0.87       0.11             7.87x
+  avoid-obstacles [ctrl]              0.37       0.45             0.81x
+saved checkpoint -> checkpoint.npz
+
+steps 375,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  17.40      23.27      10.45
+  steps-to-stop                      13.44      13.64       4.21
+  light-if-forward                    5.84       5.72       1.34
+  bump-soon                           1.27       1.39       0.36
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.65       0.69             0.95x
+  spin [ctrl]                         0.88       0.11             7.96x
+  avoid-obstacles [ctrl]              0.38       0.38             1.01x
+saved checkpoint -> checkpoint.npz
+
+steps 400,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.86      17.11       8.31
+  steps-to-stop                      13.08      14.38       3.01
+  light-if-forward                    5.60       5.91       1.16
+  bump-soon                           0.99       0.67       0.45
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.65       0.66             0.98x
+  spin [ctrl]                         0.88       0.10             8.64x
+  avoid-obstacles [ctrl]              0.37       0.40             0.91x
+saved checkpoint -> checkpoint.npz
+
+steps 425,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.20      20.67       9.66
+  steps-to-stop                      13.07      13.88       4.74
+  light-if-forward                    4.04       4.64       0.79
+  bump-soon                           0.79       0.67       0.49
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.63       0.56             1.14x
+  spin [ctrl]                         0.87       0.10             8.34x
+  avoid-obstacles [ctrl]              0.36       0.44             0.82x
+saved checkpoint -> checkpoint.npz
+
+steps 450,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.55      16.38       6.04
+  steps-to-stop                      12.10      13.53       5.10
+  light-if-forward                    4.36       4.56       0.58
+  bump-soon                           0.85       0.85       0.54
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.82       0.70             1.17x
+  spin [ctrl]                         0.88       0.11             8.19x
+  avoid-obstacles [ctrl]              0.35       0.49             0.72x
+saved checkpoint -> checkpoint.npz
+
+steps 475,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.96      22.62      10.38
+  steps-to-stop                      14.20      16.55       4.60
+  light-if-forward                    6.32       6.14       1.00
+  bump-soon                           0.95       1.04       0.41
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.61       0.63             0.96x
+  spin [ctrl]                         0.88       0.10             8.41x
+  avoid-obstacles [ctrl]              0.42       0.45             0.93x
+saved checkpoint -> checkpoint.npz
+
+steps 500,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.84      19.78      11.36
+  steps-to-stop                      13.22      15.65       3.48
+  light-if-forward                    4.84       5.27       0.66
+  bump-soon                           1.08       1.20       0.37
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.49       0.42             1.16x
+  spin [ctrl]                         0.88       0.11             8.26x
+  avoid-obstacles [ctrl]              0.48       0.45             1.07x
+saved checkpoint -> checkpoint.npz
+
+steps 525,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.95      19.32       6.66
+  steps-to-stop                      11.75      14.62       3.34
+  light-if-forward                    4.99       5.51       0.72
+  bump-soon                           1.09       1.17       0.62
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.65       0.64             1.02x
+  spin [ctrl]                         0.87       0.09             9.25x
+  avoid-obstacles [ctrl]              0.36       0.42             0.87x
+saved checkpoint -> checkpoint.npz
+
+steps 550,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.02      20.47       9.04
+  steps-to-stop                      13.72      15.17       5.01
+  light-if-forward                    6.39       5.71       0.88
+  bump-soon                           0.72       0.73       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.50       0.56             0.88x
+  spin [ctrl]                         0.88       0.10             8.44x
+  avoid-obstacles [ctrl]              0.43       0.43             1.02x
+saved checkpoint -> checkpoint.npz
+
+steps 575,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.22      18.27       7.63
+  steps-to-stop                      12.16      14.00       4.44
+  light-if-forward                    5.02       5.53       0.85
+  bump-soon                           0.85       0.55       0.39
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.50       0.47             1.05x
+  spin [ctrl]                         0.87       0.09             9.36x
+  avoid-obstacles [ctrl]              0.37       0.47             0.80x
+saved checkpoint -> checkpoint.npz
+
+steps 600,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.05      16.65       6.48
+  steps-to-stop                      12.61      12.15       3.40
+  light-if-forward                    5.43       5.66       0.73
+  bump-soon                           1.14       1.34       0.59
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.57       0.55             1.04x
+  spin [ctrl]                         0.88       0.11             8.29x
+  avoid-obstacles [ctrl]              0.33       0.41             0.81x
+saved checkpoint -> checkpoint.npz
+
+steps 625,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  17.17      20.73       9.30
+  steps-to-stop                      12.22      13.47       4.28
+  light-if-forward                    4.62       4.78       0.70
+  bump-soon                           1.27       1.53       0.59
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.75       0.71             1.06x
+  spin [ctrl]                         0.88       0.10             8.41x
+  avoid-obstacles [ctrl]              0.54       0.45             1.20x
+saved checkpoint -> checkpoint.npz
+
+steps 650,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.18      19.60       6.53
+  steps-to-stop                      12.18      14.94       4.79
+  light-if-forward                    6.62       6.14       1.01
+  bump-soon                           1.81       1.78       0.47
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.72       0.71             1.02x
+  spin [ctrl]                         0.88       0.12             7.42x
+  avoid-obstacles [ctrl]              0.45       0.39             1.15x
+saved checkpoint -> checkpoint.npz
+
+steps 675,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.45      16.00       4.79
+  steps-to-stop                      12.19      14.00       2.94
+  light-if-forward                    4.94       5.31       0.83
+  bump-soon                           1.43       1.25       0.52
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.43       0.49             0.87x
+  spin [ctrl]                         0.88       0.11             8.12x
+  avoid-obstacles [ctrl]              0.42       0.41             1.02x
+saved checkpoint -> checkpoint.npz
+
+steps 700,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.21      13.94       6.55
+  steps-to-stop                      10.32      12.80       2.63
+  light-if-forward                    5.65       5.36       0.71
+  bump-soon                           0.95       0.95       0.50
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.32       0.36             0.89x
+  spin [ctrl]                         0.88       0.11             8.28x
+  avoid-obstacles [ctrl]              0.42       0.44             0.96x
+saved checkpoint -> checkpoint.npz
+
+steps 725,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.37      23.76      11.33
+  steps-to-stop                      12.23      12.67       3.22
+  light-if-forward                    5.19       5.27       0.74
+  bump-soon                           1.24       1.18       0.49
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.61       0.59             1.03x
+  spin [ctrl]                         0.88       0.11             8.24x
+  avoid-obstacles [ctrl]              0.45       0.44             1.03x
+saved checkpoint -> checkpoint.npz
+
+steps 750,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.07      20.17       7.74
+  steps-to-stop                      10.35      15.00       4.67
+  light-if-forward                    4.77       4.67       0.57
+  bump-soon                           1.47       1.48       0.57
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.56       0.54             1.03x
+  spin [ctrl]                         0.87       0.11             7.99x
+  avoid-obstacles [ctrl]              0.42       0.36             1.17x
+saved checkpoint -> checkpoint.npz
+
+steps 775,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.39      15.06       6.73
+  steps-to-stop                      10.15      10.72       3.57
+  light-if-forward                    5.40       5.87       1.10
+  bump-soon                           1.14       0.89       0.54
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.65       0.60             1.08x
+  spin [ctrl]                         0.88       0.11             8.28x
+  avoid-obstacles [ctrl]              0.38       0.39             0.96x
+saved checkpoint -> checkpoint.npz
+
+steps 800,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.67      17.88       9.11
+  steps-to-stop                      11.54      13.08       1.70
+  light-if-forward                    5.52       4.67       1.18
+  bump-soon                           0.85       0.70       0.50
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.44       0.47             0.94x
+  spin [ctrl]                         0.87       0.10             8.40x
+  avoid-obstacles [ctrl]              0.49       0.46             1.08x
+saved checkpoint -> checkpoint.npz
+
+steps 825,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.61      16.00       8.07
+  steps-to-stop                      11.91      13.25       3.44
+  light-if-forward                    6.22       6.73       0.93
+  bump-soon                           1.39       1.07       0.53
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.47       0.41             1.15x
+  spin [ctrl]                         0.88       0.11             7.83x
+  avoid-obstacles [ctrl]              0.35       0.39             0.91x
+saved checkpoint -> checkpoint.npz
+
+steps 850,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.31      17.17       7.30
+  steps-to-stop                      13.15      14.37       4.08
+  light-if-forward                    4.91       4.56       0.55
+  bump-soon                           1.31       1.51       0.73
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.50       0.51             0.98x
+  spin [ctrl]                         0.88       0.11             8.11x
+  avoid-obstacles [ctrl]              0.41       0.40             1.02x
+saved checkpoint -> checkpoint.npz
+
+steps 875,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.58      20.50       7.77
+  steps-to-stop                      12.56      15.79       4.26
+  light-if-forward                    5.33       5.19       0.81
+  bump-soon                           1.03       1.11       0.66
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.56       0.63             0.89x
+  spin [ctrl]                         0.88       0.11             8.31x
+  avoid-obstacles [ctrl]              0.50       0.44             1.14x
+saved checkpoint -> checkpoint.npz
+
+steps 900,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.25      19.95      10.79
+  steps-to-stop                      11.58      13.18       3.61
+  light-if-forward                    5.74       5.67       0.76
+  bump-soon                           0.71       0.86       0.59
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.56       0.56             1.00x
+  spin [ctrl]                         0.88       0.11             7.86x
+  avoid-obstacles [ctrl]              0.44       0.44             1.01x
+saved checkpoint -> checkpoint.npz
+
+steps 925,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.84      15.40       8.14
+  steps-to-stop                      12.95      15.33       4.01
+  light-if-forward                    5.70       5.81       0.79
+  bump-soon                           1.25       1.12       0.62
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.62       0.66             0.94x
+  spin [ctrl]                         0.87       0.10             8.50x
+  avoid-obstacles [ctrl]              0.41       0.38             1.07x
+saved checkpoint -> checkpoint.npz
+
+steps 950,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                   8.68      17.64       9.54
+  steps-to-stop                      14.25      15.65       3.20
+  light-if-forward                    4.60       5.14       0.69
+  bump-soon                           0.71       1.09       0.64
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.78       0.73             1.07x
+  spin [ctrl]                         0.87       0.10             8.54x
+  avoid-obstacles [ctrl]              0.50       0.47             1.07x
+saved checkpoint -> checkpoint.npz
+
+steps 975,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.29      14.31       6.05
+  steps-to-stop                       9.65      11.60       3.82
+  light-if-forward                    4.96       5.29       0.64
+  bump-soon                           1.50       1.40       0.59
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.77       0.60             1.28x
+  spin [ctrl]                         0.88       0.11             8.11x
+  avoid-obstacles [ctrl]              0.47       0.39             1.20x
+saved checkpoint -> checkpoint.npz
+
+steps 1,000,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.79      22.53      10.74
+  steps-to-stop                       9.83      12.33       5.06
+  light-if-forward                    5.13       5.23       0.80
+  bump-soon                           0.64       0.48       0.45
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.60       0.58             1.03x
+  spin [ctrl]                         0.87       0.11             8.16x
+  avoid-obstacles [ctrl]              0.43       0.46             0.93x
+saved checkpoint -> checkpoint.npz
+
+steps 1,025,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                   9.50      17.75       9.99
+  steps-to-stop                      10.21      12.67       4.05
+  light-if-forward                    6.23       5.66       0.75
+  bump-soon                           1.64       1.50       0.43
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.62       0.57             1.08x
+  spin [ctrl]                         0.88       0.11             8.35x
+  avoid-obstacles [ctrl]              0.45       0.36             1.26x
+saved checkpoint -> checkpoint.npz
+
+steps 1,050,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.10      22.72       9.68
+  steps-to-stop                       9.98      14.07       4.28
+  light-if-forward                    5.26       5.69       0.80
+  bump-soon                           0.83       0.74       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.70       0.58             1.19x
+  spin [ctrl]                         0.88       0.11             8.16x
+  avoid-obstacles [ctrl]              0.58       0.39             1.49x
+saved checkpoint -> checkpoint.npz
+
+steps 1,075,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.28      21.56      11.84
+  steps-to-stop                       9.59      14.06       4.73
+  light-if-forward                    5.98       6.08       0.64
+  bump-soon                           1.03       0.94       0.41
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.67       0.63             1.07x
+  spin [ctrl]                         0.87       0.10             8.50x
+  avoid-obstacles [ctrl]              0.47       0.41             1.15x
+saved checkpoint -> checkpoint.npz
+
+steps 1,100,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.15      22.05       9.12
+  steps-to-stop                       9.79      11.37       3.00
+  light-if-forward                    5.87       5.75       0.80
+  bump-soon                           1.03       0.99       0.64
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.56       0.52             1.09x
+  spin [ctrl]                         0.87       0.11             8.23x
+  avoid-obstacles [ctrl]              0.41       0.37             1.09x
+saved checkpoint -> checkpoint.npz
+
+steps 1,125,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.94      22.29       9.86
+  steps-to-stop                      12.30      14.79       3.10
+  light-if-forward                    6.18       5.34       1.18
+  bump-soon                           1.37       1.15       0.52
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.63       0.63             0.99x
+  spin [ctrl]                         0.88       0.11             8.31x
+  avoid-obstacles [ctrl]              0.48       0.38             1.25x
+saved checkpoint -> checkpoint.npz
+
+steps 1,150,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.17      18.82       7.52
+  steps-to-stop                      11.08      13.19       4.02
+  light-if-forward                    5.84       5.76       0.81
+  bump-soon                           0.73       0.67       0.39
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.53       0.49             1.08x
+  spin [ctrl]                         0.88       0.11             7.94x
+  avoid-obstacles [ctrl]              0.52       0.53             0.98x
+saved checkpoint -> checkpoint.npz
+
+steps 1,175,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.46      17.27      10.06
+  steps-to-stop                      10.75      12.60       3.10
+  light-if-forward                    5.55       4.75       1.00
+  bump-soon                           1.10       1.02       0.56
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.67       0.61             1.09x
+  spin [ctrl]                         0.87       0.10             8.50x
+  avoid-obstacles [ctrl]              0.44       0.39             1.13x
+saved checkpoint -> checkpoint.npz
+
+steps 1,200,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.81      25.64      11.24
+  steps-to-stop                      12.87      14.65       4.05
+  light-if-forward                    5.87       6.10       0.83
+  bump-soon                           1.06       1.08       0.48
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.38       0.37             1.03x
+  spin [ctrl]                         0.87       0.10             8.86x
+  avoid-obstacles [ctrl]              0.49       0.46             1.05x
+saved checkpoint -> checkpoint.npz
+
+steps 1,225,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.63      20.83      10.22
+  steps-to-stop                      12.01      13.64       2.37
+  light-if-forward                    5.89       6.55       0.88
+  bump-soon                           0.69       0.64       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.83       0.65             1.29x
+  spin [ctrl]                         0.88       0.10             8.54x
+  avoid-obstacles [ctrl]              0.52       0.44             1.19x
+saved checkpoint -> checkpoint.npz
+
+steps 1,250,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.85      21.50      10.17
+  steps-to-stop                      11.09      13.41       4.47
+  light-if-forward                    4.31       4.08       0.49
+  bump-soon                           1.21       1.53       0.81
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.58       0.48             1.21x
+  spin [ctrl]                         0.88       0.11             7.98x
+  avoid-obstacles [ctrl]              0.45       0.45             1.00x
+saved checkpoint -> checkpoint.npz
+
+steps 1,275,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.46      17.18       5.80
+  steps-to-stop                      15.47      15.93       2.76
+  light-if-forward                    4.97       4.75       0.59
+  bump-soon                           0.77       0.86       0.54
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.67       0.56             1.19x
+  spin [ctrl]                         0.87       0.10             8.38x
+  avoid-obstacles [ctrl]              0.49       0.42             1.16x
+saved checkpoint -> checkpoint.npz
+
+steps 1,300,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  17.01      18.50       6.40
+  steps-to-stop                      11.26      14.71       4.49
+  light-if-forward                    5.06       5.20       0.92
+  bump-soon                           1.04       1.28       0.60
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.67       0.72             0.94x
+  spin [ctrl]                         0.88       0.10             8.59x
+  avoid-obstacles [ctrl]              0.53       0.45             1.17x
+saved checkpoint -> checkpoint.npz
+
+steps 1,325,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.85      17.13      10.42
+  steps-to-stop                      12.33      12.50       3.47
+  light-if-forward                    5.23       5.33       0.58
+  bump-soon                           1.30       1.42       0.48
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.65       0.55             1.19x
+  spin [ctrl]                         0.87       0.12             7.60x
+  avoid-obstacles [ctrl]              0.42       0.45             0.94x
+saved checkpoint -> checkpoint.npz
+
+steps 1,350,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.37      20.79       8.84
+  steps-to-stop                      11.81      12.62       2.35
+  light-if-forward                    5.74       5.77       0.61
+  bump-soon                           1.33       1.55       0.43
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.68       0.61             1.11x
+  spin [ctrl]                         0.87       0.10             8.64x
+  avoid-obstacles [ctrl]              0.57       0.46             1.24x
+saved checkpoint -> checkpoint.npz
+
+steps 1,375,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.65      17.29       9.89
+  steps-to-stop                      11.50       8.62       5.94
+  light-if-forward                    5.55       5.73       0.67
+  bump-soon                           0.40       0.48       0.38
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.79       0.56             1.41x
+  spin [ctrl]                         0.87       0.11             7.90x
+  avoid-obstacles [ctrl]              0.55       0.56             0.98x
+saved checkpoint -> checkpoint.npz
+
+steps 1,400,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.38      13.83       5.73
+  steps-to-stop                      11.06      12.29       3.32
+  light-if-forward                    6.55       6.23       0.65
+  bump-soon                           1.05       0.91       0.35
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.53       0.48             1.10x
+  spin [ctrl]                         0.87       0.11             8.32x
+  avoid-obstacles [ctrl]              0.52       0.46             1.15x
+saved checkpoint -> checkpoint.npz
+
+steps 1,425,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.86      18.00      10.00
+  steps-to-stop                      12.09      14.59       2.88
+  light-if-forward                    5.17       4.82       0.66
+  bump-soon                           0.62       1.11       0.92
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.57       0.58             0.98x
+  spin [ctrl]                         0.88       0.11             8.25x
+  avoid-obstacles [ctrl]              0.51       0.38             1.36x
+saved checkpoint -> checkpoint.npz
+
+steps 1,450,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.46      21.31      11.34
+  steps-to-stop                      11.94      14.31       3.60
+  light-if-forward                    4.20       4.01       0.42
+  bump-soon                           0.71       0.94       0.47
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.65       0.52             1.24x
+  spin [ctrl]                         0.88       0.11             8.31x
+  avoid-obstacles [ctrl]              0.59       0.52             1.13x
+saved checkpoint -> checkpoint.npz
+
+steps 1,475,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.01      23.47      13.97
+  steps-to-stop                      10.31      10.58       2.67
+  light-if-forward                    5.26       5.04       0.60
+  bump-soon                           1.10       1.25       0.76
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.66       0.63             1.05x
+  spin [ctrl]                         0.87       0.11             8.01x
+  avoid-obstacles [ctrl]              0.54       0.46             1.18x
+saved checkpoint -> checkpoint.npz
+
+steps 1,500,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.84      20.07      10.83
+  steps-to-stop                      12.74      15.14       2.71
+  light-if-forward                    6.54       6.80       0.75
+  bump-soon                           0.56       0.33       0.36
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.54       0.53             1.01x
+  spin [ctrl]                         0.87       0.11             8.26x
+  avoid-obstacles [ctrl]              0.52       0.41             1.26x
+saved checkpoint -> checkpoint.npz
+
+steps 1,525,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.81      23.43       9.74
+  steps-to-stop                       9.92      11.56       2.10
+  light-if-forward                    5.33       5.07       0.62
+  bump-soon                           0.55       0.63       0.50
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.61       0.63             0.97x
+  spin [ctrl]                         0.88       0.11             7.89x
+  avoid-obstacles [ctrl]              0.56       0.47             1.21x
+saved checkpoint -> checkpoint.npz
+
+steps 1,550,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.01      17.15       8.33
+  steps-to-stop                      10.71      15.20       4.49
+  light-if-forward                    5.34       4.80       1.05
+  bump-soon                           1.43       1.24       0.55
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.63       0.62             1.01x
+  spin [ctrl]                         0.88       0.11             8.18x
+  avoid-obstacles [ctrl]              0.53       0.46             1.16x
+saved checkpoint -> checkpoint.npz
+
+steps 1,575,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.17      21.37      10.11
+  steps-to-stop                      11.41      11.82       3.46
+  light-if-forward                    5.85       6.34       0.69
+  bump-soon                           0.97       1.20       0.66
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.59       0.40             1.47x
+  spin [ctrl]                         0.88       0.11             8.27x
+  avoid-obstacles [ctrl]              0.48       0.44             1.08x
+saved checkpoint -> checkpoint.npz
+
+steps 1,600,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.07      20.29       8.76
+  steps-to-stop                      10.11       8.27       3.19
+  light-if-forward                    5.43       5.33       0.58
+  bump-soon                           0.86       0.71       0.43
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.42       0.43             0.98x
+  spin [ctrl]                         0.87       0.10             9.05x
+  avoid-obstacles [ctrl]              0.54       0.39             1.40x
+saved checkpoint -> checkpoint.npz
+
+steps 1,625,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.90      14.56       6.35
+  steps-to-stop                      13.11      17.29       4.18
+  light-if-forward                    5.15       5.48       0.81
+  bump-soon                           0.70       0.70       0.42
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.87       0.64             1.36x
+  spin [ctrl]                         0.88       0.11             7.84x
+  avoid-obstacles [ctrl]              0.55       0.46             1.20x
+saved checkpoint -> checkpoint.npz
+
+steps 1,650,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.90      17.47       7.73
+  steps-to-stop                      11.51      13.08       2.60
+  light-if-forward                    5.83       5.58       0.72
+  bump-soon                           1.04       0.82       0.51
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.48       0.36             1.34x
+  spin [ctrl]                         0.88       0.11             8.22x
+  avoid-obstacles [ctrl]              0.60       0.48             1.25x
+saved checkpoint -> checkpoint.npz
+
+steps 1,675,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.65      24.00      14.15
+  steps-to-stop                      12.34      15.15       3.28
+  light-if-forward                    5.52       5.70       0.56
+  bump-soon                           1.41       1.39       0.74
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.74       0.66             1.11x
+  spin [ctrl]                         0.87       0.10             8.68x
+  avoid-obstacles [ctrl]              0.57       0.42             1.35x
+saved checkpoint -> checkpoint.npz
+
+steps 1,700,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.35      22.07      12.30
+  steps-to-stop                      12.46      13.05       3.12
+  light-if-forward                    5.67       5.80       0.88
+  bump-soon                           0.59       0.51       0.46
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.76       0.61             1.25x
+  spin [ctrl]                         0.88       0.11             8.30x
+  avoid-obstacles [ctrl]              0.57       0.46             1.24x
+saved checkpoint -> checkpoint.npz
+
+steps 1,725,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.54      25.14      14.73
+  steps-to-stop                      12.06      10.13       4.72
+  light-if-forward                    5.97       6.26       0.69
+  bump-soon                           1.09       1.11       0.57
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.87       0.68             1.28x
+  spin [ctrl]                         0.88       0.10             8.56x
+  avoid-obstacles [ctrl]              0.59       0.40             1.46x
+saved checkpoint -> checkpoint.npz
+
+steps 1,750,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.30      16.00       8.14
+  steps-to-stop                      12.82      16.56       3.80
+  light-if-forward                    6.42       6.34       0.79
+  bump-soon                           1.49       1.64       0.57
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.61       0.64             0.96x
+  spin [ctrl]                         0.88       0.12             7.44x
+  avoid-obstacles [ctrl]              0.64       0.42             1.52x
+saved checkpoint -> checkpoint.npz
+
+steps 1,775,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.95      13.94       4.88
+  steps-to-stop                      13.39      11.73       4.43
+  light-if-forward                    5.85       5.65       0.85
+  bump-soon                           0.92       0.94       0.35
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.71       0.68             1.05x
+  spin [ctrl]                         0.88       0.11             8.22x
+  avoid-obstacles [ctrl]              0.64       0.56             1.14x
+saved checkpoint -> checkpoint.npz
+
+steps 1,800,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.41      24.60      12.87
+  steps-to-stop                      11.04      11.87       2.94
+  light-if-forward                    6.12       6.84       0.80
+  bump-soon                           1.14       1.01       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.82       0.63             1.29x
+  spin [ctrl]                         0.87       0.11             8.10x
+  avoid-obstacles [ctrl]              0.53       0.45             1.17x
+saved checkpoint -> checkpoint.npz
+
+steps 1,825,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.56      22.79      13.13
+  steps-to-stop                      11.15      12.38       3.52
+  light-if-forward                    6.20       6.51       0.56
+  bump-soon                           1.41       1.36       0.83
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.94       0.58             1.62x
+  spin [ctrl]                         0.87       0.11             7.99x
+  avoid-obstacles [ctrl]              0.53       0.47             1.11x
+saved checkpoint -> checkpoint.npz
+
+steps 1,850,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.63      23.77       9.61
+  steps-to-stop                      12.23      15.12       3.69
+  light-if-forward                    5.81       6.07       0.69
+  bump-soon                           0.86       0.95       0.76
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.79       0.67             1.17x
+  spin [ctrl]                         0.88       0.10             8.58x
+  avoid-obstacles [ctrl]              0.50       0.41             1.23x
+saved checkpoint -> checkpoint.npz
+
+steps 1,875,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  15.60      18.31       6.37
+  steps-to-stop                      13.70      16.40       4.04
+  light-if-forward                    5.44       5.39       0.60
+  bump-soon                           1.05       1.35       0.64
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.73       0.54             1.36x
+  spin [ctrl]                         0.88       0.10             8.38x
+  avoid-obstacles [ctrl]              0.50       0.44             1.14x
+saved checkpoint -> checkpoint.npz
+
+steps 1,900,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.25      23.56      12.41
+  steps-to-stop                       9.98      10.56       3.14
+  light-if-forward                    5.81       5.68       0.60
+  bump-soon                           1.33       1.54       0.63
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.66       0.61             1.08x
+  spin [ctrl]                         0.87       0.10             8.61x
+  avoid-obstacles [ctrl]              0.57       0.51             1.12x
+saved checkpoint -> checkpoint.npz
+
+steps 1,925,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.52      16.07       7.55
+  steps-to-stop                      13.67      14.59       2.62
+  light-if-forward                    5.63       6.16       0.71
+  bump-soon                           1.33       1.35       0.37
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.69       0.73             0.95x
+  spin [ctrl]                         0.87       0.10             8.64x
+  avoid-obstacles [ctrl]              0.52       0.42             1.23x
+saved checkpoint -> checkpoint.npz
+
+steps 1,950,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.19      17.83       9.34
+  steps-to-stop                      11.94      12.00       3.87
+  light-if-forward                    5.32       5.15       0.46
+  bump-soon                           0.98       1.33       0.64
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.55       0.56             0.97x
+  spin [ctrl]                         0.87       0.11             8.33x
+  avoid-obstacles [ctrl]              0.61       0.48             1.28x
+saved checkpoint -> checkpoint.npz
+
+steps 1,975,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.04      20.25       7.21
+  steps-to-stop                      13.03      14.80       3.32
+  light-if-forward                    5.36       5.63       0.65
+  bump-soon                           1.27       1.25       0.54
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.61       0.49             1.25x
+  spin [ctrl]                         0.87       0.10             8.42x
+  avoid-obstacles [ctrl]              0.62       0.43             1.44x
+saved checkpoint -> checkpoint.npz
+
+steps 2,000,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.44      21.10       9.03
+  steps-to-stop                      11.78      11.69       3.63
+  light-if-forward                    5.35       5.28       0.50
+  bump-soon                           0.88       0.84       0.36
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.71       0.63             1.13x
+  spin [ctrl]                         0.88       0.11             7.96x
+  avoid-obstacles [ctrl]              0.44       0.37             1.18x
+saved checkpoint -> checkpoint.npz
+
+steps 2,025,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.99      17.47       7.43
+  steps-to-stop                      11.30      13.44       3.49
+  light-if-forward                    5.24       4.98       0.72
+  bump-soon                           1.36       1.15       0.51
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.52       0.57             0.91x
+  spin [ctrl]                         0.87       0.10             8.33x
+  avoid-obstacles [ctrl]              0.56       0.46             1.21x
+saved checkpoint -> checkpoint.npz
+
+steps 2,050,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.74      17.95       9.22
+  steps-to-stop                      12.63      13.94       3.44
+  light-if-forward                    6.39       6.10       0.59
+  bump-soon                           1.46       1.15       0.61
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.71       0.72             0.98x
+  spin [ctrl]                         0.87       0.11             8.09x
+  avoid-obstacles [ctrl]              0.68       0.40             1.69x
+saved checkpoint -> checkpoint.npz
+
+steps 2,075,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  18.71      30.38      12.88
+  steps-to-stop                      12.13      12.56       2.34
+  light-if-forward                    5.51       5.45       0.55
+  bump-soon                           0.81       0.67       0.42
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.88       0.61             1.43x
+  spin [ctrl]                         0.87       0.10             8.66x
+  avoid-obstacles [ctrl]              0.61       0.49             1.25x
+saved checkpoint -> checkpoint.npz
+
+steps 2,100,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.94      16.42       6.27
+  steps-to-stop                      14.72      18.24       4.64
+  light-if-forward                    6.49       6.77       0.72
+  bump-soon                           0.95       0.80       0.57
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.70       0.40             1.78x
+  spin [ctrl]                         0.88       0.11             7.99x
+  avoid-obstacles [ctrl]              0.65       0.53             1.24x
+saved checkpoint -> checkpoint.npz
+
+steps 2,125,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.16      18.00      10.37
+  steps-to-stop                      13.41      16.06       3.24
+  light-if-forward                    5.53       5.71       0.46
+  bump-soon                           1.03       0.78       0.51
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.94       0.72             1.30x
+  spin [ctrl]                         0.88       0.11             8.28x
+  avoid-obstacles [ctrl]              0.70       0.44             1.57x
+saved checkpoint -> checkpoint.npz
+
+steps 2,150,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.53      19.80       9.93
+  steps-to-stop                      13.08      16.16       3.96
+  light-if-forward                    7.17       7.51       0.67
+  bump-soon                           1.00       0.91       0.39
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.68       0.48             1.42x
+  spin [ctrl]                         0.88       0.10             8.37x
+  avoid-obstacles [ctrl]              0.52       0.45             1.15x
+saved checkpoint -> checkpoint.npz
+
+steps 2,175,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.52      25.60      16.12
+  steps-to-stop                      11.23      15.46       4.24
+  light-if-forward                    5.67       5.70       0.53
+  bump-soon                           0.79       0.50       0.36
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.70       0.51             1.38x
+  spin [ctrl]                         0.88       0.11             8.05x
+  avoid-obstacles [ctrl]              0.55       0.40             1.40x
+saved checkpoint -> checkpoint.npz
+
+steps 2,200,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.35      18.93       8.58
+  steps-to-stop                      12.28      14.33       3.83
+  light-if-forward                    5.35       5.68       0.67
+  bump-soon                           0.53       0.50       0.52
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.84       0.59             1.41x
+  spin [ctrl]                         0.88       0.10             8.39x
+  avoid-obstacles [ctrl]              0.54       0.39             1.39x
+saved checkpoint -> checkpoint.npz
+
+steps 2,225,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.99      24.19      13.44
+  steps-to-stop                      13.67      16.00       2.86
+  light-if-forward                    5.08       4.98       0.47
+  bump-soon                           1.05       0.75       0.51
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.55       0.51             1.08x
+  spin [ctrl]                         0.87       0.11             7.92x
+  avoid-obstacles [ctrl]              0.61       0.42             1.46x
+saved checkpoint -> checkpoint.npz
+
+steps 2,250,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.45      17.53       7.15
+  steps-to-stop                      13.08      15.19       2.41
+  light-if-forward                    6.11       6.20       0.85
+  bump-soon                           1.42       1.61       0.56
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.86       0.60             1.44x
+  spin [ctrl]                         0.87       0.10             8.38x
+  avoid-obstacles [ctrl]              0.58       0.44             1.33x
+saved checkpoint -> checkpoint.npz
+
+steps 2,275,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.20      21.33       9.66
+  steps-to-stop                      12.20      15.60       4.00
+  light-if-forward                    5.64       5.88       0.68
+  bump-soon                           0.77       0.92       0.43
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.74       0.53             1.40x
+  spin [ctrl]                         0.87       0.10             8.38x
+  avoid-obstacles [ctrl]              0.57       0.37             1.55x
+saved checkpoint -> checkpoint.npz
+
+steps 2,300,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.24      17.53       5.39
+  steps-to-stop                      11.28      13.89       3.75
+  light-if-forward                    5.00       5.05       0.49
+  bump-soon                           0.87       1.03       0.46
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.60       0.46             1.30x
+  spin [ctrl]                         0.88       0.11             8.18x
+  avoid-obstacles [ctrl]              0.63       0.48             1.33x
+saved checkpoint -> checkpoint.npz
+
+steps 2,325,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.56      21.83      11.91
+  steps-to-stop                      12.99      14.29       4.54
+  light-if-forward                    5.74       5.98       0.57
+  bump-soon                           1.49       1.28       0.58
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.77       0.59             1.31x
+  spin [ctrl]                         0.88       0.10             8.51x
+  avoid-obstacles [ctrl]              0.67       0.44             1.51x
+saved checkpoint -> checkpoint.npz
+
+steps 2,350,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.40      20.05       8.84
+  steps-to-stop                      13.28      14.94       3.21
+  light-if-forward                    4.70       4.72       0.51
+  bump-soon                           0.79       0.73       0.37
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.71       0.42             1.70x
+  spin [ctrl]                         0.88       0.11             7.74x
+  avoid-obstacles [ctrl]              0.59       0.48             1.23x
+saved checkpoint -> checkpoint.npz
+
+steps 2,375,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.53      19.25       7.88
+  steps-to-stop                      12.75      16.29       3.64
+  light-if-forward                    5.93       5.95       0.84
+  bump-soon                           0.74       0.86       0.47
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.55       0.48             1.15x
+  spin [ctrl]                         0.88       0.11             8.17x
+  avoid-obstacles [ctrl]              0.60       0.40             1.47x
+saved checkpoint -> checkpoint.npz
+
+steps 2,400,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.59      21.39       9.92
+  steps-to-stop                      12.67      11.00       3.16
+  light-if-forward                    6.01       6.12       0.81
+  bump-soon                           0.94       1.16       0.58
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.77       0.60             1.30x
+  spin [ctrl]                         0.88       0.11             8.11x
+  avoid-obstacles [ctrl]              0.61       0.40             1.52x
+saved checkpoint -> checkpoint.npz
+
+steps 2,425,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.35      18.94       9.32
+  steps-to-stop                       9.52      12.89       4.15
+  light-if-forward                    4.71       5.22       0.75
+  bump-soon                           1.41       1.20       0.48
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.75       0.58             1.29x
+  spin [ctrl]                         0.88       0.11             8.10x
+  avoid-obstacles [ctrl]              0.56       0.39             1.43x
+saved checkpoint -> checkpoint.npz
+
+steps 2,450,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.46      20.33       8.56
+  steps-to-stop                       9.89      10.44       3.49
+  light-if-forward                    4.92       5.08       0.57
+  bump-soon                           1.34       1.35       0.50
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.80       0.63             1.26x
+  spin [ctrl]                         0.88       0.11             7.92x
+  avoid-obstacles [ctrl]              0.56       0.44             1.28x
+saved checkpoint -> checkpoint.npz
+
+steps 2,475,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.74      22.78      11.64
+  steps-to-stop                      14.20      16.12       3.90
+  light-if-forward                    5.46       5.00       0.71
+  bump-soon                           0.70       0.73       0.39
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.78       0.74             1.05x
+  spin [ctrl]                         0.88       0.10             8.37x
+  avoid-obstacles [ctrl]              0.63       0.50             1.27x
+saved checkpoint -> checkpoint.npz
+
+steps 2,500,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.97      21.17      12.18
+  steps-to-stop                       7.69       9.07       2.18
+  light-if-forward                    5.79       5.91       0.82
+  bump-soon                           1.36       1.33       0.57
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.70       0.62             1.13x
+  spin [ctrl]                         0.88       0.11             8.32x
+  avoid-obstacles [ctrl]              0.59       0.42             1.38x
+saved checkpoint -> checkpoint.npz
+
+steps 2,525,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.99      21.21      10.60
+  steps-to-stop                      14.63      17.00       4.24
+  light-if-forward                    6.09       5.76       0.80
+  bump-soon                           1.07       0.93       0.42
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.69       0.58             1.19x
+  spin [ctrl]                         0.88       0.12             7.60x
+  avoid-obstacles [ctrl]              0.55       0.54             1.03x
+saved checkpoint -> checkpoint.npz
+
+steps 2,550,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.90      21.69       9.51
+  steps-to-stop                      10.63      12.68       2.68
+  light-if-forward                    5.86       5.88       0.55
+  bump-soon                           1.45       1.63       0.28
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.57       0.42             1.34x
+  spin [ctrl]                         0.87       0.11             8.26x
+  avoid-obstacles [ctrl]              0.63       0.42             1.50x
+saved checkpoint -> checkpoint.npz
+
+steps 2,575,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.94      22.06       9.43
+  steps-to-stop                      11.38      10.87       2.86
+  light-if-forward                    5.31       5.52       0.59
+  bump-soon                           0.79       0.93       0.67
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.85       0.72             1.17x
+  spin [ctrl]                         0.88       0.12             7.57x
+  avoid-obstacles [ctrl]              0.65       0.51             1.26x
+saved checkpoint -> checkpoint.npz
+
+steps 2,600,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  17.48      18.22       7.02
+  steps-to-stop                      11.23      11.36       3.17
+  light-if-forward                    5.61       5.70       0.78
+  bump-soon                           1.10       1.31       0.69
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.52       0.50             1.04x
+  spin [ctrl]                         0.88       0.11             8.27x
+  avoid-obstacles [ctrl]              0.58       0.37             1.59x
+saved checkpoint -> checkpoint.npz
+
+steps 2,625,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.95      16.75       8.66
+  steps-to-stop                      11.90      14.29       3.21
+  light-if-forward                    5.35       4.84       0.90
+  bump-soon                           0.74       0.59       0.36
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.70       0.66             1.05x
+  spin [ctrl]                         0.88       0.10             8.70x
+  avoid-obstacles [ctrl]              0.58       0.41             1.41x
+saved checkpoint -> checkpoint.npz
+
+steps 2,650,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.21      23.44      11.93
+  steps-to-stop                       9.97      13.33       3.69
+  light-if-forward                    4.55       4.61       0.64
+  bump-soon                           1.01       1.10       0.45
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.58       0.38             1.53x
+  spin [ctrl]                         0.87       0.10             8.64x
+  avoid-obstacles [ctrl]              0.63       0.37             1.72x
+saved checkpoint -> checkpoint.npz
+
+steps 2,675,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.36      22.29      10.29
+  steps-to-stop                      13.47      14.08       2.46
+  light-if-forward                    4.88       5.10       0.51
+  bump-soon                           1.85       1.38       0.77
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.64       0.45             1.43x
+  spin [ctrl]                         0.88       0.10             8.49x
+  avoid-obstacles [ctrl]              0.64       0.48             1.32x
+saved checkpoint -> checkpoint.npz
+
+steps 2,700,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.96      17.62      10.00
+  steps-to-stop                       9.66      11.27       2.11
+  light-if-forward                    6.38       6.37       0.58
+  bump-soon                           1.20       1.29       0.76
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.71       0.55             1.30x
+  spin [ctrl]                         0.88       0.10             8.56x
+  avoid-obstacles [ctrl]              0.65       0.38             1.71x
+saved checkpoint -> checkpoint.npz
+
+steps 2,725,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.79      20.37      12.00
+  steps-to-stop                      11.54      13.94       3.86
+  light-if-forward                    5.04       5.37       0.66
+  bump-soon                           0.76       0.86       0.46
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.81       0.68             1.20x
+  spin [ctrl]                         0.88       0.10             8.62x
+  avoid-obstacles [ctrl]              0.54       0.38             1.42x
+saved checkpoint -> checkpoint.npz
+
+steps 2,750,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                   9.73      19.86      11.82
+  steps-to-stop                      13.94      15.93       3.86
+  light-if-forward                    5.56       5.52       0.49
+  bump-soon                           0.99       0.74       0.43
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.88       0.60             1.46x
+  spin [ctrl]                         0.88       0.11             7.67x
+  avoid-obstacles [ctrl]              0.66       0.48             1.37x
+saved checkpoint -> checkpoint.npz
+
+steps 2,775,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.38      22.00       9.48
+  steps-to-stop                      10.76      12.13       3.97
+  light-if-forward                    5.25       5.11       0.47
+  bump-soon                           0.68       0.69       0.50
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.81       0.52             1.55x
+  spin [ctrl]                         0.88       0.11             8.17x
+  avoid-obstacles [ctrl]              0.64       0.53             1.22x
+saved checkpoint -> checkpoint.npz
+
+steps 2,800,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.03      20.00       9.32
+  steps-to-stop                      11.20      11.67       4.83
+  light-if-forward                    5.02       5.25       0.49
+  bump-soon                           0.90       1.01       0.76
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.77       0.55             1.40x
+  spin [ctrl]                         0.88       0.11             8.23x
+  avoid-obstacles [ctrl]              0.60       0.36             1.67x
+saved checkpoint -> checkpoint.npz
+
+steps 2,825,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.74      17.00       6.60
+  steps-to-stop                      12.90      15.18       2.98
+  light-if-forward                    5.75       5.72       0.50
+  bump-soon                           1.46       1.15       0.63
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.62       0.58             1.06x
+  spin [ctrl]                         0.88       0.11             7.72x
+  avoid-obstacles [ctrl]              0.58       0.50             1.17x
+saved checkpoint -> checkpoint.npz
+
+steps 2,850,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.83      18.41       8.38
+  steps-to-stop                       9.89      13.31       3.53
+  light-if-forward                    5.77       5.98       0.76
+  bump-soon                           0.95       1.00       0.51
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.63       0.51             1.25x
+  spin [ctrl]                         0.88       0.11             8.28x
+  avoid-obstacles [ctrl]              0.65       0.47             1.38x
+saved checkpoint -> checkpoint.npz
+
+steps 2,875,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.93      21.37      11.64
+  steps-to-stop                      12.15      14.47       3.58
+  light-if-forward                    6.92       6.62       0.53
+  bump-soon                           1.44       1.84       0.69
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.70       0.67             1.05x
+  spin [ctrl]                         0.87       0.11             7.87x
+  avoid-obstacles [ctrl]              0.62       0.45             1.37x
+saved checkpoint -> checkpoint.npz
+
+steps 2,900,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.30      25.07      13.61
+  steps-to-stop                      13.78      15.43       2.10
+  light-if-forward                    5.66       5.88       0.62
+  bump-soon                           1.01       0.79       0.53
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.86       0.75             1.15x
+  spin [ctrl]                         0.87       0.10             8.34x
+  avoid-obstacles [ctrl]              0.62       0.51             1.22x
+saved checkpoint -> checkpoint.npz
+
+steps 2,925,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.02      16.13       8.55
+  steps-to-stop                      11.07      14.56       3.59
+  light-if-forward                    4.78       4.93       0.51
+  bump-soon                           1.02       0.91       0.62
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.64       0.44             1.47x
+  spin [ctrl]                         0.87       0.10             8.61x
+  avoid-obstacles [ctrl]              0.61       0.50             1.23x
+saved checkpoint -> checkpoint.npz
+
+steps 2,950,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.43      13.38       6.74
+  steps-to-stop                      14.52      16.14       1.98
+  light-if-forward                    5.89       5.83       0.59
+  bump-soon                           1.14       1.32       0.66
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.64       0.45             1.43x
+  spin [ctrl]                         0.88       0.11             8.26x
+  avoid-obstacles [ctrl]              0.53       0.40             1.32x
+saved checkpoint -> checkpoint.npz
+
+steps 2,975,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  10.65      15.07       6.22
+  steps-to-stop                      15.09      15.75       4.25
+  light-if-forward                    5.47       5.82       0.69
+  bump-soon                           1.23       1.09       0.50
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.73       0.41             1.78x
+  spin [ctrl]                         0.88       0.11             8.12x
+  avoid-obstacles [ctrl]              0.67       0.43             1.57x
+saved checkpoint -> checkpoint.npz
+
+steps 3,000,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.65      25.19      12.87
+  steps-to-stop                      11.44      12.21       4.15
+  light-if-forward                    5.66       5.67       0.59
+  bump-soon                           1.33       1.05       0.49
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.78       0.50             1.58x
+  spin [ctrl]                         0.88       0.11             8.04x
+  avoid-obstacles [ctrl]              0.62       0.40             1.58x
+saved checkpoint -> checkpoint.npz
+
+steps 3,025,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.00      23.40      11.24
+  steps-to-stop                      14.90      11.77       5.15
+  light-if-forward                    5.35       5.42       0.52
+  bump-soon                           1.22       1.34       0.95
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.82       0.56             1.46x
+  spin [ctrl]                         0.88       0.10             9.23x
+  avoid-obstacles [ctrl]              0.56       0.38             1.47x
+saved checkpoint -> checkpoint.npz
+
+steps 3,050,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.43      20.71       9.44
+  steps-to-stop                      10.98      13.33       2.74
+  light-if-forward                    4.90       5.05       0.42
+  bump-soon                           0.90       0.97       0.47
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.82       0.68             1.21x
+  spin [ctrl]                         0.87       0.10             8.41x
+  avoid-obstacles [ctrl]              0.61       0.41             1.47x
+saved checkpoint -> checkpoint.npz
+
+steps 3,075,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.83      18.58      10.02
+  steps-to-stop                      13.21      15.50       2.92
+  light-if-forward                    5.17       5.42       0.51
+  bump-soon                           1.05       0.94       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.77       0.50             1.54x
+  spin [ctrl]                         0.87       0.11             7.97x
+  avoid-obstacles [ctrl]              0.58       0.47             1.23x
+saved checkpoint -> checkpoint.npz
+
+steps 3,100,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.88      13.89       4.07
+  steps-to-stop                       8.77       9.43       3.23
+  light-if-forward                    5.71       5.69       0.71
+  bump-soon                           0.94       1.18       0.45
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.79       0.55             1.45x
+  spin [ctrl]                         0.88       0.11             7.66x
+  avoid-obstacles [ctrl]              0.66       0.49             1.35x
+saved checkpoint -> checkpoint.npz
+
+steps 3,125,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  16.51      25.90      11.25
+  steps-to-stop                      13.57      14.94       2.79
+  light-if-forward                    5.62       5.41       0.73
+  bump-soon                           0.90       1.00       0.52
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.79       0.62             1.27x
+  spin [ctrl]                         0.87       0.11             8.25x
+  avoid-obstacles [ctrl]              0.53       0.39             1.37x
+saved checkpoint -> checkpoint.npz
+
+steps 3,150,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.04      14.53       7.57
+  steps-to-stop                      12.43      14.00       2.24
+  light-if-forward                    5.95       5.77       0.62
+  bump-soon                           0.89       1.07       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.90       0.74             1.22x
+  spin [ctrl]                         0.88       0.11             8.02x
+  avoid-obstacles [ctrl]              0.51       0.41             1.24x
+saved checkpoint -> checkpoint.npz
+
+steps 3,175,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.06      25.32      13.65
+  steps-to-stop                      11.73      14.93       3.28
+  light-if-forward                    4.86       4.86       0.63
+  bump-soon                           1.39       1.27       0.47
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.48       0.45             1.05x
+  spin [ctrl]                         0.88       0.10             8.49x
+  avoid-obstacles [ctrl]              0.58       0.38             1.51x
+saved checkpoint -> checkpoint.npz
+
+steps 3,200,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.50      23.20      11.17
+  steps-to-stop                      13.23      15.25       3.03
+  light-if-forward                    4.92       5.05       0.68
+  bump-soon                           1.29       1.51       0.44
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.59       0.40             1.47x
+  spin [ctrl]                         0.88       0.11             7.86x
+  avoid-obstacles [ctrl]              0.63       0.49             1.30x
+saved checkpoint -> checkpoint.npz
+
+steps 3,225,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  14.32      25.53      11.63
+  steps-to-stop                      12.37      17.69       6.03
+  light-if-forward                    5.02       5.60       0.76
+  bump-soon                           0.92       0.78       0.37
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.81       0.58             1.41x
+  spin [ctrl]                         0.88       0.10             8.64x
+  avoid-obstacles [ctrl]              0.54       0.47             1.15x
+saved checkpoint -> checkpoint.npz
+
+steps 3,250,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  12.01      17.75       8.11
+  steps-to-stop                      11.44      14.71       3.62
+  light-if-forward                    6.70       6.48       0.58
+  bump-soon                           1.87       1.74       0.42
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.76       0.51             1.50x
+  spin [ctrl]                         0.88       0.10             8.35x
+  avoid-obstacles [ctrl]              0.55       0.42             1.32x
+saved checkpoint -> checkpoint.npz
+
+steps 3,275,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.47      20.53      11.76
+  steps-to-stop                      13.47      14.81       3.55
+  light-if-forward                    5.74       5.72       0.47
+  bump-soon                           1.10       0.86       0.65
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.91       0.71             1.30x
+  spin [ctrl]                         0.88       0.11             7.77x
+  avoid-obstacles [ctrl]              0.60       0.37             1.64x
+saved checkpoint -> checkpoint.npz
+
+steps 3,300,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  11.81      19.45       9.96
+  steps-to-stop                      14.62      15.00       3.24
+  light-if-forward                    5.14       5.39       0.51
+  bump-soon                           1.33       1.49       0.42
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.85       0.60             1.43x
+  spin [ctrl]                         0.88       0.11             8.15x
+  avoid-obstacles [ctrl]              0.63       0.46             1.35x
+saved checkpoint -> checkpoint.npz
+
+steps 3,325,000 | friction 0.1
+PREDICTION demons: the demon's prediction vs. the return actually observed
+  demon                          predicted     actual  avg error
+  steps-to-obstacle                  13.56      19.19       8.44
+  steps-to-stop                      12.92      15.21       3.20
+  light-if-forward                    6.68       7.30       0.88
+  bump-soon                           0.45       0.31       0.48
+CONTROL demons: reward per step, learned greedy policy vs. random policy
+  demon                            learned     random    learned/random
+  seek-light [ctrl]                   0.69       0.60             1.16x
+  spin [ctrl]                         0.88       0.11             8.35x
+  avoid-obstacles [ctrl]              0.64       0.48             1.34x
+saved checkpoint -> checkpoint.npz

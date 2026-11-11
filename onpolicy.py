@@ -17,14 +17,13 @@ Sarsa(lambda), one step:
     theta = theta + alpha * delta * e
 No secondary weights w: on-policy linear TD is stable on its own.
 
-Author: Vidush Jindal(jindalv)
 """
 
 import os
 
 import numpy as np
 
-from env import LIGHT_L, LIGHT_R, N_ACTIONS, Action, Robot
+from env import LIGHT_BR, LIGHT_FL, N_ACTIONS, Action, Robot
 from features import N_ACTIVE, N_FEATURES, phi
 
 STEPS, SEED, EVAL_EVERY = 500_000, 0, 25_000
@@ -61,7 +60,7 @@ def evaluate(theta: np.ndarray, visit: list, seed: int, n: int = 30, steps: int 
                 else:
                     a = int(rng.integers(N_ACTIONS))
                 o = sim.step(Action(a))
-                total[label] += o[LIGHT_L] + o[LIGHT_R]
+                total[label] += o[LIGHT_FL : LIGHT_BR + 1].sum()
     return total["learned"] / (n * steps), total["random"] / (n * steps)
 
 
@@ -77,9 +76,9 @@ if __name__ == "__main__":
     if RESUME and os.path.exists(CHK):
         ck = np.load(CHK)
         # weights only fit the features they were trained with (see main.py)
-        assert ck["theta"].shape == theta.shape, (
-            f"{CHK} was made with different features; delete it to start fresh"
-        )
+        assert (
+            ck["theta"].shape == theta.shape
+        ), f"{CHK} was made with different features; delete it to start fresh"
         theta, start, visited = ck["theta"], int(ck["t"]), list(ck["visited"])
         rng = np.random.default_rng(SEED + start)
         env = Robot(seed=SEED + start)
@@ -89,13 +88,19 @@ if __name__ == "__main__":
 
     # first action, chosen epsilon-greedily
     obs = env.obs()
-    a = int(np.argmax(q(theta, obs))) if rng.random() > EPS else int(rng.integers(N_ACTIONS))
+    a = (
+        int(np.argmax(q(theta, obs)))
+        if rng.random() > EPS
+        else int(rng.integers(N_ACTIONS))
+    )
 
     print("Light seen per step: learned greedy policy vs. random policy")
     print(f"  {'step':>10}{'learned':>10}{'random':>11}{'learned/random':>18}")
     for t in range(start + 1, STEPS + 1):
         obs2 = env.step(Action(a))
-        r = obs2[LIGHT_L] + obs2[LIGHT_R]  # total light, same reward as seek-light
+        r = obs2[
+            LIGHT_FL : LIGHT_BR + 1
+        ].sum()  # total light, same reward as seek-light
 
         # next action from the SAME epsilon-greedy policy: this is what makes it on-policy
         q2 = q(theta, obs2)
@@ -113,7 +118,10 @@ if __name__ == "__main__":
 
         if t % EVAL_EVERY == 0:
             learned, chance = evaluate(theta, visited, SEED + t)
-            print(f"  {t:>10,}{learned:>10.2f}{chance:>11.2f}{learned / chance:>17.2f}x", flush=True)
+            print(
+                f"  {t:>10,}{learned:>10.2f}{chance:>11.2f}{learned / chance:>17.2f}x",
+                flush=True,
+            )
             np.savez(
                 CHK,
                 theta=theta,

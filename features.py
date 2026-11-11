@@ -15,34 +15,40 @@ import numpy as np
 from env import (
     ANG_VEL,
     BUMP,
-    COMPASS,
+    COMPASS_X,
+    COMPASS_Y,
+    IR_B,
     IR_F,
     IR_L,
     IR_R,
-    LIGHT_L,
-    LIGHT_R,
+    LIGHT_BL,
+    LIGHT_BR,
+    LIGHT_FL,
+    LIGHT_FR,
     N_ACTIONS,
     VEL,
     Action,
 )
 
 # one entry per sensor, in env.py's order:
-#              IR_F IR_L IR_R LIGHT_L LIGHT_R  VEL ANG_VEL BUMP COMPASS
-LOW = np.array([0.0, 0.0, 0.0, 0.0, 0.0, -0.6, -3.0, 0.0, -1.0])
-HIGH = np.array([1.0, 1.0, 1.0, 1.0, 1.0, 0.6, 3.0, 1.0, 1.0])
+#              IR_F IR_L IR_R IR_B  FL   FR   BL   BR   VEL ANG_VEL BUMP CX    CY
+LOW = np.array([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, -0.6, -3.0, 0.0, -1.0, -1.0])
+HIGH = np.array([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.6, 3.0, 1.0, 1.0, 1.0])
 
 # (sensor indices, bins per dimension, number of tilings)
 GROUPS = [
     ((IR_F,), 16, 8),  # fine resolution: several demons key on it
     ((IR_L, IR_R), 8, 4),  # joint: lets a demon tell left from right
-    # joint: comparing the two light sensors is what tells the light's side
-    ((LIGHT_L, LIGHT_R), 12, 8),
+    # joint: comparing the two front light sensors is what tells the light's side
+    ((LIGHT_FL, LIGHT_FR), 12, 8),
     ((VEL,), 12, 8),
     ((ANG_VEL,), 8, 4),
     ((IR_F, VEL), 8, 4),  # joint: "how close AND how fast" matters
     ((IR_F, ANG_VEL), 8, 4),  # turning changes time-to-wall a lot
-    ((LIGHT_L, LIGHT_R, COMPASS), 6, 4),
+    ((COMPASS_X, COMPASS_Y), 8, 4),  # joint: the full heading as one point on the circle
     ((BUMP,), 2, 1),
+    ((IR_F, IR_B), 8, 4),  # joint: space ahead AND behind
+    ((LIGHT_BL, LIGHT_BR), 8, 4),  # joint: which side the light is on when it is behind
 ]
 
 np.random.seed(0)

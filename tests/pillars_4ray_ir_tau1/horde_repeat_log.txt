@@ -1,0 +1,41 @@
+Horde with 5-step decisions, STICK=0.8, 600,000 decisions; eval from 80 uniform starts, 300 steps
+
+decision 150,000 (= 750,000 env steps)
+  random                     light 0.58  clearance 0.46  bumps/1k  124  ends {'light': 12, 'pillar1': 3, 'wall': 13, 'other': 52}
+  seek-light tau=1.0         light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek-light tau=0.1         light 0.57  clearance 0.56  bumps/1k   11  ends {'light': 6, 'pillar1': 0, 'wall': 0, 'other': 74}
+  avoid-obstacles tau=1.0    light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  avoid-obstacles tau=0.1    light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek+0.5*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    6  ends {'light': 6, 'pillar1': 0, 'wall': 0, 'other': 74}
+  seek+1.0*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek+2.0*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+
+decision 300,000 (= 1,500,000 env steps)
+  random                     light 0.58  clearance 0.46  bumps/1k  124  ends {'light': 12, 'pillar1': 3, 'wall': 13, 'other': 52}
+  seek-light tau=1.0         light 0.60  clearance 0.53  bumps/1k   93  ends {'light': 7, 'pillar1': 0, 'wall': 3, 'other': 70}
+  seek-light tau=0.1         light 0.58  clearance 0.53  bumps/1k   98  ends {'light': 5, 'pillar1': 1, 'wall': 6, 'other': 68}
+  avoid-obstacles tau=1.0    light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  avoid-obstacles tau=0.1    light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek+0.5*avoid (tau 0.1)   light 0.57  clearance 0.55  bumps/1k   22  ends {'light': 5, 'pillar1': 1, 'wall': 1, 'other': 73}
+  seek+1.0*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek+2.0*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+
+decision 450,000 (= 2,250,000 env steps)
+  random                     light 0.58  clearance 0.46  bumps/1k  124  ends {'light': 12, 'pillar1': 3, 'wall': 13, 'other': 52}
+  seek-light tau=1.0         light 0.59  clearance 0.55  bumps/1k   75  ends {'light': 5, 'pillar1': 2, 'wall': 3, 'other': 70}
+  seek-light tau=0.1         light 0.64  clearance 0.49  bumps/1k  234  ends {'light': 11, 'pillar1': 6, 'wall': 9, 'other': 54}
+  avoid-obstacles tau=1.0    light 0.56  clearance 0.56  bumps/1k    0  ends {'light': 4, 'pillar1': 0, 'wall': 0, 'other': 76}
+  avoid-obstacles tau=0.1    light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek+0.5*avoid (tau 0.1)   light 0.59  clearance 0.56  bumps/1k   41  ends {'light': 5, 'pillar1': 3, 'wall': 1, 'other': 71}
+  seek+1.0*avoid (tau 0.1)   light 0.58  clearance 0.56  bumps/1k   11  ends {'light': 5, 'pillar1': 1, 'wall': 0, 'other': 74}
+  seek+2.0*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+
+decision 600,000 (= 3,000,000 env steps)
+  random                     light 0.58  clearance 0.46  bumps/1k  124  ends {'light': 12, 'pillar1': 3, 'wall': 13, 'other': 52}
+  seek-light tau=1.0         light 0.61  clearance 0.52  bumps/1k  122  ends {'light': 8, 'pillar1': 2, 'wall': 4, 'other': 66}
+  seek-light tau=0.1         light 0.68  clearance 0.46  bumps/1k  287  ends {'light': 11, 'pillar1': 3, 'wall': 14, 'other': 52}
+  avoid-obstacles tau=1.0    light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  avoid-obstacles tau=0.1    light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek+0.5*avoid (tau 0.1)   light 0.60  clearance 0.55  bumps/1k   53  ends {'light': 6, 'pillar1': 2, 'wall': 2, 'other': 70}
+  seek+1.0*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}
+  seek+2.0*avoid (tau 0.1)   light 0.57  clearance 0.56  bumps/1k    0  ends {'light': 5, 'pillar1': 0, 'wall': 0, 'other': 75}

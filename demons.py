@@ -14,7 +14,7 @@ from typing import Callable
 
 import numpy as np
 
-from env import ANG_VEL, BUMP, IR_F, LIGHT_L, LIGHT_R, N_ACTIONS, VEL, Action
+from env import ANG_VEL, BUMP, IR_B, IR_F, LIGHT_BR, LIGHT_FL, N_ACTIONS, VEL, Action
 
 
 def fixed(a: Action) -> Callable[[np.ndarray, np.ndarray], np.ndarray]:
@@ -44,7 +44,9 @@ def greedy(obs: np.ndarray, q: np.ndarray) -> np.ndarray:
     :return: probability of each action, proportional to exp(q / 0.1)
     :rtype: np.ndarray
     """
-    p = np.exp((q - q.max()))  # minus max avoids overflow
+    p = np.exp(
+        (q - q.max()) / 0.1
+    )  # temperature 0.1: best in the sweep; minus max avoids overflow
     return p / p.sum()
 
 
@@ -84,8 +86,8 @@ DEMONS = [
     dict(
         name="light-if-forward",
         pi=fixed(Action.FORWARD),
-        # total light seen by both sensors; largest when facing the light up close
-        r=lambda obs: obs[LIGHT_L] + obs[LIGHT_R],
+        # total light seen by all four light sensors; largest close to the light
+        r=lambda obs: obs[LIGHT_FL : LIGHT_BR + 1].sum(),
         z=ZERO,
         gamma=lambda o: 0.9,
         lam=0.4,
@@ -108,7 +110,7 @@ DEMONS = [
     dict(
         name="seek-light [ctrl]",
         pi=greedy,
-        r=lambda obs: obs[LIGHT_L] + obs[LIGHT_R],
+        r=lambda obs: obs[LIGHT_FL : LIGHT_BR + 1].sum(),  # total light
         z=ZERO,
         gamma=lambda o: 0.95,
         lam=0.3,
@@ -126,11 +128,11 @@ DEMONS = [
         alpha=0.1,
         beta=0.01,
     ),
-    # Control demon: back away from front obstacles, maximise open space in front.
+    # Control demon: keep away from the nearest obstacle in any of the four directions.
     dict(
-        name="avoid-front-obstacles [ctrl]",
+        name="avoid-obstacles [ctrl]",
         pi=greedy,
-        r=lambda o: 1.0 - o[IR_F],
+        r=lambda o: 1.0 - o[IR_F : IR_B + 1].max() - o[BUMP],
         z=ZERO,
         gamma=lambda o: 0.95,
         lam=0.3,

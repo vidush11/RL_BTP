@@ -15,7 +15,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 from demons import DEMONS
-from env import ARENA, LIGHT
+from env import ARENA, LIGHT, OBSTACLES
 
 
 class Live:
@@ -27,6 +27,8 @@ class Live:
 
         a1.set(xlim=(0, ARENA), ylim=(0, ARENA), title="robot trail", aspect="equal")
         a1.plot(*LIGHT, marker="*", ms=18, color="gold", zorder=3)
+        for cx, cy, r in OBSTACLES:
+            a1.add_patch(plt.Circle((cx, cy), r, color="gray"))
         (self.path,) = a1.plot([], [], lw=0.5, alpha=0.6, color="steelblue")
         (self.dot,) = a1.plot([], [], "o", ms=8, color="crimson", zorder=4)
 
