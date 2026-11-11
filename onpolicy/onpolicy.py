@@ -23,16 +23,19 @@ import os
 
 import numpy as np
 
-from env import LIGHT_BR, LIGHT_FL, N_ACTIONS, Action, Robot
+from demons import DEMONS
+from env import LIGHT_FL, LIGHT_FR, N_ACTIONS, Action, Robot
 from features import N_ACTIVE, N_FEATURES, phi
+from main import CHANCE, CTRL_STEPS, EVAL_STARTS  # same eval starts + random baseline
 
-STEPS, SEED, EVAL_EVERY = 500_000, 0, 25_000
+STEPS, SEED, EVAL_EVERY = 1_000_000, 0, 25_000
 GAMMA = 0.95  # same horizon as the seek-light demon (~20 steps)
 LAM = 0.9  # on-policy, so a long trace is safe (off-policy it blew up above ~0.7)
 ALPHA = 0.05 / N_ACTIVE  # per active feature, same scaling as horde.py
 EPS = 0.1  # exploration: 10% of the time take a random action
 CHK = "checkpoint_onpolicy.npz"  # separate from the Horde's checkpoint.npz
 RESUME = True
+SEEK = [d["name"] for d in DEMONS].index("seek-light [ctrl]")  # row of CHANCE
 
 
 def q(theta: np.ndarray, obs: np.ndarray) -> np.ndarray:
@@ -40,28 +43,20 @@ def q(theta: np.ndarray, obs: np.ndarray) -> np.ndarray:
     return np.array([theta[phi(obs, a)].sum() for a in Action])
 
 
-def evaluate(theta: np.ndarray, visit: list, seed: int, n: int = 30, steps: int = 250):
+def evaluate(theta: np.ndarray, seed: int) -> float:
     """
-    Mean light per step of the GREEDY learned policy (no exploration) vs a uniformly
-    random policy, both started from the same n visited states. Same measurement as
-    the control demons in main.py, so the numbers are directly comparable.
+    Mean front light per step of the GREEDY learned policy (no exploration) from
+    main.py's EVAL_STARTS: same starts, steps and sensor noise as the Horde's control
+    demons, so the numbers are directly comparable.
     """
-    rng = np.random.default_rng(seed)
-    sim = Robot(seed=seed + 1)
-    total = {"learned": 0.0, "random": 0.0}
-    for _ in range(n):
-        st = visit[rng.integers(len(visit))]
-        for label in total:  # same start, two policies
-            sim.set_state(st)
-            o = sim.obs()
-            for _ in range(steps):
-                if label == "learned":
-                    a = int(np.argmax(q(theta, o)))
-                else:
-                    a = int(rng.integers(N_ACTIONS))
-                o = sim.step(Action(a))
-                total[label] += o[LIGHT_FL : LIGHT_BR + 1].sum()
-    return total["learned"] / (n * steps), total["random"] / (n * steps)
+    sim, total = Robot(seed=seed + 1), 0.0
+    for st in EVAL_STARTS:
+        sim.set_state(st)
+        o = sim.obs()
+        for _ in range(CTRL_STEPS):
+            o = sim.step(Action(int(np.argmax(q(theta, o)))))
+            total += o[LIGHT_FL] + o[LIGHT_FR]
+    return total / (len(EVAL_STARTS) * CTRL_STEPS)
 
 
 if __name__ == "__main__":
@@ -69,7 +64,6 @@ if __name__ == "__main__":
     env = Robot(seed=SEED)
     theta = np.zeros(N_FEATURES)  # one weight vector: this is a single "demon"
     e = np.zeros(N_FEATURES)
-    visited = []
     start = 0
 
     # ---- reload a previous run, same idea as main.py ----
@@ -79,7 +73,7 @@ if __name__ == "__main__":
         assert (
             ck["theta"].shape == theta.shape
         ), f"{CHK} was made with different features; delete it to start fresh"
-        theta, start, visited = ck["theta"], int(ck["t"]), list(ck["visited"])
+        theta, start = ck["theta"], int(ck["t"])
         rng = np.random.default_rng(SEED + start)
         env = Robot(seed=SEED + start)
         env.set_state(tuple(float(v) for v in ck["robot"]))
@@ -98,9 +92,7 @@ if __name__ == "__main__":
     print(f"  {'step':>10}{'learned':>10}{'random':>11}{'learned/random':>18}")
     for t in range(start + 1, STEPS + 1):
         obs2 = env.step(Action(a))
-        r = obs2[
-            LIGHT_FL : LIGHT_BR + 1
-        ].sum()  # total light, same reward as seek-light
+        r = obs2[LIGHT_FL] + obs2[LIGHT_FR]  # front light, same reward as seek-light
 
         # next action from the SAME epsilon-greedy policy: this is what makes it on-policy
         q2 = q(theta, obs2)
@@ -113,11 +105,9 @@ if __name__ == "__main__":
         theta += ALPHA * delta * e
 
         obs, a = obs2, a2
-        if t % 30 == 0:
-            visited.append(env.get_state())
 
         if t % EVAL_EVERY == 0:
-            learned, chance = evaluate(theta, visited, SEED + t)
+            learned, chance = evaluate(theta, SEED + t), CHANCE[SEEK]
             print(
                 f"  {t:>10,}{learned:>10.2f}{chance:>11.2f}{learned / chance:>17.2f}x",
                 flush=True,
@@ -127,5 +117,4 @@ if __name__ == "__main__":
                 theta=theta,
                 t=t,
                 robot=np.array(env.get_state()),
-                visited=np.array(visited),
             )

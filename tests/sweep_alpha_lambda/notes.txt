@@ -1,0 +1,19 @@
+alpha x lambda sweep for seek-light and avoid-obstacles (control demons), 2026-11-11 18:54 - ~19:55
+Code: commit 9e00452 + brightness 0.25/(0.25+d^2), seek reward FL+FR, run in ../code2-runs/sweep (sweep.py copied here)
+Setup: 16 copies per demon (alpha {0.01,0.03,0.1,0.3} x lambda {0,0.3,0.6,0.9}), beta 0.01, gamma 0.95, tau 0.1,
+  all learning from ONE sticky-random stream (STICK 0.8), 1M steps, seeds 0/1/2, fresh weights (not from checkpoint).
+Eval every 250k: 100 fixed starts x 250 steps, argmax of learned q, vs random policy on the same starts.
+Note: max|theta| column in the .txt logs overflows for diverged copies and merges with bumps/1k; use the .npz files.
+
+x random, mean of 3 seeds, at 250k / 500k / 750k / 1M:
+seek-light
+  a=0.3  lam=0    3.80 4.91 5.30 4.78   (1M per seed 6.61 4.52 3.22)  reached 60%  bumps 385/1k
+  a=0.1  lam=0.3  3.87 6.33 5.57 4.53   (1M per seed 3.02 4.01 6.57)  reached 61%  bumps 247/1k
+  a=0.1  lam=0    2.72 3.61 4.38 3.61
+  current a=0.03 lam=0.3   1.85 1.49 1.41 1.37  reached 14%  (random reached 31%)
+avoid-obstacles
+  a=0.3  lam=0    1.82 1.77 1.80 1.83   (1M per seed 1.87 1.83 1.80)  bumps 1.3/1k
+  a=0.1  lam=0.3  1.58 1.63 1.74 1.74
+  current a=0.03 lam=0.3   1.18 1.28 1.45 1.53  (random bumps 85/1k)
+lambda >= 0.6 diverged (max|theta| overflow / nan) for most alphas; lambda 0.9 diverged at every alpha.
+seek best settings peak at 500-750k then drop, and differ a lot between seeds.

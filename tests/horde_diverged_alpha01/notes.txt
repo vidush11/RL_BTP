@@ -1,0 +1,9 @@
+Horde run that diverged: seek-light and avoid-obstacles, 7.825M - 9.0M steps (run in ../code2-runs, 2026-11-11)
+History: 0-6M as tests/pillars_shadow_bumppenalty; at 6M brightness 0.25/(0.25+d^2), seek reward FL+FR, n_ctrl 50;
+  at 7.825M seek-light and avoid alpha 0.03 -> 0.1 (lam 0.3, beta 0.01) from tests/sweep_alpha_lambda.
+checkpoint.npz = state at 9.0M. max|theta|: seek 1.3e7, avoid 2.0e5 (max|w| 1.3e6, 1.2e4); other demons 0.75-3.2 (normal).
+At 6M (old alpha 0.03) max|theta| was seek 5.3, avoid 6.8, max|w| avoid 1.1 (largest w of all demons).
+avoid already collapsing before the alpha change (old alpha): 0.30x at 6.675M, 0.79x at 6.975M, -0.44x at 7.8M.
+After the change: seek 0.24-1.67x, avoid -1.35 to 1.59x (7.85M-9.0M).
+Sweep with the same settings from ZERO weights stayed stable for 1M (max|theta| ~2.5), so divergence needs a longer run
+  and/or the warm start from the old weights. Cause not established; no intermediate weight logs.

@@ -14,7 +14,7 @@ from typing import Callable
 
 import numpy as np
 
-from env import ANG_VEL, BUMP, IR_B, IR_F, LIGHT_BR, LIGHT_FL, N_ACTIONS, VEL, Action
+from env import ANG_VEL, BUMP, IR_B, IR_F, LIGHT_BR, LIGHT_FL, LIGHT_FR, N_ACTIONS, VEL, Action
 
 
 def fixed(a: Action) -> Callable[[np.ndarray, np.ndarray], np.ndarray]:
@@ -110,11 +110,11 @@ DEMONS = [
     dict(
         name="seek-light [ctrl]",
         pi=greedy,
-        r=lambda obs: obs[LIGHT_FL : LIGHT_BR + 1].sum(),  # total light
+        r=lambda obs: obs[LIGHT_FL] + obs[LIGHT_FR],  # front light only, so turning toward it pays
         z=ZERO,
         gamma=lambda o: 0.95,
         lam=0.3,
-        alpha=0.03,
+        alpha=0.1,  # sweep (tests/sweep_alpha_lambda): 4.5x random vs 1.4x at 0.03
         beta=0.01,
     ),
     # Control demon: maximise angular velocity, i.e. learn to spin (Section 5.2).
@@ -136,7 +136,7 @@ DEMONS = [
         z=ZERO,
         gamma=lambda o: 0.95,
         lam=0.3,
-        alpha=0.03,
+        alpha=0.1,  # sweep: 1.74x random vs 1.53x at 0.03; 0.3 collapses with lam 0.3
         beta=0.01,
     ),
 ]

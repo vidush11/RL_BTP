@@ -1,0 +1,11 @@
+checkpoint step 6,000,000 | 100 starts x 250 steps each
+  policy               light/step  bumps/1k  pillar/1k  final dist  reached
+  random                     0.44      83.0       16.4       1.85m      10%
+  seek + 0.0*avoid           0.50     143.9      118.9       1.73m      10%
+  seek + 0.25*avoid          0.41      86.4       80.6       1.83m       2%
+  seek + 0.4*avoid           0.38      55.4       50.6       1.83m       0%
+  seek + 0.5*avoid           0.41      33.0       28.6       1.79m       0%
+  seek + 0.6*avoid           0.41      20.6       15.6       1.82m       0%
+  seek + 0.75*avoid          0.37      12.7        6.7       1.88m       0%
+  seek + 1.0*avoid           0.33      18.6       10.4       1.98m       0%
+  avoid only                 0.24      18.8        4.8       1.98m       0%

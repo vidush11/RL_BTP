@@ -89,9 +89,11 @@ class Horde:
         q_bar = (pi_2 * Q2).sum(1)
         delta = r + (1 - g2) * z + g2 * q_bar - self.theta[:, idx].sum(1)
 
-        # e_t = phi + gamma*lambda*rho*e_{t-1}; rho=0 zeroes the trace off-policy
+        # e_t = phi + gamma*lambda*min(1, rho)*e_{t-1}; rho=0 zeroes the trace off-policy.
+        # rho is capped at 1 in the trace (as in Retrace): uncapped, a rare behaviour action
+        # the target likes (rho ~ 25) multiplied the trace by ~7 and blew up seek/avoid
         rho = pi_t[:, a] / mu
-        self.e *= (g * self.lam * rho)[:, None]
+        self.e *= (g * self.lam * np.minimum(rho, 1.0))[:, None]
         self.e[:, idx] += 1.0
 
         wte = (self.w * self.e).sum(1)

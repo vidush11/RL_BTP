@@ -93,7 +93,7 @@ class Robot:
         dist = float(np.linalg.norm(d))
 
         u = d / (dist + 1e-9)  # unit vector towards the light
-        brightness = 1.0 / (1.0 + 0.5 * dist**2)  # falls off with distance
+        brightness = 0.25 / (0.25 + dist**2)  # inverse square, softened inside ~0.5 m
         angles = np.array(
             [np.pi / 4, -np.pi / 4, 3 * np.pi / 4, -3 * np.pi / 4]
         )  # FL, FR, BL, BR

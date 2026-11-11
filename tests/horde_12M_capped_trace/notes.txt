@@ -1,0 +1,6 @@
+Long Horde run, stopped by request before 12M (last eval: steps 11,950,000 | friction 0.41). Run in ../code2-runs.
+History: 0-6M tests/pillars_shadow_bumppenalty settings; 6M: brightness 0.25/(0.25+d^2), seek reward FL+FR, n_ctrl 50;
+7.825M: seek/avoid alpha 0.1; 9.0M: seek/avoid reset to 0 after divergence (tests/horde_diverged_alpha01);
+10.9M: rho capped at 1 in the trace, seek/avoid reset again (tests/horde_diverged_trace_rho); 11.05M: eval starts fixed per process.
+After the 10.9M fix: weights stayed ~1-2.5, seek ~3-5x random, avoid ~1.6-1.9x (see train_log.txt).
+Superseded by tests/final_offpolicy_vs_onpolicy (fresh run, shared eval starts with on-policy).
