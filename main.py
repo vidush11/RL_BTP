@@ -20,33 +20,36 @@ from env import N_ACTIONS, Action, Robot
 from horde import Horde
 from viz import Live
 
-STEPS, STICK, SEED, EVAL_EVERY = 12_000_000, 0.8, 0, 25_000
+STEPS, STICK, SEED, EVAL_EVERY = 3_000_000, 0.8, 0, 25_000
 N_CTRL, CTRL_STEPS = 100, 250  # control eval: number of starts, steps from each
 VIZ, RESUME = False, True  # RESUME=False (or deleting CHK) trains from scratch
-CHK, LOG = "checkpoint.npz", "train_log.txt"
-PER = (
-    "eval_per_start.npz"  # every eval: each control demon's reward/step from each start
-)
+CHK, LOG, PER = "checkpoint.npz", "train_log.txt", "eval_per_start.npz"
 CTRL = [i for i, d in enumerate(DEMONS) if d["pi"] is greedy]  # control demons
 
-# control-eval starts, shared with onpolicy.py: N_CTRL states a sticky-random robot
-# reaches (fixed seed), and the random policy's mean cumulant per step from them
-_sim, _r, _prev, _seen = Robot(seed=1234), np.random.default_rng(1234), Action.STOP, []
-for _t in range(15_000):
-    _p = np.full(N_ACTIONS, (1 - STICK) / N_ACTIONS)
-    _p[_prev] += STICK
-    _prev = Action(_r.choice(N_ACTIONS, p=_p / _p.sum()))
-    _sim.step(_prev)
-    if _t % 30 == 0:
-        _seen.append(_sim.get_state())
-EVAL_STARTS = [_seen[k] for k in _r.choice(len(_seen), N_CTRL, replace=False)]
-CHANCE = np.zeros(len(DEMONS))
-for _st in EVAL_STARTS:
-    _sim.set_state(_st)
+# Shared evaluation, also imported by onpolicy.py.
+sim_temp, rng, prev_action, starts = (
+    Robot(seed=1105),
+    np.random.default_rng(1234),
+    Action.STOP,
+    [],
+)
+for i in range(15_000):
+    p = np.full(N_ACTIONS, (1 - STICK) / N_ACTIONS)
+    p[prev_action] += STICK
+    prev_action = Action(rng.choice(N_ACTIONS, p=p))
+    sim_temp.step(prev_action)
+    if i % 30 == 0:
+        starts.append(sim_temp.get_state())
+EVAL_STARTS = [starts[k] for k in rng.choice(len(starts), N_CTRL, replace=False)]
+
+# random policy's reward per step from EVAL_STARTS (0 for prediction demons)
+random_rewards = np.zeros(len(DEMONS))
+for st in EVAL_STARTS:
+    sim_temp.set_state(st)
     for _ in range(CTRL_STEPS):
-        _o = _sim.step(Action(_r.integers(N_ACTIONS)))
-        CHANCE[CTRL] += [DEMONS[i]["r"](_o) for i in CTRL]
-CHANCE /= N_CTRL * CTRL_STEPS
+        _obs = sim_temp.step(Action(rng.integers(N_ACTIONS)))
+        random_rewards[CTRL] += [DEMONS[i]["r"](_obs) for i in CTRL]
+random_rewards /= N_CTRL * CTRL_STEPS  # averaging the reward with steps, starts
 
 
 def evaluate(horde, visit, seed, n=25, horizon=400):
@@ -144,9 +147,8 @@ if __name__ == "__main__":
         rows, per = evaluate(horde, visited, SEED + t)
         per_t.append(t)
         per_all.append(per)
-        np.savez(
-            PER, t=np.array(per_t), scores=np.array(per_all)
-        )  # (evals, ctrl, starts)
+        # scores: (evals, control demons, starts)
+        np.savez(PER, t=np.array(per_t), scores=np.array(per_all))
         if live:
             live.record(t, rows)
         log(f"\nsteps {t:,} | friction {env.friction}")
