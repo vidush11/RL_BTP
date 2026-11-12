@@ -27,7 +27,7 @@ import numpy as np
 from demons import DEMONS
 from env import ARENA, N_ACTIONS, OBSTACLES, Action, Robot
 from features import N_ACTIVE, N_FEATURES, phi
-from main import CHANCE, CTRL_STEPS, EVAL_STARTS  # same eval starts + random baseline
+from main import CTRL_STEPS, EVAL_STARTS, random_rewards  # shared eval with main.py
 
 STEPS, SEED, EVAL_EVERY = 3_000_000, 0, 25_000
 GAMMA = 0.95  # same horizon as the control demons (~20 steps)
@@ -145,7 +145,7 @@ if __name__ == "__main__":
             np.savez(
                 PER, t=np.array(per_t), scores=np.array(per_all)
             )  # (evals, starts)
-            learned, chance = per.mean(), CHANCE[K]
+            learned, chance = per.mean(), random_rewards[K]
             print(
                 f"  {t:>10,}{learned:>10.2f}{chance:>11.2f}{learned / chance:>17.2f}x",
                 flush=True,

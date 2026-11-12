@@ -19,7 +19,7 @@ from demons import DEMONS
 from env import ARENA, BUMP, LIGHT, LIGHT_FL, LIGHT_FR, N_ACTIONS, OBSTACLES, Action, Robot
 from features import phi
 from horde import Horde
-from main import CHANCE, EVAL_STARTS, STICK
+from main import random_rewards, EVAL_STARTS, STICK
 
 RUNS, OUT = sys.argv[1], os.path.dirname(os.path.abspath(__file__))
 NAMES = [d["name"] for d in DEMONS]
@@ -53,7 +53,7 @@ fig, ax = plt.subplots(1, 3, figsize=(15, 4.2))
 for k, (i, key, title) in enumerate(CTRL3):
     ax[k].plot(T, H[NAMES[i]][:, 0], color=COL[key], lw=2, label="off-policy (Horde)")
     ax[k].plot(ON[i][:, 0] / 1e6, ON[i][:, 1], color=COL[key], lw=2, ls="--", alpha=0.8, label="on-policy Sarsa(λ)")
-    ax[k].axhline(CHANCE[i], color=COL["rand"], ls=":", lw=2, label="random policy")
+    ax[k].axhline(random_rewards[i], color=COL["rand"], ls=":", lw=2, label="random policy")
     ax[k].set(title=title, xlabel="training steps (millions)")
     ax[k].legend(frameon=False, fontsize=10)
 ax[0].set_ylabel("average reward per time step")
@@ -70,7 +70,7 @@ fig, axs = plt.subplots(1, 3, figsize=(15, 4.4), sharey=True)  # one panel per d
 comp = []
 for ax, (i, key, title) in zip(axs, CTRL3):
     lo, hi = RANGE[i]
-    base = (CHANCE[i] - lo) / (hi - lo)
+    base = (random_rewards[i] - lo) / (hi - lo)
     ax.axhline(base, color=COL["rand"], lw=2, ls=":", label="random policy")
     for x, y, how, ls in ((T, H[NAMES[i]][:, 0], "off-policy", "-"), (ON[i][:, 0] / 1e6, ON[i][:, 1], "on-policy", "--")):
         y = (y - lo) / (hi - lo)
@@ -95,7 +95,7 @@ with open(f"{OUT}/steps_to_competence.txt", "w") as fh:
 fig, axs = plt.subplots(1, 3, figsize=(15, 4.4), sharey=True)
 for ax, (i, key, title) in zip(axs, CTRL3):
     lo, hi = RANGE[i]
-    base = (CHANCE[i] - lo) / (hi - lo)
+    base = (random_rewards[i] - lo) / (hi - lo)
     ax.axhline(base, color=COL["rand"], lw=2, ls=":", label="random policy")
     ax.plot(T, (H[NAMES[i]][:, 0] - lo) / (hi - lo), color=COL[key], lw=2, label="off-policy (Horde)")
     y = (EPI[i][:, 1] - lo) / (hi - lo)

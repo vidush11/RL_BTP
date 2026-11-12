@@ -28,7 +28,7 @@ SETUP
                             no update across the jump
   Evaluation    identical for all: main.EVAL_STARTS (100 states of a sticky-random run, seed 1234),
                 250 greedy steps each, learning off, every 25k steps, sensor noise seed SEED+t+1;
-                random baseline CHANCE computed once on the same starts
+                random baseline main.random_rewards (CHANCE at run time) computed once on the same starts
   Metrics       x random = learned reward/step / random reward/step
                 scaled (0-1) = reward scaled by each reward's range (seek 0 to sqrt 2, avoid -1 to 1, spin 0 to 1)
                 steps to competence = first step where the trailing 100k mean covers 90% of the gap from

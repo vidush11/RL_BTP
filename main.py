@@ -55,7 +55,7 @@ random_rewards /= N_CTRL * CTRL_STEPS  # averaging the reward with steps, starts
 def evaluate(horde, visit, seed, n=25, horizon=400):
     """Rows (name, kind, x, y, z) and each control demon's reward/step per start
     (len(CTRL) x N_CTRL). pred: predicted, actual, mean |error|.
-    ctrl: learned reward/step, random reward/step (CHANCE), learned/random."""
+    ctrl: learned reward/step, random reward/step (random_rewards), learned/random."""
     rng, sim, rows = np.random.default_rng(seed), Robot(seed=seed + 1), []
     per = np.zeros((len(CTRL), N_CTRL))
     for i, d in enumerate(DEMONS):
@@ -66,7 +66,7 @@ def evaluate(horde, visit, seed, n=25, horizon=400):
                 for _ in range(CTRL_STEPS):
                     o = sim.step(Action(np.argmax(horde.q(o)[i])))
                     per[CTRL.index(i), k] += d["r"](o) / CTRL_STEPS
-            x, y = per[CTRL.index(i)].mean(), CHANCE[i]
+            x, y = per[CTRL.index(i)].mean(), random_rewards[i]
             rows.append((d["name"], "ctrl", x, y, x / y if y > 1e-9 else np.inf))
             continue
 
