@@ -1,8 +1,0 @@
-On-policy Sarsa(lambda) light seeker, commit 9e00452 (run 2026-11-11 14:01-14:07 in worktree ../code2-runs).
-Arena: 3x3 m, 2 pillars (0.95,2.05,r=0.25), (2.1,0.95,r=0.3). Light at (0.4, 2.6).
-NEW vs earlier runs: pillars block light (hard shadow, 32.6% of reachable arena dark); bump flag no longer set when resting on the wall margin.
-Sensors: 4 beam IR (5 rays over +-40 deg), 4 light sensors (+-45, +-135 deg), velocity, angular velocity, bump, compass. 0.5 s steps, friction 0.41.
-Settings (onpolicy.py): 500,000 steps, one continuous life (no restarts), eps 0.1, gamma 0.95, lambda 0.9, alpha 0.05/N_ACTIVE, reward = sum of 4 lights.
-Eval: every 25k, greedy learned vs uniform random, 30 visited start states x 250 steps.
-Results (onpolicy_log.txt): 25k 1.03/0.70 1.47x; 200k 1.28/0.75 1.70x (max ratio); 500k 1.28/0.91 1.41x.
-Same seed rerun of an earlier run whose log was cut at 400k: first 400k lines identical.

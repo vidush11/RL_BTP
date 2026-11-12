@@ -1,9 +1,0 @@
-Arena: 3x3 m, 2 pillars (0.95,2.05,r=0.25), (2.1,0.95,r=0.3). Light at (0.4, 2.6).
-Sensors: 4 IR single rays (0, +-90, 180 deg), 4 light sensors (+-45, +-135 deg), velocity, angular velocity, bump, compass (cos, sin).
-Rewards: seek-light = sum of 4 lights; avoid-obstacles = 1 - max(4 IR).
-Horde: stopped at step 3325000 (of 6M), 0.1 s decisions, STICK=0.8, softmax temperature 1, seek/avoid alpha=0.03.
-Results at 3M (combine_log.txt): seek alone light 0.71 vs random 0.54, but 133 bumps/1k (94 at pillars);
-  seek + 0.5*avoid: same light 0.71, bumps 56/1k (-58%), pillar bumps 53/1k (-44%). w >= 1: avoid dominates, robot freezes.
-Why avoid hit pillars: single-ray IR has diagonal blind spots - a pillar touching the robot at 45 or 135 deg reads 0.68-1.2 m away,
-  so avoid thinks it is safe while pressed on the pillar. Fixed in the next run by beam IR sensors.
-Also here: temperature_sweep_log.txt (tau 0.1 best) and horde_repeat_log.txt (0.5 s decisions off-policy: slow, avoid learned "stand still").

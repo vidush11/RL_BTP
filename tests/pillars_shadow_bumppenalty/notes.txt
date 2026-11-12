@@ -1,28 +1,97 @@
-Horde run: pillars + hard light shadow + bump fix + bump penalty in avoid reward
-Code: commit 9e00452 (run in a detached worktree ../code2-runs, 2026-11-11 14:33 - 17:01)
-Settings: main.py STEPS 6,000,000, STICK 0.8, SEED 0, EVAL_EVERY 25k; DT 0.5 s; softmax temp 0.1
-Env: 2 pillars, light at (0.4, 2.6), pillars block the light (hard shadow, 32.6% of reachable arena dark)
+========================================================================
+ Horde run 0 - 6M: pillars + hard light shadow + bump fix + bump penalty in the avoid reward
+========================================================================
 
-Training log, control demons, learned/random averaged per 1M steps (n_ctrl = 10 starts per eval, noisy):
-  0-1M  seek 1.58x  avoid 1.21x  spin 3.86x
-  1-2M  seek 1.60x  avoid 1.49x  spin 3.93x
-  2-3M  seek 1.23x  avoid 1.58x  spin 3.90x
-  3-4M  seek 1.18x  avoid 1.68x  spin 3.92x
-  4-5M  seek 1.17x  avoid 1.74x  spin 3.91x
-  5-6M  seek 1.15x  avoid 1.44x  spin 3.91x
-  final (6M): seek 0.92x, avoid 1.51x, spin 3.85x
-  seek below random in 37 of 240 evals; seek peaked at 0.5-2M and then got worse.
-  avoid dipped below random at 5.675M-5.825M (worst: learned -0.39 vs random 0.42 at 5.7M), then recovered.
-  prediction errors flat over the whole run (obstacle ~1.9-2.0, stop ~0.8-0.9, light ~1.6-1.9, bump ~0.7).
+QUESTION
+  First Horde run on the current arena (2 pillars that cast hard light shadows), with the fixed bump sensor
+  and a bump penalty in the avoid reward. Do the control demons learn, and can seek + avoid be combined?
 
-seek_check.py (200 starts x 250 steps, see seek_check_log.txt):
-  learned 0.546 light/step, random 0.437, hand-coded "turn to light then forward" 0.791
-  learned gets within 0.5 m of the light from 15% of starts, random 34%, hand-coded 59.5%
-  light clearly left: LEFT chosen 11%, RIGHT 2%; light clearly right: RIGHT 1%, LEFT 14%
-  -> seek-light mostly drives forward/backward instead of turning toward the light.
-  likely cause: reward = sum of all 4 light sensors, which only changes 1.5x with heading
-  (0.30-0.45 at (2.5, 2.5)); a front-only reward FL+FR changes 0 -> 0.45.
+ANSWER
+  spin and avoid learned (3.85x, 1.51x random at 6M); seek-light did not (0.92x at 6M, worse than its
+  early peak). Diagnosis: the sum-of-4-lights reward barely changes with heading, so seek never learned to
+  turn. Led to the FL+FR reward and new brightness formula at 6M.
 
-combine.py (combine_log.txt): seek alone 0.50 light/step vs random 0.44, 10% reached;
-  adding avoid cuts bumps from 143.9 to 12.7 per 1k (w = 0.75) but light drops to 0.37 and nobody reaches.
-  Not comparable to tests/pillars_beam_ir_halfsec_tau01 (no shadow, old bump flag, no bump penalty).
+------------------------------------------------------------------------
+SETUP
+------------------------------------------------------------------------
+  Date          2026-11-11 14:33 - 17:01
+  Code          commit 9e00452, run in a detached worktree ../code2-runs
+  Settings      main.py STEPS 6,000,000, STICK 0.8, SEED 0, EVAL_EVERY 25k; DT 0.5 s; softmax tau 0.1;
+                seek/avoid alpha 0.03, lambda 0.3; trace rho not capped
+  Env           3x3 m, 2 pillars, light at (0.4, 2.6); pillars block the light
+                (hard shadow, 32.6% of the reachable arena dark)
+  Rewards       seek = sum of all 4 light sensors; avoid includes a bump penalty
+  Evaluation    every 25k: n_ctrl 10 starts x 250 steps, greedy, vs random on the same starts
+  Afterwards    seek_check.py: 200 starts x 250 steps on the 6M checkpoint
+                combine.py:    100 starts x 250 steps on the 6M checkpoint
+  Metric        x random = learned reward/step / random reward/step
+
+------------------------------------------------------------------------
+RESULTS
+------------------------------------------------------------------------
+Training (train_log.txt), mean x random per 1M:
+  period    seek x   avoid x   spin x
+  0 - 1M     1.58     1.21     3.86
+  1 - 2M     1.60     1.49     3.93
+  2 - 3M     1.23     1.58     3.90
+  3 - 4M     1.18     1.68     3.92
+  4 - 5M     1.17     1.74     3.91
+  5 - 6M     1.15     1.44     3.91
+  at 6M      0.92     1.51     3.85
+  - seek below random in 37 of 240 evals; it peaked at 0.5 - 2M, then got worse.
+  - avoid below random at 5.675M - 5.825M (worst: learned -0.39 vs random 0.42 at 5.7M), then recovered.
+  - Prediction errors flat over the run: obstacle ~1.9-2.0, stop ~0.8-0.9, light ~1.6-1.9, bump ~0.7.
+
+seek_check.py (seek_check_log.txt), 200 starts (135 lit, 65 in shadow):
+  policy       light/step   from lit   from shadow   final dist   time <0.5m   reached <0.5m   time dark
+  learned        0.546       0.716       0.194        1.60 m        9.6%          15.0%         24.9%
+  random         0.437       0.551       0.199        1.78 m        9.8%          34.0%         34.3%
+  hand-coded     0.791       1.141       0.065        0.73 m       57.2%          59.5%         33.5%
+  (hand-coded = "turn to the light, then drive forward")
+  Actions of the learned policy when the light is clearly to one side (30-150 deg, lit):
+    light left  (n=834):  FORWARD 38%  BACKWARD 45%  LEFT 11%  RIGHT 2%  STOP 4%
+    light right (n=874):  FORWARD 25%  BACKWARD 54%  LEFT 14%  RIGHT 1%  STOP 5%
+
+combine.py (combine_log.txt), a = argmax [q_seek + w * q_avoid]:
+  policy               light/step  bumps/1k  pillar/1k  final dist  reached
+  random                  0.44       83.0      16.4      1.85 m       10%
+  seek alone (w 0)        0.50      143.9     118.9      1.73 m       10%
+  w 0.25                  0.41       86.4      80.6      1.83 m        2%
+  w 0.4                   0.38       55.4      50.6      1.83 m        0%
+  w 0.5                   0.41       33.0      28.6      1.79 m        0%
+  w 0.6                   0.41       20.6      15.6      1.82 m        0%
+  w 0.75                  0.37       12.7       6.7      1.88 m        0%
+  w 1.0                   0.33       18.6      10.4      1.98 m        0%
+  avoid only              0.24       18.8       4.8      1.98 m        0%
+
+------------------------------------------------------------------------
+CONCLUSIONS
+------------------------------------------------------------------------
+  - seek-light mostly drives forward/backward instead of turning toward the light
+    (it turns the wrong way as often as the right way).
+  - Likely cause: the sum-of-4 reward changes only 1.5x with heading (0.30 - 0.45 at (2.5, 2.5));
+    a front-only reward FL+FR changes 0 -> 0.45.
+  - Adding avoid cuts bumps tenfold (143.9 -> 12.7 per 1k at w 0.75) but nobody reaches the light,
+    because seek itself is weak.
+
+WHAT IT LED TO
+  - At 6M: brightness 0.25/(0.25+d^2) and seek reward FL+FR (continued in tests/horde_12M_capped_trace).
+
+CAVEATS
+  - 10-start evals are very noisy.
+  - Not comparable to earlier pillar runs (no shadow, old bump flag, no bump penalty).
+
+------------------------------------------------------------------------
+HOW TO REPRODUCE
+------------------------------------------------------------------------
+  Check out commit 9e00452, set STEPS 6,000,000 in main.py, run python3 -u main.py from the repo.
+  Seek check: python3 seek_check.py <repo> checkpoint.npz  (argv[1] = code folder, argv[2] = checkpoint)
+
+------------------------------------------------------------------------
+FILES
+------------------------------------------------------------------------
+  checkpoint.npz        Horde state at 6M
+  train_log.txt         training log 0 - 6M
+  seek_check.py         seek-light diagnosis script (learned vs random vs hand-coded)
+  seek_check_log.txt    its output
+  combine_log.txt       combine.py output on the 6M checkpoint

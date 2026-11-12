@@ -1,0 +1,70 @@
+========================================================================
+ Horde run 9.0M - 10.9M: avoid-obstacles diverged again -> rho capped in the trace
+========================================================================
+
+QUESTION
+  After the alpha 0.1 divergence at 9.0M (tests/horde_diverged_alpha01), seek-light and avoid-obstacles
+  were reset to zero weights. Does alpha 0.1 stay stable from a fresh start inside the long run?
+
+ANSWER
+  No. Both learned well for ~1.7M steps, then avoid diverged at ~10.775M. Cause: uncapped importance
+  ratio rho in the trace. Fix: rho capped at 1 in the trace, used in every run since.
+
+------------------------------------------------------------------------
+SETUP
+------------------------------------------------------------------------
+  Date          2026-11-11 (checkpoint saved 22:50)
+  Run in        ../code2-runs, main.py resumed from checkpoint.npz at 9,000,000
+  Code          as at 7.825M (tests/horde_diverged_alpha01) + max|theta| log line
+  Change at 9M  seek-light and avoid-obstacles theta, w, e reset to 0; other 5 demons kept
+                (train_log.txt line 5046)
+  Learner       GQ(lambda), trace e = phi + gamma*lambda*rho*e (rho NOT capped)
+  Settings      seek/avoid alpha 0.1, lambda 0.3; STICK 0.8; DT 0.5 s; softmax tau 0.1
+  Env/rewards   2 pillars + hard shadow; brightness 0.25/(0.25+d^2); seek reward FL+FR
+  Evaluation    every 25k: n_ctrl 50 starts x 250 steps, greedy, vs random on the same starts
+  Metric        x random = learned reward/step / random reward/step
+
+------------------------------------------------------------------------
+RESULTS  (from train_log.txt, mean x random per 300k)
+------------------------------------------------------------------------
+  period          evals   seek x   avoid x   spin x   avoid evals < random
+  9.00 - 9.30M      12     3.55     1.45     3.95      1
+  9.30 - 9.60M      12     5.98     1.68     3.91      0
+  9.60 - 9.90M      12     5.73     1.70     3.95      0
+  9.90 - 10.20M     12     5.39     1.66     3.98      0
+  10.20 - 10.50M    12     3.53     1.70     3.98      0
+  10.50 - 10.80M    12     3.00     1.57     3.98      2
+  10.80 - 10.90M     4     1.84     0.95     3.95      2
+
+  avoid-obstacles max|theta| (last column of the log line):
+    9.025M 0.67 | 9.15M 1.34 | 9.6M 1.92 | 10.05M 2.18 | 10.65M 2.47 | 10.775M ~40 | 10.8M 35.4 | 10.9M 67.1
+  Lowest avoid eval: 0.11x random at 10.8M. Other demons stayed at max|theta| 0.8 - 3.2.
+
+------------------------------------------------------------------------
+CONCLUSIONS
+------------------------------------------------------------------------
+  - alpha 0.1 learns much better than 0.03 (seek 3-6x vs ~1.2x before), but is not stable with uncapped rho.
+  - Divergence was sudden: avoid weights grew slowly for 1.6M steps, then jumped 2.5 -> 40 in ~100k steps.
+  - [inference, from the horde.py comment written with the fix] a rare behaviour action the target likes
+    has rho ~25, which multiplied the trace by ~7 and blew up the weights.
+
+WHAT IT LED TO
+  - Fix A at 10.9M: rho capped at 1 in the trace, e = phi + gamma*lambda*min(1, rho)*e (horde.py lines 92-96,
+    in commit 864ad85); seek and avoid reset again; eval switched to 100 fresh starts per eval shared by all
+    control demons (tests/horde_12M_capped_trace/train_log.txt line 6188).
+  - With the cap the run stayed stable to 11.95M (tests/horde_12M_capped_trace); the final run uses it from step 0.
+
+CAVEATS
+  - Evals use 50 starts, so single evals are noisy (seek jumps 1.5x - 9x between evals).
+
+------------------------------------------------------------------------
+HOW TO REPRODUCE
+------------------------------------------------------------------------
+  Not a clean run: it is a resume of the long run. To inspect the diverged state, load checkpoint.npz
+  with np.load (theta, w, e per demon). Rerunning needs the uncapped trace (horde.py before 864ad85).
+
+------------------------------------------------------------------------
+FILES
+------------------------------------------------------------------------
+  checkpoint.npz   full Horde state at 10.9M (avoid diverged)
+  train_log.txt    whole log 0 - 10.9M (same as tests/horde_diverged_alpha01 up to 9.0M)

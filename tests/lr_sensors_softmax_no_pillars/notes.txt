@@ -1,7 +1,0 @@
-Arena: 3x3 m, walls only (no pillars). Light at (0.4, 2.6).
-Sensors: left/right light sensors (+-1 rad), no centre light sensor.
-Horde (checkpoint.npz, train_log.txt): 6,000,000 steps, STICK=0.8.
-  0-4.5M greedy control demons; 4.5M-5.3M softmax temperature 0.1; 5.3M-6M softmax temperature 1.
-  seek-light / avoid-front alpha=0.03.
-On-policy Sarsa(lambda) light seeker (checkpoint_onpolicy.npz): 500,000 steps,
-  reached 1.00 light/step, 0.29 m from light (oracle 1.04, 0.21 m).

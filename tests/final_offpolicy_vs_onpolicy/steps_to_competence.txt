@@ -1,0 +1,11 @@
+first step where the trailing 100k mean covers 90% of the gap from random to the final level
+demon                                        steps  final (0-1)  random (0-1)
+seek-light (off-policy)                  1,125,000        0.440         0.056
+seek-light (on-policy)                     150,000        0.178         0.056
+avoid-obstacles (off-policy)               575,000        0.897         0.709
+avoid-obstacles (on-policy)              1,650,000        0.811         0.709
+spin (off-policy)                           25,000        0.720         0.185
+spin (on-policy)                            75,000        0.619         0.185
+seek-light (on-policy episodic)            425,000        0.757         0.056
+avoid-obstacles (on-policy episodic)       325,000        0.912         0.709
+spin (on-policy episodic)                   25,000        0.671         0.185

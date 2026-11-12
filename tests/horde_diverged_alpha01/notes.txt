@@ -1,9 +1,70 @@
-Horde run that diverged: seek-light and avoid-obstacles, 7.825M - 9.0M steps (run in ../code2-runs, 2026-11-11)
-History: 0-6M as tests/pillars_shadow_bumppenalty; at 6M brightness 0.25/(0.25+d^2), seek reward FL+FR, n_ctrl 50;
-  at 7.825M seek-light and avoid alpha 0.03 -> 0.1 (lam 0.3, beta 0.01) from tests/sweep_alpha_lambda.
-checkpoint.npz = state at 9.0M. max|theta|: seek 1.3e7, avoid 2.0e5 (max|w| 1.3e6, 1.2e4); other demons 0.75-3.2 (normal).
-At 6M (old alpha 0.03) max|theta| was seek 5.3, avoid 6.8, max|w| avoid 1.1 (largest w of all demons).
-avoid already collapsing before the alpha change (old alpha): 0.30x at 6.675M, 0.79x at 6.975M, -0.44x at 7.8M.
-After the change: seek 0.24-1.67x, avoid -1.35 to 1.59x (7.85M-9.0M).
-Sweep with the same settings from ZERO weights stayed stable for 1M (max|theta| ~2.5), so divergence needs a longer run
-  and/or the warm start from the old weights. Cause not established; no intermediate weight logs.
+========================================================================
+ Horde run 7.825M - 9.0M: seek-light and avoid-obstacles diverged after alpha 0.03 -> 0.1
+========================================================================
+
+QUESTION
+  The alpha x lambda sweep (tests/sweep_alpha_lambda) found alpha 0.1, lambda 0.3 much better than 0.03.
+  Does switching the running Horde to alpha 0.1 improve seek-light and avoid-obstacles?
+
+ANSWER
+  No. Both diverged (max|theta| seek 1.3e7, avoid 2.0e5 by 9.0M). Cause not established here;
+  the next stage (tests/horde_diverged_trace_rho) traced it to uncapped rho in the trace.
+
+------------------------------------------------------------------------
+SETUP
+------------------------------------------------------------------------
+  Date          2026-11-11
+  Run in        ../code2-runs, main.py resumed from checkpoint.npz at 7,825,000
+  History       0 - 6M      settings of tests/pillars_shadow_bumppenalty
+                6M          brightness 0.25/(0.25+d^2), seek reward FL+FR, n_ctrl 50
+                7.825M      seek/avoid alpha 0.03 -> 0.1 (lambda 0.3, beta 0.01), warm weights kept
+  Learner       GQ(lambda), trace e = phi + gamma*lambda*rho*e (rho NOT capped)
+  Settings      STICK 0.8; DT 0.5 s; softmax tau 0.1
+  Evaluation    every 25k: n_ctrl 50 starts x 250 steps, greedy, vs random on the same starts
+  Metric        x random = learned reward/step / random reward/step
+
+------------------------------------------------------------------------
+RESULTS  (from train_log.txt, mean x random per 500k)
+------------------------------------------------------------------------
+  period          evals   seek x   avoid x   spin x   seek < rnd   avoid < rnd
+  6.0 - 6.5M        20     1.20     1.57     3.97       6            0
+  6.5 - 7.0M        20     1.07     1.21     3.97       7            5
+  7.0 - 7.5M        20     1.25     1.47     3.98       4            1
+  7.5 - 8.0M        20     1.23     0.39     3.97       7           15     (alpha change at 7.825M)
+  8.0 - 8.5M        20     0.82     0.78     3.96      14           10
+  8.5 - 9.0M        20     0.77     0.71     3.95      15           13
+  7.825 - 9.0M      47     0.81     0.66     3.95      33           30     (all evals after the change)
+
+  Range after the change: seek 0.24 - 1.67x, avoid -1.35 to 1.59x.
+
+  Weights:
+                    max|theta| seek   max|theta| avoid   max|w| avoid
+    6M (alpha 0.03)       5.3              6.8              1.1 (largest w of all demons)
+    9M (alpha 0.1)        1.3e7            2.0e5            1.2e4 (seek max|w| 1.3e6)
+  Other demons at 9M: max|theta| 0.75 - 3.2 (normal).
+
+------------------------------------------------------------------------
+CONCLUSIONS
+------------------------------------------------------------------------
+  - avoid was already collapsing before the alpha change (old alpha): 0.30x at 6.675M, 0.79x at 6.975M,
+    -0.44x at 7.8M. The change made both demons diverge.
+  - The sweep with the same settings from ZERO weights stayed stable for 1M (max|theta| ~2.5), so
+    divergence needs a longer run and/or the warm start from the old weights.
+  - Cause not established in this stage; there are no intermediate weight logs.
+
+WHAT IT LED TO
+  - seek/avoid reset to 0 at 9.0M and a max|theta| line added to the log (tests/horde_diverged_trace_rho).
+
+CAVEATS
+  - 50-start evals are noisy; the 7.5 - 8.0M row mixes 13 evals before and 7 after the change.
+
+------------------------------------------------------------------------
+HOW TO REPRODUCE
+------------------------------------------------------------------------
+  Not a clean run: a resume of the long run. Inspect the diverged weights with np.load("checkpoint.npz").
+
+------------------------------------------------------------------------
+FILES
+------------------------------------------------------------------------
+  checkpoint.npz   full Horde state at 9.0M (seek and avoid diverged)
+  train_log.txt    whole log 0 - 9.0M

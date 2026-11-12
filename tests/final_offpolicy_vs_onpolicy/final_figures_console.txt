@@ -1,0 +1,30 @@
+Horde checkpoint 3,000,000 | episodic on-policy checkpoint 3,000,000 | 100 fixed starts x 250 steps
+policy                               seek r  avoid r  bumps/1k  pillar/1k  ever<0.5m  end<0.5m
+random                                0.078    0.424      80.8       14.2        28%        8%
+seek alone                            0.595   -0.045     424.5      107.7        81%       78%
+on-policy seek (episodic)             1.086    0.416      82.1       65.9        92%       92%
+avoid alone                           0.044    0.794       2.0        1.7         7%        0%
+sum  w=0.1                            0.619    0.134     302.1       83.5        81%       80%
+sum  w=0.25                           0.659    0.464      41.9       36.8        86%       84%
+sum  w=0.5                            0.569    0.509      29.8       20.6        76%       62%
+sum  w=1.0                            0.297    0.617       1.6        1.1        28%        3%
+z-sum w=0.5                           0.604    0.411      82.6       23.8        80%       71%
+z-sum w=1.0                           0.181    0.713       1.5        1.1        12%        7%
+reflex: steps-to-obstacle < 2         0.591    0.223     255.0       39.2        81%       75%
+reflex: steps-to-obstacle < 3         0.475    0.232     239.6       22.0        69%       54%
+reflex: steps-to-obstacle < 5         0.255    0.418     177.6       45.8        26%       15%
+reflex: bump-soon > 1.0               0.046    0.790       2.3        1.8         7%        0%
+reflex: bump-soon > 2.0               0.252    0.383     201.1       47.3        32%       21%
+
+first step where the trailing 100k mean covers 90% of the gap from random to the final level
+demon                                        steps  final (0-1)  random (0-1)
+seek-light (off-policy)                  1,125,000        0.440         0.056
+seek-light (on-policy)                     150,000        0.178         0.056
+avoid-obstacles (off-policy)               575,000        0.897         0.709
+avoid-obstacles (on-policy)              1,650,000        0.811         0.709
+spin (off-policy)                           25,000        0.720         0.185
+spin (on-policy)                            75,000        0.619         0.185
+seek-light (on-policy episodic)            425,000        0.757         0.056
+avoid-obstacles (on-policy episodic)       325,000        0.912         0.709
+spin (on-policy episodic)                   25,000        0.671         0.185
+

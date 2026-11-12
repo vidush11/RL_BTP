@@ -1,6 +1,0 @@
-On-policy Sarsa(lambda) light seeker in the pillar world (checkpoint dated Oct 27 15:18, t = 500,000).
-Sensors: 4 IR + 4 light sensors, compass; whether IR was single-ray or beam at the time is not recorded. Light NOT blocked by pillars (before L1 shadow change).
-Log and variant results: ../onpolicy_pillars_log.txt, ../onpolicy_pillar_findings.txt.
-Caution: re-evaluating this checkpoint with onpolicy.evaluate (seed SEED+500000, env.py of 2026-11-11 before the shadow change)
-  gives learned 1.26 / random 0.96, but the log's 500,000 line says 1.33 / 1.21 -> the log was likely made with different env settings;
-  which variant (A-I) this checkpoint belongs to is not recorded.

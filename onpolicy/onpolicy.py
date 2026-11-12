@@ -20,22 +20,32 @@ No secondary weights w: on-policy linear TD is stable on its own.
 """
 
 import os
+import sys
 
 import numpy as np
 
 from demons import DEMONS
-from env import LIGHT_FL, LIGHT_FR, N_ACTIONS, Action, Robot
+from env import ARENA, N_ACTIONS, OBSTACLES, Action, Robot
 from features import N_ACTIVE, N_FEATURES, phi
 from main import CHANCE, CTRL_STEPS, EVAL_STARTS  # same eval starts + random baseline
 
-STEPS, SEED, EVAL_EVERY = 1_000_000, 0, 25_000
-GAMMA = 0.95  # same horizon as the seek-light demon (~20 steps)
+STEPS, SEED, EVAL_EVERY = 3_000_000, 0, 25_000
+GAMMA = 0.95  # same horizon as the control demons (~20 steps)
 LAM = 0.9  # on-policy, so a long trace is safe (off-policy it blew up above ~0.7)
 ALPHA = 0.05 / N_ACTIVE  # per active feature, same scaling as horde.py
 EPS = 0.1  # exploration: 10% of the time take a random action
 CHK = "checkpoint_onpolicy.npz"  # separate from the Horde's checkpoint.npz
+PER = "eval_per_start.npz"  # every eval: reward/step from each of EVAL_STARTS
 RESUME = True
-SEEK = [d["name"] for d in DEMONS].index("seek-light [ctrl]")  # row of CHANCE
+# "episodic" on the command line: every EP_LEN steps jump to a random free spot and heading,
+# so the robot keeps practising far from the light instead of parking next to it
+EPISODIC, EP_LEN = "episodic" in sys.argv, 250
+# which control demon to learn on-policy: start of its name, e.g. "seek", "avoid", "spin"
+K = next(
+    i
+    for i, d in enumerate(DEMONS)
+    if d["name"].startswith(sys.argv[1] if len(sys.argv) > 1 else "seek")
+)
 
 
 def q(theta: np.ndarray, obs: np.ndarray) -> np.ndarray:
@@ -43,20 +53,20 @@ def q(theta: np.ndarray, obs: np.ndarray) -> np.ndarray:
     return np.array([theta[phi(obs, a)].sum() for a in Action])
 
 
-def evaluate(theta: np.ndarray, seed: int) -> float:
+def evaluate(theta: np.ndarray, seed: int) -> np.ndarray:
     """
-    Mean front light per step of the GREEDY learned policy (no exploration) from
+    Reward per step of the GREEDY learned policy (no exploration) from each of
     main.py's EVAL_STARTS: same starts, steps and sensor noise as the Horde's control
     demons, so the numbers are directly comparable.
     """
-    sim, total = Robot(seed=seed + 1), 0.0
-    for st in EVAL_STARTS:
+    sim, per = Robot(seed=seed + 1), np.zeros(len(EVAL_STARTS))
+    for k, st in enumerate(EVAL_STARTS):
         sim.set_state(st)
         o = sim.obs()
         for _ in range(CTRL_STEPS):
             o = sim.step(Action(int(np.argmax(q(theta, o)))))
-            total += o[LIGHT_FL] + o[LIGHT_FR]
-    return total / (len(EVAL_STARTS) * CTRL_STEPS)
+            per[k] += DEMONS[K]["r"](o) / CTRL_STEPS
+    return per
 
 
 if __name__ == "__main__":
@@ -88,11 +98,16 @@ if __name__ == "__main__":
         else int(rng.integers(N_ACTIONS))
     )
 
-    print("Light seen per step: learned greedy policy vs. random policy")
+    print(
+        f"{DEMONS[K]['name']} on-policy: reward per step, learned greedy policy vs. random policy"
+    )
     print(f"  {'step':>10}{'learned':>10}{'random':>11}{'learned/random':>18}")
+    per_t, per_all = [], []  # per-start history; a resume keeps what is already saved
+    if start and os.path.exists(PER):
+        per_t, per_all = list(np.load(PER)["t"]), list(np.load(PER)["scores"])
     for t in range(start + 1, STEPS + 1):
         obs2 = env.step(Action(a))
-        r = obs2[LIGHT_FL] + obs2[LIGHT_FR]  # front light, same reward as seek-light
+        r = DEMONS[K]["r"](obs2)  # the same cumulant as the Horde demon
 
         # next action from the SAME epsilon-greedy policy: this is what makes it on-policy
         q2 = q(theta, obs2)
@@ -105,9 +120,32 @@ if __name__ == "__main__":
         theta += ALPHA * delta * e
 
         obs, a = obs2, a2
+        if EPISODIC and t % EP_LEN == 0:  # new episode; no update uses the jump itself
+            while (
+                True
+            ):  # random free spot, 0.12 m from walls and pillars as in env.step
+                x, y = rng.uniform(0.12, ARENA - 0.12, 2)
+                gap = (
+                    np.hypot(x - OBSTACLES[:, 0], y - OBSTACLES[:, 1]) - OBSTACLES[:, 2]
+                )
+                if gap.min() > 0.12:
+                    break
+            env.set_state((x, y, rng.uniform(-np.pi, np.pi), 0.0, 0.0, 0.0))
+            obs, e = env.obs(), np.zeros(N_FEATURES)
+            a = (
+                int(np.argmax(q(theta, obs)))
+                if rng.random() > EPS
+                else int(rng.integers(N_ACTIONS))
+            )
 
         if t % EVAL_EVERY == 0:
-            learned, chance = evaluate(theta, SEED + t), CHANCE[SEEK]
+            per = evaluate(theta, SEED + t)
+            per_t.append(t)
+            per_all.append(per)
+            np.savez(
+                PER, t=np.array(per_t), scores=np.array(per_all)
+            )  # (evals, starts)
+            learned, chance = per.mean(), CHANCE[K]
             print(
                 f"  {t:>10,}{learned:>10.2f}{chance:>11.2f}{learned / chance:>17.2f}x",
                 flush=True,

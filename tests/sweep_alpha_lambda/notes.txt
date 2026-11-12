@@ -1,19 +1,98 @@
-alpha x lambda sweep for seek-light and avoid-obstacles (control demons), 2026-11-11 18:54 - ~19:55
-Code: commit 9e00452 + brightness 0.25/(0.25+d^2), seek reward FL+FR, run in ../code2-runs/sweep (sweep.py copied here)
-Setup: 16 copies per demon (alpha {0.01,0.03,0.1,0.3} x lambda {0,0.3,0.6,0.9}), beta 0.01, gamma 0.95, tau 0.1,
-  all learning from ONE sticky-random stream (STICK 0.8), 1M steps, seeds 0/1/2, fresh weights (not from checkpoint).
-Eval every 250k: 100 fixed starts x 250 steps, argmax of learned q, vs random policy on the same starts.
-Note: max|theta| column in the .txt logs overflows for diverged copies and merges with bumps/1k; use the .npz files.
+========================================================================
+ alpha x lambda sweep: seek-light and avoid-obstacles control demons
+========================================================================
 
-x random, mean of 3 seeds, at 250k / 500k / 750k / 1M:
-seek-light
-  a=0.3  lam=0    3.80 4.91 5.30 4.78   (1M per seed 6.61 4.52 3.22)  reached 60%  bumps 385/1k
-  a=0.1  lam=0.3  3.87 6.33 5.57 4.53   (1M per seed 3.02 4.01 6.57)  reached 61%  bumps 247/1k
-  a=0.1  lam=0    2.72 3.61 4.38 3.61
-  current a=0.03 lam=0.3   1.85 1.49 1.41 1.37  reached 14%  (random reached 31%)
-avoid-obstacles
-  a=0.3  lam=0    1.82 1.77 1.80 1.83   (1M per seed 1.87 1.83 1.80)  bumps 1.3/1k
-  a=0.1  lam=0.3  1.58 1.63 1.74 1.74
-  current a=0.03 lam=0.3   1.18 1.28 1.45 1.53  (random bumps 85/1k)
-lambda >= 0.6 diverged (max|theta| overflow / nan) for most alphas; lambda 0.9 diverged at every alpha.
-seek best settings peak at 500-750k then drop, and differ a lot between seeds.
+QUESTION
+  The control demons learned slowly with alpha 0.03, lambda 0.3 (seek 1.4x random).
+  Which step size alpha and trace decay lambda make them learn best, and which are unstable?
+
+ANSWER
+  alpha 0.1 with lambda 0 or 0.3 is best for both demons (alpha 0.3 is as good only at lambda 0).
+  lambda >= 0.6 is unstable. Chosen: alpha 0.1, lambda 0.3 for both.
+
+------------------------------------------------------------------------
+SETUP
+------------------------------------------------------------------------
+  Date          2026-11-11, 18:54 - ~19:55
+  Code          commit 9e00452 + brightness 0.25/(0.25+d^2) + seek reward FL+FR
+  Run in        ../code2-runs/sweep (sweep.py copied here)
+  Grid          alpha {0.01, 0.03, 0.1, 0.3} x lambda {0, 0.3, 0.6, 0.9} = 16 copies per demon
+  Fixed         beta 0.01, gamma 0.95, softmax tau 0.1
+  Experience    all 16 copies learn side by side from ONE sticky-random stream (STICK 0.8),
+                so every setting sees exactly the same data
+  Length        1M steps, fresh weights (not from a checkpoint)
+  Seeds         0, 1, 2 (one run per demon per seed = 6 runs)
+  Evaluation    every 250k steps: 100 fixed starts x 250 steps, greedy (argmax of learned q),
+                learning off; random policy on the same starts as the baseline
+  Metrics       x random  = learned reward/step / random reward/step
+                reached   = % of starts that got within 0.5 m of the light
+                bumps     = bumps per 1000 steps
+
+------------------------------------------------------------------------
+RESULTS  (mean of 3 seeds, computed from the .npz files)
+------------------------------------------------------------------------
+Random baseline at 1M: seek 0.084 reward/step, reached 31%, 85 bumps/1k; avoid 0.410 reward/step.
+
+seek-light, x random at 1M
+                 lambda 0    lambda 0.3   lambda 0.6   lambda 0.9
+  alpha 0.01       1.32         1.33         1.35         1.10
+  alpha 0.03       1.29         1.37*        1.25         0.70
+  alpha 0.1        3.61         4.53**       1.04         0.24
+  alpha 0.3        4.78         1.48         0.24         0.24
+
+avoid-obstacles, x random at 1M
+                 lambda 0    lambda 0.3   lambda 0.6   lambda 0.9
+  alpha 0.01       0.93         1.02         1.23         0.23
+  alpha 0.03       1.34         1.53*        0.50         0.08
+  alpha 0.1        1.70         1.74**       0.31        -1.74
+  alpha 0.3        1.83         0.34        -1.28        -1.74
+
+  *  = setting in use before the sweep     ** = setting chosen
+
+Top settings over time (x random at 250k / 500k / 750k / 1M; per-seed values at 1M):
+  demon   alpha  lambda   250k  500k  750k   1M    seeds at 1M         reached  bumps/1k
+  seek    0.3    0        3.80  4.91  5.30  4.78   6.61 4.52 3.22        60%      385
+  seek    0.1    0.3      3.87  6.33  5.57  4.53   3.02 4.01 6.57        61%      247
+  seek    0.1    0        2.72  3.61  4.38  3.61   5.86 2.14 2.83        49%      280
+  seek    0.03   0.3      1.85  1.49  1.41  1.37   1.41 1.58 1.13        14%       82
+  avoid   0.3    0        1.82  1.77  1.80  1.83   1.87 1.83 1.80         -        1.3
+  avoid   0.1    0.3      1.58  1.63  1.74  1.74   1.85 1.71 1.67         -        1.1
+  avoid   0.03   0.3      1.18  1.28  1.45  1.53   1.56 1.55 1.48         -        0.8
+
+------------------------------------------------------------------------
+CONCLUSIONS
+------------------------------------------------------------------------
+  - Raising alpha from 0.03 to 0.1 more than triples seek (1.37x -> 4.53x) and lifts avoid (1.53x -> 1.74x).
+  - lambda >= 0.6 diverged (max|theta| overflow / nan in the .txt logs) for most alphas;
+    lambda 0.9 diverged at every alpha.
+  - Identical scores across seeds (seek 0.24x, avoid -1.74x, 983.9 bumps/1k) look like a diverged demon
+    stuck on one action [inference: not checked against the weights].
+  - seek's best settings peak at 500-750k, then drop, and differ a lot between seeds (3.02 - 6.57x).
+  - Decision: alpha 0.1, lambda 0.3 for both demons. The reason for picking it over alpha 0.3, lambda 0
+    is not recorded. [inference: one setting works for both demons, seek bumps less (247 vs 385/1k),
+    and alpha 0.3 is unstable as soon as lambda > 0.]
+
+CAVEATS
+  - Only 1M steps from zero weights. In the long Horde run, alpha 0.1 diverged when switched on at 7.825M
+    from warm weights (tests/horde_diverged_alpha01); the min(1, rho) trace cap fixed it
+    (tests/horde_12M_capped_trace).
+  - Only 3 seeds; seek varies a lot between them.
+
+WHAT IT LED TO
+  - alpha 0.1, lambda 0.3 used from 7.825M in the long run and from step 0 in tests/final_offpolicy_vs_onpolicy.
+
+------------------------------------------------------------------------
+HOW TO REPRODUCE
+------------------------------------------------------------------------
+  Check out commit 9e00452 and apply the brightness / FL+FR reward change, then from a folder inside the repo:
+      PYTHONPATH=.. python3 -u sweep.py seek 0      (demon name prefix, seed)
+  for seek and avoid, seeds 0, 1, 2.
+
+------------------------------------------------------------------------
+FILES
+------------------------------------------------------------------------
+  sweep.py                    the sweep script
+  sweep_<demon>_<seed>.npz    results (4 evals x 17 rows (16 copies + random) x [reward/step, reached %, bumps/1k])
+                              and grid (16 x [alpha, lambda]). Use these for numbers.
+  sweep_<demon>_<seed>.txt    printed logs. The max|theta| column overflows for diverged copies and merges
+                              with bumps/1k, so do not parse it.

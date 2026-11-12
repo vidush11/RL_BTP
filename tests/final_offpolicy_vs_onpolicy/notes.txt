@@ -1,0 +1,127 @@
+========================================================================
+ Final run: off-policy Horde vs on-policy Sarsa(lambda), frozen env, 3M steps each
+========================================================================
+
+QUESTION
+  With the environment frozen and all fixes in, how does one off-policy Horde (7 demons, one behaviour
+  stream) compare with a separate on-policy learner per control demon, on identical evaluation?
+
+ANSWER
+  The Horde beats plain on-policy on all three control demons. Episodic on-policy (random restarts every
+  250 steps) beats the Horde on seek-light (13.5x vs 7.2x random) and ties avoid and spin, but needs
+  resets and one run per demon; the Horde learned all 7 demons from one unbroken stream.
+
+------------------------------------------------------------------------
+SETUP
+------------------------------------------------------------------------
+  Date          2026-11-12, run in ../code2-runs/final (code identical to the repo's at the time)
+  Env           env.py frozen: 3x3 m, 2 pillars, light at (0.4, 2.6), hard shadows,
+                brightness 0.25/(0.25+d^2), 0.5 s per step, sensor noise sigma 0.005 (not on bump)
+  Horde         main.py: 7 demons, GQ(lambda), sticky-random behaviour (STICK 0.8), stopped at 3M
+                (STEPS in main.py is 12M). Control demons alpha 0.1, lambda 0.3 (tests/sweep_alpha_lambda);
+                trace uses min(1, rho) (tests/horde_diverged_trace_rho)
+  On-policy     runs/onpolicy_used.py: Sarsa(lambda), accumulating trace, one run per control demon,
+                same tile features; lambda 0.9, alpha 0.05/N_ACTIVE, eps 0.1, gamma 0.95, 3M steps
+                (ran to 1M, then resumed from the 1M checkpoint to 3M)
+                  plain:    the robot follows its own eps-greedy policy, one continuous life
+                  episodic: every 250 steps jump to a random free spot + heading, trace zeroed,
+                            no update across the jump
+  Evaluation    identical for all: main.EVAL_STARTS (100 states of a sticky-random run, seed 1234),
+                250 greedy steps each, learning off, every 25k steps, sensor noise seed SEED+t+1;
+                random baseline CHANCE computed once on the same starts
+  Metrics       x random = learned reward/step / random reward/step
+                scaled (0-1) = reward scaled by each reward's range (seek 0 to sqrt 2, avoid -1 to 1, spin 0 to 1)
+                steps to competence = first step where the trailing 100k mean covers 90% of the gap from
+                random to the run's own final level (final = mean of the last 8 evals)
+
+------------------------------------------------------------------------
+RESULTS
+------------------------------------------------------------------------
+At 3M, reward/step and x random (runs/*/train_log.txt, onpolicy_log.txt):
+  demon        random    Horde            plain on-policy   episodic on-policy
+  seek-light    0.08     0.57   7.16x     0.27   3.36x      1.07  13.49x
+  avoid         0.42     0.78   1.86x     0.61   1.45x      0.82   1.96x
+  spin          0.19     0.72   3.86x     0.71   3.82x      0.71   3.81x
+
+Horde learning curve, mean x random per 500k (runs/horde/train_log.txt; 0 evals below random):
+  period        seek x   avoid x   spin x
+  0.0 - 0.5M     3.72     1.61     3.78
+  0.5 - 1.0M     5.83     1.83     3.79
+  1.0 - 1.5M     7.06     1.84     3.79
+  1.5 - 2.0M     7.88     1.86     3.79
+  2.0 - 2.5M     7.49     1.87     3.79
+  2.5 - 3.0M     7.71     1.88     3.79
+
+Steps to competence, final level scaled 0-1 in brackets (steps_to_competence.txt):
+  demon     random   Horde            plain on-policy    episodic on-policy
+  seek      0.056    1.125M (0.44)    150k  (0.18)       425k (0.76)
+  avoid     0.709    575k   (0.90)    1.65M (0.81)       325k (0.91)
+  spin      0.185    25k    (0.72)    75k   (0.62)       25k  (0.67)
+
+Prediction demons, MAE at 3M (single eval, 25 states):
+  steps-to-obstacle 3.21   steps-to-stop 1.44   light-if-forward 0.88   bump-soon 0.84
+  (prediction_mae.png shows the trailing mean, ~0.6 - 2)
+
+Combining demons, no new learning (combine_variants.txt; Horde 3M, 100 starts x 250 steps):
+  policy                          seek r  avoid r  bumps/1k  pillar/1k  ever<0.5m  end<0.5m
+  random                           0.078   0.424     80.8      14.2       28%        8%
+  seek alone                       0.595  -0.045    424.5     107.7       81%       78%
+  avoid alone                      0.044   0.794      2.0       1.7        7%        0%
+  sum   w=0.1                      0.619   0.134    302.1      83.5       81%       80%
+  sum   w=0.25                     0.659   0.464     41.9      36.8       86%       84%
+  sum   w=0.5                      0.569   0.509     29.8      20.6       76%       62%
+  sum   w=1.0                      0.297   0.617      1.6       1.1       28%        3%
+  z-sum w=0.5                      0.604   0.411     82.6      23.8       80%       71%
+  z-sum w=1.0                      0.181   0.713      1.5       1.1       12%        7%
+  reflex: steps-to-obstacle < 2    0.591   0.223    255.0      39.2       81%       75%
+  reflex: steps-to-obstacle < 3    0.475   0.232    239.6      22.0       69%       54%
+  reflex: steps-to-obstacle < 5    0.255   0.418    177.6      45.8       26%       15%
+  reflex: bump-soon > 1.0          0.046   0.790      2.3       1.8        7%        0%
+  reflex: bump-soon > 2.0          0.252   0.383    201.1      47.3       32%       21%
+  on-policy seek (episodic)        1.086   0.416     82.1      65.9       92%       92%
+  sum = argmax [q_seek + w*q_avoid]; z-sum = same with each q z-scored across actions; reflex = act with avoid when
+  the prediction for FORWARD crosses the threshold, else seek.
+
+------------------------------------------------------------------------
+CONCLUSIONS
+------------------------------------------------------------------------
+  - Plain on-policy seek parks at the light (97.5% of steps within 0.5 m, mid-run diagnosis), so it rarely
+    practises from the dark: 0.068 from dark starts vs 0.407 off-policy. Episodic restarts fix the coverage.
+  - Episodic on-policy beats the Horde on seek-light, ties avoid, is slightly below on spin.
+  - The Horde reaches its level more slowly on seek (1.125M vs 425k episodic) but needs no resets.
+  - Sum w=0.25 is the best combination: more light than seek alone (0.659 vs 0.595), a tenth of the bumps
+    (41.9 vs 424.5 per 1k), ends near the light more often (84% vs 78%). Reflex switches did worse than the sum.
+  - Fig 6: the seek demon's front light ~0.7 vs ~0.1 for the behaviour (read off fig6_light_seeking.png).
+
+CAVEATS
+  - One seed per learner.
+  - Prediction MAE is a single eval of 25 states.
+  - The three plain on-policy runs have per-start scores only from 1.025M on (they started before
+    per-start saving existed).
+
+------------------------------------------------------------------------
+HOW TO REPRODUCE
+------------------------------------------------------------------------
+  Horde:      from a run folder, python3 -u <code>/main.py (stop at 3M)
+  On-policy:  cd onpolicy_<demon> && PYTHONPATH=<code> python3 -u <code>/onpolicy/onpolicy.py <demon> [episodic]
+              (<demon> = seek, avoid or spin; run from the folder so checkpoint and logs land there)
+  Figures:    PYTHONPATH=<code2-runs> python3 final_figures.py <code2-runs>/final
+
+------------------------------------------------------------------------
+FILES
+------------------------------------------------------------------------
+  final_figures.py              makes every figure and table here
+  fig2_time_to_obstacle.png     prediction demon vs truth (cf. Horde Fig 2)
+  fig5_learning_curves.png      raw learning curves
+  fig5_normalized.png           Horde vs plain on-policy, scaled 0-1, one panel per demon
+  fig5_episodic_vs_horde.png    Horde vs episodic on-policy, scaled 0-1
+  fig6_light_seeking.png        light over time and trajectories, seek demon vs behaviour
+  multiplier.png                x random over training, Horde vs episodic on-policy
+  prediction_mae.png            prediction errors over training
+  combine_tradeoff.png          light vs bumps for the combinations
+  steps_to_competence.txt       steps-to-competence table
+  combine_variants.txt          combination table
+  final_figures_console.txt     full printed output of final_figures.py
+  runs/                         horde/ and onpolicy_<demon>/ folders: logs, checkpoints, eval_per_start.npz;
+                                onpolicy_used.py = the exact on-policy script used
+  figures_run.txt               empty, left from an earlier attempt

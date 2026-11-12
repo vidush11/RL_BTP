@@ -24,6 +24,9 @@ STEPS, STICK, SEED, EVAL_EVERY = 12_000_000, 0.8, 0, 25_000
 N_CTRL, CTRL_STEPS = 100, 250  # control eval: number of starts, steps from each
 VIZ, RESUME = False, True  # RESUME=False (or deleting CHK) trains from scratch
 CHK, LOG = "checkpoint.npz", "train_log.txt"
+PER = (
+    "eval_per_start.npz"  # every eval: each control demon's reward/step from each start
+)
 CTRL = [i for i, d in enumerate(DEMONS) if d["pi"] is greedy]  # control demons
 
 # control-eval starts, shared with onpolicy.py: N_CTRL states a sticky-random robot
@@ -47,19 +50,20 @@ CHANCE /= N_CTRL * CTRL_STEPS
 
 
 def evaluate(horde, visit, seed, n=25, horizon=400):
-    """Rows (name, kind, x, y, z). pred: predicted, actual, mean |error|.
+    """Rows (name, kind, x, y, z) and each control demon's reward/step per start
+    (len(CTRL) x N_CTRL). pred: predicted, actual, mean |error|.
     ctrl: learned reward/step, random reward/step (CHANCE), learned/random."""
     rng, sim, rows = np.random.default_rng(seed), Robot(seed=seed + 1), []
+    per = np.zeros((len(CTRL), N_CTRL))
     for i, d in enumerate(DEMONS):
         if i in CTRL:
-            total = 0.0
-            for st in EVAL_STARTS:
+            for k, st in enumerate(EVAL_STARTS):
                 sim.set_state(st)
                 o = sim.obs()
                 for _ in range(CTRL_STEPS):
                     o = sim.step(Action(np.argmax(horde.q(o)[i])))
-                    total += d["r"](o)
-            x, y = total / (N_CTRL * CTRL_STEPS), CHANCE[i]
+                    per[CTRL.index(i), k] += d["r"](o) / CTRL_STEPS
+            x, y = per[CTRL.index(i)].mean(), CHANCE[i]
             rows.append((d["name"], "ctrl", x, y, x / y if y > 1e-9 else np.inf))
             continue
 
@@ -90,7 +94,7 @@ def evaluate(horde, visit, seed, n=25, horizon=400):
         pred, actual = np.array(pred), np.array(actual)
         err = np.abs(pred - actual).mean()
         rows.append((d["name"], "pred", pred.mean(), actual.mean(), err))
-    return rows
+    return rows, per
 
 
 if __name__ == "__main__":
@@ -118,6 +122,9 @@ if __name__ == "__main__":
         log(f"Resumed from {CHK} at step {start:,}")
     rng = np.random.default_rng(SEED + start)
     live = Live() if VIZ else None
+    per_t, per_all = [], []  # per-start history; a resume keeps what is already saved
+    if resuming and os.path.exists(PER):
+        per_t, per_all = list(np.load(PER)["t"]), list(np.load(PER)["scores"])
 
     for t in range(start + 1, STEPS + 1):
         p = np.full(N_ACTIONS, (1 - STICK) / N_ACTIONS)  # repeat prev with prob STICK
@@ -134,7 +141,12 @@ if __name__ == "__main__":
         if t % EVAL_EVERY:
             continue
 
-        rows = evaluate(horde, visited, SEED + t)
+        rows, per = evaluate(horde, visited, SEED + t)
+        per_t.append(t)
+        per_all.append(per)
+        np.savez(
+            PER, t=np.array(per_t), scores=np.array(per_all)
+        )  # (evals, ctrl, starts)
         if live:
             live.record(t, rows)
         log(f"\nsteps {t:,} | friction {env.friction}")

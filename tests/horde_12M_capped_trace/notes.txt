@@ -1,6 +1,76 @@
-Long Horde run, stopped by request before 12M (last eval: steps 11,950,000 | friction 0.41). Run in ../code2-runs.
-History: 0-6M tests/pillars_shadow_bumppenalty settings; 6M: brightness 0.25/(0.25+d^2), seek reward FL+FR, n_ctrl 50;
-7.825M: seek/avoid alpha 0.1; 9.0M: seek/avoid reset to 0 after divergence (tests/horde_diverged_alpha01);
-10.9M: rho capped at 1 in the trace, seek/avoid reset again (tests/horde_diverged_trace_rho); 11.05M: eval starts fixed per process.
-After the 10.9M fix: weights stayed ~1-2.5, seek ~3-5x random, avoid ~1.6-1.9x (see train_log.txt).
-Superseded by tests/final_offpolicy_vs_onpolicy (fresh run, shared eval starts with on-policy).
+========================================================================
+ Long Horde run 0 - 11.95M, ending with the rho-capped trace
+========================================================================
+
+QUESTION
+  One unbroken Horde run across all the fixes of 2026-11-11. With rho capped at 1 in the trace,
+  do the control demons stay stable at alpha 0.1, and how well do they do?
+
+ANSWER
+  Yes. After the cap at 10.9M weights stayed ~1 - 2.7 and the demons reached their best levels of the run
+  (seek 6.1x, avoid 1.9x random over 11.6 - 11.95M). Superseded by the clean final run.
+
+------------------------------------------------------------------------
+SETUP
+------------------------------------------------------------------------
+  Date          2026-11-11, run in ../code2-runs; stopped by request at 11.95M
+                (last eval: steps 11,950,000 | friction 0.41)
+  Code changes during the run:
+    0 - 6M      settings of tests/pillars_shadow_bumppenalty (seek reward = sum of 4 lights, alpha 0.03, n_ctrl 10)
+    6M          brightness 0.25/(0.25+d^2), seek reward FL+FR, n_ctrl 50
+    7.825M      seek/avoid alpha 0.1          -> diverged (tests/horde_diverged_alpha01)
+    9.0M        seek/avoid reset to 0         -> avoid diverged again (tests/horde_diverged_trace_rho)
+    10.9M       rho capped at 1 in the trace, seek/avoid reset again,
+                100 fresh starts per eval shared by all control demons
+    11.05M      eval starts fixed per process (log line 6281)
+  Fixed         STICK 0.8; DT 0.5 s; softmax tau 0.1; lambda 0.3 for seek/avoid
+  Evaluation    every 25k, greedy, vs random on the same starts (start count as above)
+  Metric        x random = learned reward/step / random reward/step
+
+------------------------------------------------------------------------
+RESULTS  (from train_log.txt, mean x random per 1M; last-logged value kept where a resume repeats steps)
+------------------------------------------------------------------------
+  period        evals   seek x   avoid x   spin x   seek < rnd   avoid < rnd   stage
+  0 - 1M          40     1.58     1.21     3.86       1            9          sum-of-4 reward, alpha 0.03
+  1 - 2M          40     1.60     1.50     3.94       1            0
+  2 - 3M          40     1.24     1.58     3.92       8            0
+  3 - 4M          40     1.18     1.68     3.94       8            0
+  4 - 5M          40     1.17     1.74     3.94       6            0
+  5 - 6M          40     1.15     1.44     3.94      13            8
+  6 - 7M          40     1.13     1.39     3.97      13            5          FL+FR reward, new brightness
+  7 - 8M          40     1.24     0.93     3.97      11           16          alpha 0.1 from 7.825M
+  8 - 9M          40     0.80     0.75     3.95      29           23          diverging
+  9 - 10M         40     5.17     1.62     3.94       0            1          reset, rho uncapped
+  10 - 11M        40     3.40     1.54     3.98       1            4          avoid diverged ~10.8M; cap at 10.9M
+  11 - 11.95M     38     5.13     1.80     3.80       0            0          rho capped
+
+  After the cap (10.9M on), finer:
+  10.90 - 11.25M  14     3.48     1.59     3.86
+  11.25 - 11.60M  14     4.99     1.83     3.79
+  11.60 - 11.95M  14     6.11     1.88     3.79
+  Largest max|theta| per demon over the last 42 evals: 2.68 1.2 2.93 0.846 2.77 3.22 2.49
+
+------------------------------------------------------------------------
+CONCLUSIONS
+------------------------------------------------------------------------
+  - Capping rho at 1 in the trace keeps alpha 0.1 stable; the final run uses it from step 0.
+  - The FL+FR reward + alpha 0.1 (from 9M) is what moved seek from ~1.2x to 3-6x random.
+  - spin was fine throughout (~3.9x) and never needed changes.
+
+WHAT IT LED TO
+  - tests/final_offpolicy_vs_onpolicy: fresh 3M run with all fixes from step 0, eval starts shared with on-policy.
+
+CAVEATS
+  - Rows are not comparable across stages: the reward, eval start count and code changed during the run.
+  - It does not show learning from scratch with the final settings (that is the final run).
+
+------------------------------------------------------------------------
+HOW TO REPRODUCE
+------------------------------------------------------------------------
+  Not a clean run (resumed with code changes). Inspect the final state with np.load("checkpoint.npz").
+
+------------------------------------------------------------------------
+FILES
+------------------------------------------------------------------------
+  checkpoint.npz   full Horde state at 11.95M
+  train_log.txt    whole log 0 - 11.95M; "--- code changed ---" lines mark each stage
