@@ -26,11 +26,10 @@ VALUE = np.array(
         [15, 16, 6, 17, 18],
     ]
 )
-TASKS = {  # weight per reward, in REWARDS order
-    "seek + 0.25 avoid": [1, 0, 0.25, 0, 0],
-    "seek, never bump": [1, 0, 0, 0, -1],
-    "avoid + spin": [0, 1, 1, 0, 0],
-    "drive forward, no bumps": [0, 0, 0, 1, -1],
+TASKS = {  # weight per reward, in REWARDS order: light, spin, avoid, velocity, bump
+    "seek light safely": [1, 0, 0, 0, -2],  # light - 2 bump
+    "hide from the light, avoid obstacles": [-1, 0, 1, 0, 0],  # - light + avoid
+    "move fast safely": [0, 0, 1, 1, 0],  # velocity + avoid
 }
 POLICIES = ["random", "seek alone", "spin alone", "avoid alone", "local demons", "GPI"]
 

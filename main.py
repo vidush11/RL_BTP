@@ -22,6 +22,7 @@ from viz import Live
 
 STEPS, STICK, SEED, EVAL_EVERY = 3_000_000, 0.8, 0, 25_000
 N_CTRL, CTRL_STEPS = 100, 250  # control eval: number of starts, steps from each
+SF_EVERY, SF_N = 250_000, 5  # successor-feature demons: eval every 250k on 5 states
 VIZ, RESUME = False, True  # RESUME=False (or deleting CHK) trains from scratch
 CHK, LOG, PER = "checkpoint.npz", "train_log.txt", "eval_per_start.npz"
 CTRL = [i for i, d in enumerate(DEMONS) if d["pi"] is greedy and "follow" not in d]
@@ -52,7 +53,7 @@ for st in EVAL_STARTS:
 random_rewards /= N_CTRL * CTRL_STEPS  # averaging the reward with steps, starts
 
 
-def evaluate(horde, visit, seed, n=25, horizon=400):
+def evaluate(horde, visit, seed, n=25, horizon=400, sf=True):
     """Rows (name, kind, x, y, z) and each control demon's reward/step per start
     (len(CTRL) x N_CTRL). pred: predicted, actual, mean |error|.
     ctrl: learned reward/step, random reward/step (random_rewards), learned/random."""
@@ -70,8 +71,10 @@ def evaluate(horde, visit, seed, n=25, horizon=400):
             rows.append((d["name"], "ctrl", x, y, x / y if y > 1e-9 else np.inf))
             continue
 
+        if "follow" in d and not sf:
+            continue  # successor-feature demons are only scored every SF_EVERY steps
         pred, actual = [], []
-        for _ in range(n):
+        for _ in range(SF_N if "follow" in d else n):
             st = visit[rng.integers(len(visit))]  # only where the behaviour went
             sim.set_state(st)
             o = sim.obs()
@@ -145,7 +148,7 @@ if __name__ == "__main__":
         if t % EVAL_EVERY:
             continue
 
-        rows, per = evaluate(horde, visited, SEED + t)
+        rows, per = evaluate(horde, visited, SEED + t, sf=t % SF_EVERY == 0)
         per_t.append(t)
         per_all.append(per)
         # scores: (evals, control demons, starts)
