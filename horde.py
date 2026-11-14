@@ -10,7 +10,7 @@ Author: Vidush Jindal(jindalv)
 import numpy as np
 
 from env import N_ACTIONS, Action
-from features import N_ACTIVE, N_FEATURES, phi
+from features import N_ACTIVE, N_FEATURES, N_STATE, phi
 
 
 class Horde:
@@ -42,7 +42,9 @@ class Horde:
 
         # demons share phi(obs,a)
         # the features of horde are binary hence we do not have to do matrix multiplication
-        return np.array([self.theta[:, phi(obs, a)].sum(1) for a in Action]).T
+        # phi(obs, a) is phi(obs, 0) shifted by a * N_STATE, so tile the state only once
+        idx = phi(obs, 0)
+        return np.array([self.theta[:, idx + a * N_STATE].sum(1) for a in Action]).T
 
     def pi(self, obs: np.ndarray, q_sa: np.ndarray) -> np.ndarray:
         """Returns the stochastic distribution of target policy actions for each demon
@@ -80,7 +82,8 @@ class Horde:
         :rtype: _type_
         """
         idx = phi(obs, a)
-        idx2 = [phi(obs2, action) for action in Action]
+        # active features of (obs2, every action): actions x active
+        idx2 = phi(obs2, 0) + N_STATE * np.arange(N_ACTIONS)[:, None]
         Q2 = np.stack([self.theta[:, j].sum(1) for j in idx2], 1)
         pi_t = self.pi(obs, self.q(obs))
         pi_2 = self.pi(obs2, Q2)
