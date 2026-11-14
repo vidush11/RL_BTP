@@ -24,7 +24,7 @@ STEPS, STICK, SEED, EVAL_EVERY = 3_000_000, 0.8, 0, 25_000
 N_CTRL, CTRL_STEPS = 100, 250  # control eval: number of starts, steps from each
 VIZ, RESUME = False, True  # RESUME=False (or deleting CHK) trains from scratch
 CHK, LOG, PER = "checkpoint.npz", "train_log.txt", "eval_per_start.npz"
-CTRL = [i for i, d in enumerate(DEMONS) if d["pi"] is greedy]  # control demons
+CTRL = [i for i, d in enumerate(DEMONS) if d["pi"] is greedy and "follow" not in d]
 
 # Shared evaluation, also imported by onpolicy.py.
 sim_temp, rng, prev_action, starts = (
@@ -77,9 +77,9 @@ def evaluate(horde, visit, seed, n=25, horizon=400):
             o = sim.obs()
             if d["gamma"](o) == 0.0:
                 continue  # already terminal
-            qi = horde.q(o)[i]
-            b = Action(rng.choice(N_ACTIONS, p=d["pi"](o, qi)))
-            pred.append(qi[b])
+            q = horde.q(o)  # psi demons act by the policy of demon "follow"
+            b = Action(rng.choice(N_ACTIONS, p=d["pi"](o, q[d.get("follow", i)])))
+            pred.append(q[i][b])
             sim.set_state(st)  # roll out the target policy from the same state
             G, disc = 0.0, 1.0
             for _ in range(horizon):
@@ -92,7 +92,8 @@ def evaluate(horde, visit, seed, n=25, horizon=400):
                 disc *= g
                 if disc < 1e-3:
                     break
-                b = Action(rng.choice(N_ACTIONS, p=d["pi"](o, horde.q(o)[i])))
+                q = horde.q(o)[d.get("follow", i)]
+                b = Action(rng.choice(N_ACTIONS, p=d["pi"](o, q)))
             actual.append(G)
         pred, actual = np.array(pred), np.array(actual)
         err = np.abs(pred - actual).mean()

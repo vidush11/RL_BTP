@@ -41,6 +41,7 @@ class Horde:
         """
 
         # demons share phi(obs,a)
+        # the features of horde are binary hence we do not have to do matrix multiplication
         return np.array([self.theta[:, phi(obs, a)].sum(1) for a in Action]).T
 
     def pi(self, obs: np.ndarray, q_sa: np.ndarray) -> np.ndarray:
@@ -54,8 +55,12 @@ class Horde:
         :rtype: np.ndarray
         """
 
+        # Demons either follow their own policy or demons act by the policy of demon "follow";
         return np.stack(
-            [demon["pi"](obs, q_sa[ind]) for ind, demon in enumerate(self.demons)]
+            [
+                demon["pi"](obs, q_sa[demon.get("follow", ind)])
+                for ind, demon in enumerate(self.demons)
+            ]
         )
 
     def update(self, obs: np.ndarray, a: Action, obs2: np.ndarray, mu: float):

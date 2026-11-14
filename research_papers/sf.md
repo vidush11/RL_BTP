@@ -96,7 +96,7 @@ We can define a new policy $\pi$ that acts greedily with respect to the **maximu
 $$ \pi(s) \in \arg\max_a \max_i \tilde{Q}^{\pi_i}(s, a) $$
 
 **Theorem 1 (GPI Bound):** 
-The new policy will perform no worse than *any* of the historical policies, minus a small approximation penalty:
+The new policy will perform no worse than *any* of the historical policies, minus a small approximation penalty (the reward structure of underlying policies is same):
 
 $$ Q^\pi(s, a) \ge \max_i Q^{\pi_i}(s, a) - \frac{2}{1 - \gamma}\epsilon $$
 
@@ -116,7 +116,7 @@ $$ Q^\pi(s, a) \ge \max_i Q^{\pi_i}(s, a) - \frac{2}{1 - \gamma}\epsilon $$
 
 ## Theorem 2: Theoretical Guarantees
 
-How good is this zero-shot transfer? 
+How good is this zero-shot transfer? (the reward structure changes, so we first compute new state action values zero shot then use theorem 1)
 
 If we use GPI over $n$ previously learned optimal policies, the loss of our zero-shot policy compared to the *true optimal policy* $Q_i^*$ is strictly bounded:
 

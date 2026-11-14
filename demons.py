@@ -14,7 +14,18 @@ from typing import Callable
 
 import numpy as np
 
-from env import ANG_VEL, BUMP, IR_B, IR_F, LIGHT_BR, LIGHT_FL, LIGHT_FR, N_ACTIONS, VEL, Action
+from env import (
+    ANG_VEL,
+    BUMP,
+    IR_B,
+    IR_F,
+    LIGHT_BR,
+    LIGHT_FL,
+    LIGHT_FR,
+    N_ACTIONS,
+    VEL,
+    Action,
+)
 
 
 def fixed(a: Action) -> Callable[[np.ndarray, np.ndarray], np.ndarray]:
@@ -110,7 +121,8 @@ DEMONS = [
     dict(
         name="seek-light [ctrl]",
         pi=greedy,
-        r=lambda obs: obs[LIGHT_FL] + obs[LIGHT_FR],  # front light only, so turning toward it pays
+        r=lambda obs: obs[LIGHT_FL]
+        + obs[LIGHT_FR],  # front light only, so turning toward it pays
         z=ZERO,
         gamma=lambda o: 0.95,
         lam=0.3,
@@ -137,6 +149,143 @@ DEMONS = [
         gamma=lambda o: 0.95,
         lam=0.3,
         alpha=0.1,  # sweep: 1.74x random vs 1.53x at 0.03; 0.3 collapses with lam 0.3
+        beta=0.01,
+    ),
+    # Successor features for GPI: Each demon below predicts one reward while
+    # following other control demon's policy (follow = index of that control demon above).
+    # Following seek-light (4): rewards collected on the way
+    dict(
+        name="seek-light | spin",
+        follow=4,
+        pi=greedy,
+        r=lambda o: abs(o[ANG_VEL]) / 3.0,
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="seek-light | avoid",
+        follow=4,
+        pi=greedy,
+        r=lambda o: 1.0 - o[IR_F : IR_B + 1].max() - o[BUMP],
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="seek-light | velocity",
+        follow=4,
+        pi=greedy,
+        r=lambda o: o[VEL],  # signed: forward +, reverse -
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="seek-light | bump",
+        follow=4,
+        pi=greedy,
+        r=lambda o: o[BUMP],
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    # Following spin (5): rewards collected on the way
+    dict(
+        name="spin | seek-light",
+        follow=5,
+        pi=greedy,
+        r=lambda obs: obs[LIGHT_FL] + obs[LIGHT_FR],
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="spin | avoid",
+        follow=5,
+        pi=greedy,
+        r=lambda o: 1.0 - o[IR_F : IR_B + 1].max() - o[BUMP],
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="spin | velocity",
+        follow=5,
+        pi=greedy,
+        r=lambda o: o[VEL],  # signed: forward +, reverse -
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="spin | bump",
+        follow=5,
+        pi=greedy,
+        r=lambda o: o[BUMP],
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    # Following avoid (6): rewards collected on the way
+    dict(
+        name="avoid | seek-light",
+        follow=6,
+        pi=greedy,
+        r=lambda obs: obs[LIGHT_FL] + obs[LIGHT_FR],
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="avoid | spin",
+        follow=6,
+        pi=greedy,
+        r=lambda o: abs(o[ANG_VEL]) / 3.0,
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="avoid | velocity",
+        follow=6,
+        pi=greedy,
+        r=lambda o: o[VEL],  # signed: forward +, reverse -
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
+        beta=0.01,
+    ),
+    dict(
+        name="avoid | bump",
+        follow=6,
+        pi=greedy,
+        r=lambda o: o[BUMP],
+        z=ZERO,
+        gamma=lambda o: 0.95,
+        lam=0.3,
+        alpha=0.1,
         beta=0.01,
     ),
 ]
